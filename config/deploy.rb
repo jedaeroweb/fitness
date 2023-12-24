@@ -10,7 +10,7 @@ set :linked_files, %w{config/database.yml .env}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/assets public/uploads}
 set :rbenv_type, :user
 set :rbenv_ruby, "3.2.2"
-
+set :ssh_options, paranoid: false
 set :default_env, {'NODE_OPTIONS'=>'--openssl-legacy-provider'}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
