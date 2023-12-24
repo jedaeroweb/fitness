@@ -1,0 +1,17 @@
+<%= form_with(model: [:admin, course_category], local: true) do |form| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="form-row">
+        <div class="col-12 form-group">
+          <div class="form-group">
+            <%= form.label :title %>
+            <%= form.text_field :title, :class => "form-control", :required => "required" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-submit mt-3">
+  <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+  </div>
+<% end %>

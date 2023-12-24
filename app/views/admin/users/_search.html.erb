@@ -1,0 +1,24 @@
+<article class="user-search row mt-3">
+  <div class="col-12">
+    <div class="card p-3">
+    <%= form_with(url: admin_path, local: true, method: 'get') do |form| %>
+      <div class="form-row">
+        <div class="col-6 col-sm-6 form-group">
+          <%= select_tag :search_field, options_for_select([[t(:name), 'name'], [t(:phone), 'phone']],params[:search_field]), { :class => 'form-control form-control-sm', :required => 'required' } %>
+        </div>
+        <div class="col-6 col-sm-6 form-group">
+
+        </div>
+        <div class="col-12 form-group">
+          <div class="input-group">
+            <%= search_field_tag :search_word,params[:search_word], { :class => 'form-control form-control-sm', :placeHolder => t(:search_word), :required => 'required' } %>
+            <span class="input-group-btn">
+              <%= form.submit t(:search), :class => 'btn btn-primary btn-sm' %>
+            </span>
+          </div>
+        </div>
+    <% end %>
+  </div>
+    </div>
+  </div>
+</article>

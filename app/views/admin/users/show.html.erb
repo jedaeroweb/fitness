@@ -1,0 +1,25 @@
+<section id="show-user" class="container">
+  <div class="row">
+    <h2 class="col-12 di-title"><%= t(:show_user) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @user.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="row">
+    <%= render :partial => 'admin/home/aside' %>
+    <div class="col-12 col-lg-7 col-xl-8 col-xxl-9 user_sub">
+      <section class="row user-content-section">
+        <div class="col-12">
+          <h2 class="di-title"><%= t(:user_detail) %></h2>
+          <% if @user.nil? %>
+            <%= render :partial => 'admin/home/not_found' %>
+          <% else %>
+            <%= render :partial => 'admin/home/nav' %>
+            <%= render :partial => 'content' %>
+          <% end %>
+        </div>
+      </section>
+      <%= render :partial => 'admin/home/summary' %>
+    </div>
+  </div>
+</section>

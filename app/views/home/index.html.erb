@@ -1,0 +1,36 @@
+<div class="mdl-layout__drawer">
+  <span class="mdl-layout-title">xx님</span>
+  <nav class="mdl-navigation">
+    <%=link_to t(:edit_height) %>
+    <%=link_to t(:log_out) %>
+  </nav>
+</div>
+<main id="home" class="main_container">
+  <nav>
+    <ul>
+      <li><%=link_to t(:trainer),trainers_path %></li>
+      <li><%=link_to attendances_path do %>
+          <span class="material-icons-outlined">
+edit_calendar
+</span>
+      <%=t(:attendance) %>
+    <% end %>
+          </li>
+      <li><%=link_to exercises_path do %>
+          <span class="material-icons">
+fitness_center
+</span><%=t(:exercise) %>
+        <% end %>
+      </li>
+      <li><%=link_to weight_path do %>
+        <span class="material-icons">
+monitor_weight
+</span>
+          <%=t(:weight) %>
+        <% end %>
+      </li>
+      <li><%=link_to t(:message),messages_path %></li>
+      <li><%=link_to t(:pt),pts_path %></li>
+    </ul>
+  </nav>
+</main>

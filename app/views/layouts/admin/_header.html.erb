@@ -1,0 +1,147 @@
+<header>
+  <ul id="top-menu">
+    <% if admin_signed_in? %>
+      <li style="margin-right:30px">
+        <%= link_to edit_admin_registration_path do %><%= t(:welcome) %>
+        <% end %></li>
+      <li>
+        <%= link_to admin_home_setting_path do %>
+          <i class="material-icons" style="font-size:35px;vertical-align:middle">setting</i><span><%= t(:setting) %></span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to destroy_admin_session_path, {id: "p_logout",method: 'delete'} do %>
+          <i class="material-icons" style="font-size:35px;vertical-align:middle">highlight_off</i><span><%= t(:logout) %></span>
+        <% end %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to new_admin_session_path do %>
+          <i class="material-icons">login</i><span><%= t(:login) %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <div id="header-top">
+    <div class="container">
+      <div class="row">
+        <h1 class="col-12"><%= link_to t(:service_name), admin_path %></h1>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <ul class="nav">
+        <li class="sl-dropdown
+            <% if ['admin/home','admin/users','admin/groups', 'admin/entrances'].include? params[:controller] %> active
+            <% end %>">
+          <%= link_to admin_path do %>
+            <%=raw '<i class="material-icons">person</i>' + t(:user, scope: [:activerecord, :models]) %>
+          <% end %>
+          <ul class="sl-dropdown-menu">
+            <li
+              <% if current_page?(admin_users_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">person</i>' + t(:user, scope: [:activerecord, :models])), admin_path %></li>
+            <li
+              <% if current_page?(admin_groups_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">group</i>' + t(:group, scope: [:activerecord, :models])), admin_groups_path %></li>
+            <li
+              <% if current_page?(admin_entrances_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">add_location</i>' + t(:entrance, scope: [:activerecord, :models])), admin_entrances_path %></li>
+          </ul>
+        </li>
+        <li class="sl-dropdown
+            <% if ['admin/enrolls', 'admin/courses', 'admin/course_categories'].include? params[:controller] %> active
+            <% end %>">
+          <%= link_to admin_enrolls_path do %>
+            <%=raw '<i class="material-icons">fitness_center</i>' + t(:enroll, scope: [:activerecord, :models]) %>
+          <% end %>
+          <ul class="sl-dropdown-menu">
+            <li
+              <% if current_page?(admin_enrolls_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">fitness_center</i>' + t(:enroll, scope: [:activerecord, :models])), admin_enrolls_path %></li>
+            <li
+              <% if current_page?(admin_courses_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">fitness_center</i>' + t(:course, scope: [:activerecord, :models])), admin_courses_path %></li>
+            <li
+              <% if current_page?(admin_course_categories_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">fitness_center</i>' + t(:course_category, scope: [:activerecord, :models])), admin_course_categories_path %></li>
+          </ul>
+        </li>
+        <li class="sl-dropdown
+            <% if ['admin/rents', 'admin/facilities'].include? params[:controller] %> active
+            <% end %>">
+          <%= link_to admin_rents_path do %>
+            <%=raw '<i class="material-icons">storage</i>' + t(:rent, scope: [:activerecord, :models]) %>
+          <% end %>
+          <ul class="sl-dropdown-menu">
+            <li
+              <% if current_page?(admin_rents_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">storage</i>' + t(:rent, scope: [:activerecord, :models])), admin_rents_path %></li>
+            <li
+              <% if current_page?(admin_facilities_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">storage</i>' + t(:facility, scope: [:activerecord, :models])), admin_facilities_path %></li>
+            <li
+              <% if current_page?(admin_facility_categories_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">storage</i>' + t(:facility_category, scope: [:activerecord, :models])), admin_facility_categories_path %></li>
+          </ul>
+        </li>
+        <li class="sl-dropdown
+            <% if ['admin/accounts', 'admin/analysis'].include? params[:controller] %> active
+            <% end %>">
+          <%= link_to admin_accounts_path do %>
+            <%=raw '<i class="material-icons">attach_money</i>' + t(:account, scope: [:activerecord, :models]) %>
+          <% end %>
+          <ul class="sl-dropdown-menu">
+            <li
+              <% if current_page?(admin_accounts_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">attach_money</i>' + t(:account, scope: [:activerecord, :models])), admin_accounts_path %></li>
+            <li
+              <% if current_page?(admin_analysis_index_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">assessment</i>' + t(:analysis, scope: [:activerecord, :models])), admin_analysis_index_path %></li>
+          </ul>
+        </li>
+        <li class="sl-dropdown
+            <% if ['admin/messages', 'admin/prepared_messages'].include? params[:controller] %> active
+            <% end %>">
+          <%= link_to admin_messages_path do %>
+            <%=raw('<i class="material-icons">mail</i>' + t(:message, scope: [:activerecord, :models])) %>
+          <% end %>
+          <ul class="sl-dropdown-menu">
+            <li
+              <% if current_page?(admin_messages_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">mail</i>' + t(:message, scope: [:activerecord, :models])), admin_messages_path %></li>
+            <li
+              <% if current_page?(admin_prepared_messages_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">mail</i>' + t(:prepared_message, scope: [:activerecord, :models])), admin_prepared_messages_path %></li>
+          </ul>
+        </li>
+        <li class="sl-dropdown
+            <% if ['admin/admins', 'admin/notices'].include? params[:controller] %> active
+            <% end %>">
+          <%= link_to admin_admins_path do %>
+            <%=raw('<i class="material-icons">build</i>' + t(:admin, scope: [:activerecord, :models])) %>
+          <% end %>
+          <ul class="sl-dropdown-menu">
+            <li
+              <% if current_page?(admin_admins_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">build</i>' + t(:employee, scope: [:activerecord, :models])), admin_admins_path %></li>
+            <li
+              <% if current_page?(admin_notices_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">build</i>' + t(:notice, scope: [:activerecord, :models])), admin_notices_path %></li>
+            <li
+              <% if current_page?(admin_branches_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">build</i>' + t(:branch, scope: [:activerecord, :models])), admin_branches_path %></li>
+            <li
+              <% if current_page?(admin_jobs_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">build</i>' + t(:job, scope: [:activerecord, :models])), admin_jobs_path %></li>
+            <li
+              <% if current_page?(admin_visit_routes_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">build</i>' + t(:visit_route, scope: [:activerecord, :models])), admin_visit_routes_path %></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+

@@ -1,0 +1,36 @@
+<%= form_with(model: [:admin, @user_content], local: true) do |form| %>
+  <% if params[:popup].present? %>
+    <div class="modal-header">
+      <h2 class="modal-title"><%= t(:show_user_content) %></h2>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  <% else %>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+  <% end %>
+
+  <div class="content-text">
+    <%= simple_format @user_content.content %>
+  </div>
+  <div class="form-group" style="display:none">
+    <%= form.label :content %>
+    <%= form.text_area :content, :class => 'form-control' %>
+  </div>
+
+  <% if params[:popup].present? %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to t(:delete), admin_user_content_path(@user_content), :method => :delete, data: {:confirm => "You sure?" } , :title => "Delete #{@user_content}",:class=>"btn btn-danger" %>
+      <button type="button" class="btn btn-secondary content-edit"><%= t(:edit) %></button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t(:close) %></button>
+    </div>
+  <% else %>
+    </div>
+    </div>
+    </div>
+  <% end %>
+<% end %>

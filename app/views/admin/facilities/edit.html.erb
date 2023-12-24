@@ -1,0 +1,13 @@
+<section id="edit-facility" class="container">
+  <div class="row">
+    <h2 class="col-12"><%= t(:edit_facility) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @facility.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= render 'form', facility: @facility %>
+    </div>
+  </div>
+</section>

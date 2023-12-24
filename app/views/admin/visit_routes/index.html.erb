@@ -1,0 +1,77 @@
+<div id="visit-routes" class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="float-left"><%= t(:visit_route_list) %></h2>
+      <div class="float-right">
+        <p class="summary">
+          <span id="list_count" style="display:none"><%= @visit_route_count %></span>
+          <%= raw t(:there_are_n_visit_routes, count: @visit_route_count) %>
+        </p>
+      </div>
+    </div>
+    <div class="col-12">
+      <table class="table table-bordered table-hover">
+        <colgroup>
+          <col>
+          <col>
+          <col style="width:150px">
+          <col style="width:200px">
+          <% if can?(:update, VisitRoute) or can?(:delete, VisitRoute) %>
+            <col<%= manage_width(VisitRoute) %>>
+          <% end %>
+        </colgroup>
+        <thead class="thead-default">
+        <tr>
+          <th><%= t(:title, scope: [:activerecord, :attributes, :visit_route]) %></th>
+          <th class="text-center"><%= t(:description, scope: [:activerecord, :attributes, :visit_route]) %></th>
+          <th class="text-center"><%= t(:user_additionals_count, scope: [:activerecord, :attributes, :visit_route]) %></th>
+          <th class="text-center"><%= t(:created_at, scope: [:activerecord, :attributes, :visit_route]) %></th>
+          <th class="text-center"><%= t(:manage) %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% unless @visit_routes.empty? %>
+          <% @visit_routes.each_with_index do |visit_route, index| %>
+            <tr>
+              <td><%= link_to visit_route.title, admin_visit_route_path(visit_route) %></td>
+              <td class="text-center">
+                <% if visit_route.description.present? %>
+                  <%= visit_route.description %>
+                <% else %>
+                  <%= t(:not_insert) %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= visit_route.user_additionals_count %></td>
+              <td class="text-center"><%= get_dt_format(visit_route.created_at) %> </td>
+              <% if can?(:update, visit_route) or can?(:delete, visit_route) %>
+                <td class="text-center">
+                  <% if can? :update, visit_route %>
+                    <%= link_to edit_admin_visit_route_path(visit_route), :class => "btn btn-secondary" do %>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+                  <% if can? :delete, visit_route %>
+                    <%= link_to admin_visit_route_path(visit_route), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="4" class="text-center"><%= t(:no_data) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= paginate @visit_routes %>
+    </div>
+    <% if can? :create, VisitRoute %>
+      <div class="col-12">
+        <%= link_to t(:add), new_admin_visit_route_path, :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

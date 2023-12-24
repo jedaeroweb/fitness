@@ -1,0 +1,41 @@
+<section class="row user-content-section">
+  <h2 class="col-12 di-title"><%= t(:user_summary_info) %></h2>
+  <div class="col-12">
+    <article class="card">
+      <div class="card-header">
+        <h3><%= t(:memo) %></h3>
+        <%= link_to new_admin_user_content_path(:user_id => @user), { id: 'add-user-memo', class: 'btn-modal more2' } do %>
+          <i class="material-icons">add</i>
+        <% end %>
+        <%= link_to admin_home_memos_path(@user), { id: 'add-user-memo', class: 'more' } do %>
+          <i class="material-icons">redo</i>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <% if @memo_count.zero? %>
+              <p><%= t(:not_inserted_memo) %></p>
+            <% else %>
+              <% unless @memos.empty? %>
+                <% @memos.each do |memo| %>
+                  <div style="margin-bottom:20px">
+                    <%= link_to memo.content, admin_user_content_path(memo), :class => 'btn-modal more' %>
+                    (<%= get_dt_format(memo.updated_at) %>)
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% if @memo_count > 3 %>
+        <div class="card-footer" style="padding:0">
+          <%= link_to admin_home_memos_path(@user), id: 'more-user-memo', class: 'btn btn-sm btn-block btn-link' do %>
+            <i class="material-icons">keyboard_arrow_down</i>
+          <% end %>
+        </div>
+      <% end %>
+    </article>
+  </div>
+</section>

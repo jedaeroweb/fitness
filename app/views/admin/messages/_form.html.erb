@@ -1,0 +1,117 @@
+<%= form_with(model: [:admin, message], local: true) do |form| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-lg-6 form-group">
+          <label><%= t(:send_type, scope: [:activerecord, :attributes, :message]) %></label>
+          <div class="">
+            <%= form.select :product_id, options_from_collection_for_select(MessageSendType.where(:enable => true).all, 'id', 'title'), { :include_blank => t('select_message_send_type') }, { :class => "form-control" } %>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+          <%= label_tag :sms_point %>
+          <p>sdagasdgasdg</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="form-row">
+        <div class="col-12 form-group">
+          <label for="m_users"><%= t(:user_id, scope: [:activerecord, :attributes, :message_receiver]) %>
+            <%= link_to admin_user_select_path, t(:select_user), style: 'display:none' %>
+          </label>
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                  <%= radio_button_tag 'reciever_all', true, true %>
+                  <%= t(:select_user) %>
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                  <%= radio_button_tag 'reciever_all', false %>
+                  <%= t(:all) %>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div id="select_user_layer" class="col-12 form-group">
+          <label><%= t(:selected_user) %></label>
+          <div class="users_input">
+            <% unless @users.count.zero? %>
+              <% @users.each do |user| %>
+                <% if message_send_type_id == 1 %>
+            <span class="select_user
+              <% if user.token.empty? %>text-danger
+              <% else %>text-success
+              <% end %>">
+              <%= user.name %>
+              <% if user.token.empty? %>
+              (token empty)
+              <% else %>
+              <input type="hidden" name="user[]" value="<%= user.id %>"/>
+              <% end %>
+              <span class="text-danger">X</span>
+        </span>
+                <% else %>
+            <span class="select_user
+              <% if user.phone.empty? %>text-danger
+              <% else %>text-success
+              <% end %>">
+               <%= user.name %>
+              <% if user.phone.empty? %>
+              (phone empty)
+              <% else %>
+              <input type="hidden" name="user[]" value="<%= user.id %>">
+              <% end %>
+              <span class="text-danger">X</span>
+        </span>
+                <% end %>
+              <% end %>
+            <% end %>
+            <% unless @temp_users.count.zero? %>
+              <% @temp_users.each do |temp_user| %>
+            <span class="select_user
+              <% if temp_user.phone.empty? %>text-danger
+              <% else %>text-success
+              <% end %>">
+             <%= user.name %>
+              <% if user.phone.empty? %>
+              (phone empty)
+              <% else %>
+             <input type="hidden" name="temp_user[]" value="<%= temp_user.id %>">
+              <% end %>
+              <span class="text-danger">X</span>
+        </span>
+              <% end %>
+            <% end %>
+          </div>
+          <div style="margin-top:10px">
+            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type), { 'id' => 'user_select', :class => 'btn btn-secondary btn-modal' } %>&nbsp;&nbsp;
+            <%= link_to t(:select_temp_user), admin_temp_user_select_path(:type => @message_type), { 'id' => 'temp_user_select', :class => 'btn btn-secondary btn-modal' } %>
+          </div>
+        </div>
+
+
+        <div class="col-12 form-group">
+          <%= form.label :title %>
+          <%= form.text_field :title, :class => 'form-control', :required => 'required' %>
+          <%= link_to t(:insert_from_prepared_message), admin_prepared_message_select_path({ popup: true }), class: "btn-modal float-right" %>
+        </div>
+        <%= form.fields_for :message_content do |c| %>
+          <div class="col-12 form-group">
+            <%= c.label :content %>
+            <%= c.text_area :content, :class => 'form-control' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+<% end %>

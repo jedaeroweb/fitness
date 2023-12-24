@@ -1,0 +1,63 @@
+<% if params[:popup].present? %>
+  <div class="modal-header">
+    <h3 class="modal-title"><%= t(:prepared_message) %></h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+<% end %>
+<input type="hidden" id="message_prepare_list_count" value="<%= @prepared_message_count %>"/>
+<table id="message_prepare_list" class="table table-hover">
+  <colgroup>
+    <col style="width:80px;">
+    <col>
+    <col>
+    <col>
+  </colgroup>
+  <thead class="thead-default">
+  <tr>
+    <th class="text-center"><%= t(:select) %></th>
+    <th><%= t(:title, scope: [:activerecord, :attributes, :prepared_message]) %></th>
+    <th class="text-center" style="display:none"><%= t(:content, scope: [:activerecord, :attributes, :prepared_message_content]) %></th>
+    <th class="text-right"><%= t(:created_at, scope: [:activerecord, :attributes, :prepared_message]) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% unless @prepared_messages.empty? %>
+    <% @prepared_messages.each do |prepared_message| %>
+      <tr>
+        <td class="text-center"><input type="radio" name="id" value="<%= prepared_message.id %>"></td>
+        <td class="title"><%= prepared_message.title %></td>
+        <td class="content" style="display:none"><%= prepared_message.prepared_message_content.content %></td>
+        <td class="text-right"><%= get_dt_format(prepared_message.created_at) %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="4" style="text-align:center"><%= t(:no_data) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="sl_pagination">
+  <%= paginate @prepared_messages %>
+</div>
+
+<% if params[:popup].present? %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" id="select_prepare_message" class="btn btn-primary btn-block btn-lg" data-dismiss="modal"><%= t(:select) %></button>
+  </div>
+  <%= javascript_include_tag 'prepared-messages/select' %>
+<% else %>
+
+  </div>
+  </div>
+  </div>
+<% end %>
+

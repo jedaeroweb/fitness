@@ -1,0 +1,145 @@
+<%
+  show_additional_info = false
+
+  if params[:show_addtional].present?
+    show_additional_info = true
+  end
+%>
+<article class="card">
+  <div class="card-header">
+    <h3><%= t(:user_info) %></h3>
+    <%= link_to edit_admin_user_path(@user), class: 'more2' do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to admin_user_path(@user), class: 'more' do %>
+      <i class="material-icons">delete</i>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12 col-md-6 col-xl-4 form-group">
+        <label><%= t(:name, scope: [:activerecord, :attributes, :user]) %></label>
+        <p>
+          <%= @user.name %>
+        </p>
+      </div>
+      <% if @current_branch_setting.use_unique_number %>
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <label><%= t(:unique_number, scope: [:activerecord, :attributes, :user_unique_number]) %></label>
+          <p>
+            <% if @user.user_unique_number.present? %>
+              <%= @user.user_unique_number.unique_number %>
+            <% else %>
+              <%= t(:not_insert) %>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+      <div class="col-12 col-md-6 col-xl-4 form-group">
+        <label><%= t(:phone, scope: [:activerecord, :attributes, :user]) %></label>
+        <p><%= @user.phone %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 col-xl-4 form-group">
+        <label><%= t(:birthday, scope: [:activerecord, :attributes, :user]) %></label>
+        <% if @user.birthday.nil? %>
+          <p><%= t(:not_inserted) %></p>
+        <% else %>
+          <p><%= get_dt_format(@user.birthday) %></p>
+        <% end %>
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 form-group">
+        <label><%= t(:admin_id, scope: [:activerecord, :attributes, :user_fc]) %></label>
+        <%
+          fc_value = t(:not_inserted)
+
+          unless @user.user_fc.nil?
+            fc_value = @user.user_fc.admin.name
+          end
+        %>
+        <p><%= fc_value %></p>
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 form-group">
+        <label><%= t(:admin_id, scope: [:activerecord, :attributes, :user_trainer]) %></label>
+        <%
+          trainer_value = t(:not_inserted)
+
+          unless @user.user_trainer.nil?
+            trainer_value = @user.user_trainer.admin.name
+          end
+        %>
+        <p><%= trainer_value %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 col-xl-4 form-group additional-info"
+           <% unless show_additional_info %> style="display:none"
+           <% end %>>
+        <label><%= t(:visit_route, scope: [:activerecord, :attributes, :user_additional]) %></label>
+        <%
+          visit_route_value = t(:not_inserted)
+
+          unless @user_additional.nil?
+            unless @user_additional.visit_route.nil?
+              visit_route_value = @user_additional.visit_route.title
+            end
+          end
+        %>
+        <p><%= visit_route_value %></p>
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 form-group additional-info"
+           <% unless show_additional_info %> style="display:none"
+           <% end %>>
+        <label><%= t(:job, scope: [:activerecord, :attributes, :user_additional]) %></label>
+        <%
+          job_value = t(:not_inserted)
+
+          unless @user_additional.nil?
+            unless @user_additional.job.nil?
+              job_value = @user_additional.job.title
+            end
+          end
+        %>
+        <p><%= job_value %></p>
+      </div>
+      <div class="col-12 col-md-6 col-xl-4 form-group additional-info"
+           <% unless show_additional_info %> style="display:none"
+           <% end %>>
+        <label><%= t(:company, scope: [:activerecord, :attributes, :user_additional]) %></label>
+        <%
+          company_value = t(:not_inserted)
+
+          unless @user_additional.nil?
+            unless @user_additional.company.empty?
+              company_value = @user_additional.company
+            end
+          end
+        %>
+        <p><%= company_value %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 col-xl-4 form-group">
+        <label><%= t(:registration_date, scope: [:activerecord, :attributes, :user]) %></label>
+        <p><%= get_dt_format(@user.registration_date) %></p>
+      </div>
+    </div>
+
+  </div>
+  <% if @user.user_additional.present? %>
+    <% if @user.user_additional.visit_route_id.present? or @user.user_additional.job_id.present? or @user.user_additional.company.present? %>
+      <div class="card-footer" style="padding:0">
+        <% if show_additional_info %>
+          <%= link_to admin_user_path(@user), { :id => 'more-user-addtional', :class => 'btn btn-sm btn-block btn-link' } do %>
+            <i class="material-icons">keyboard_arrow_up</i>
+          <% end %>
+        <% else %>
+          <%= link_to admin_user_path(@user, :show_addtional => true), { :id => 'more-user-addtional', :class => 'btn btn-sm btn-block btn-link' } do %>
+            <i class="material-icons">keyboard_arrow_down</i>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</article>

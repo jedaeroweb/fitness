@@ -1,0 +1,71 @@
+<div id="messages" class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="float-left"><%= t(:message_list) %></h2>
+      <div class="float-right">
+        <p class="summary">
+          <span id="list_count" style="display:none"><%= @message_count %></span>
+          <%= raw t(:there_are_n_messages, count: @message_count) %>
+        </p>
+      </div>
+    </div>
+    <div class="col-12">
+      <table class="table table-bordered table-hover">
+        <colgroup>
+          <col style="width:100px">
+          <col>
+          <col>
+          <col>
+          <col>
+          <col>
+          <% if can?(:update, Message) or can?(:delete, Message) %>
+            <col<%= manage_width(Message) %>>
+          <% end %>
+        </colgroup>
+        <thead class="thead-default">
+        <tr>
+          <th><%= t(:send_type, scope: [:activerecord, :attributes, :message]) %></th>
+          <th><%= t(:user_id, scope: [:activerecord, :attributes, :message]) %></th>
+          <th class="text-center"><%= t(:title, scope: [:activerecord, :attributes, :message]) %></th>
+          <th class="text-center"><%= t(:content, scope: [:activerecord, :attributes, :message_content]) %></th>
+          <th class="text-center"><%= t(:price, scope: [:activerecord, :attributes, :message]) %></th>
+          <th class="text-center"><%= t(:created_at, scope: [:activerecord, :attributes, :message]) %></th>
+          <th class="text-center"><%= t(:manage) %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% unless @messages.empty? %>
+          <% @messages.each_with_index do |message, index| %>
+            <tr>
+              <td><%= message.send_type %></td>
+              <td></td>
+              <td><%= link_to message.title,admin_message_path(message) %></td>
+              <td></td>
+              <td></td>
+              <td class="text-center"><%= get_dt_format(message.created_at) %></td>
+              <% if can?(:update, message) or can?(:delete, facility) %>
+                <td class="text-center">
+                  <% if can? :update, message %>
+                    <%= link_to edit_admin_message_path(message), :class => "btn btn-secondary" do %>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+                  <% if can? :delete, message %>
+                    <%= link_to admin_message_path(message), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+      <%= paginate @messages %>
+    </div>
+    <div class="col-12">
+      <%= link_to t(:add), new_admin_message_path, :class => "btn btn-primary" %>
+    </div>
+  </div>
+</div>

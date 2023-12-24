@@ -1,0 +1,91 @@
+<%= form_with(model: [:admin, admin], local: true) do |form| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-12 col-md-6 col-xl-4">
+          <%= form.label :email %>
+          <%= form.text_field :email, :class => 'form-control', :required => 'required' %>
+        </div>
+        <div class="form-group col-12 col-md-6 col-xl-4">
+          <%= form.label :password %>
+          <%= form.password_field :password, :class => 'form-control', :required => 'required' %>
+        </div>
+        <div class="form-group col-12">
+          <%= form.label :role %>
+          <%= form.fields_for :roles_admin do |ar| %>
+            <%= ar.select :role_id, options_from_collection_for_select(Role.where(:enable=>true).all, 'id', 'title'),{:id=>3},{:class=>"form-control"} %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="form-row">
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, :class => 'form-control', :required => 'required' %>
+        </div>
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.label :phone %>
+          <%= form.text_field :phone, :class => 'form-control' %>
+        </div>
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.label :birthday %>
+          <%= form.date_field :birthday, :class => 'form-control' %>
+        </div>
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.label :gender %>
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-check form-check-inline">
+                <%= label_tag 'male', { :class => 'form-check-label', :for => nil } do %>
+                  <%= form.radio_button :gender, 1, { :class => 'form-check-input' } %><%= t(:male) %>
+                <% end %>
+              </div>
+              <div class="form-check form-check-inline">
+                <%= label_tag 'female', { :class => 'form-check-label', :for => nil } do %>
+                  <%= form.radio_button :gender, 0, { :class => 'form-check-input' } %><%= t(:female) %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= label_tag 'gg' %>
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-check form-check-inline">
+                <%= form.label :is_fc, :class => 'form-check-label' do %>
+                  <%= form.check_box :is_fc, { :class => 'form-check-input' },1,nil %>
+                  <%= t(:is_fc) %>
+                <% end %>
+              </div>
+              <div class="form-check form-check-inline">
+                <%= form.label :is_trainer, :class => 'form-check-label' do %>
+                  <%= form.check_box :is_trainer, { :class => 'form-check-input' },1,nil %>
+                  <%= t(:is_trainer) %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4 form-group"<% unless @admin.is_trainer %> style="display:none"<% end %>>
+          <%= form.label :commission_rate %>
+          <%= form.number_field :commission_rate, :class => 'form-control' %>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.label :registration_date %>
+          <%= form.date_field :registration_date, :class => 'form-control', :required => 'required' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render :partial => 'form_content', locals: {f: form} %>
+  <div class="form-submit mt-3">
+  <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+  </div>
+<% end %>

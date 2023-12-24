@@ -1,0 +1,24 @@
+<section id="edit-user" class="container">
+  <div class="row">
+    <h2 class="col-12"><%= t(:edit_admin) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @admin.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="row">
+    <%= render :partial => 'aside' %>
+    <div class="col-12 col-lg-7 col-xl-8 col-xxl-9 user_sub">
+      <section class="row">
+        <div class="col-12">
+          <h2 class="di-title"><%= t(:user_detail) %></h2>
+          <% if @admin.nil? %>
+            <%= render :partial => 'not_found' %>
+          <% else %>
+            <%= render :partial => 'nav' %>
+            <%= render 'form', admin: @admin %>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

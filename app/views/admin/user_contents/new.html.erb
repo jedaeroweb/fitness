@@ -1,0 +1,34 @@
+<%= form_with(model: [:admin, @user_content], local: true) do |form| %>
+<% if params[:popup].present? %>
+  <div class="modal-header">
+    <h2 class="modal-title"><%=t(:new_user_content) %></h2>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+<% end %>
+
+  <div class="form-group">
+    <%= form.hidden_field :user_id,:value=>@user.id %>
+    <%= form.label :content %>
+    <%= form.text_area :content, :class => 'form-control' %>
+  </div>
+
+
+<% if params[:popup].present? %>
+  </div>
+  <div class="modal-footer">
+    <%= form.submit :class => "btn btn-primary btn-block" %>
+  </div>
+<% else %>
+<%= form.submit :class => "btn btn-primary btn-block" %>
+</div>
+</div>
+</div>
+<% end %>
+<% end %>

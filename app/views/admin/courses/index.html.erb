@@ -1,0 +1,77 @@
+<section id="courses" class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="float-left"><%= t(:course_list) %></h2>
+      <div class="float-right">
+        <p class="summary">
+          <span id="list_count" style="display:none"><%= @course_count %></span>
+          <%= raw t(:there_are_n_courses, count: @course_count) %>
+        </p>
+      </div>
+    </div>
+    <div class="col-12">
+      <table class="table table-bordered table-hover">
+        <colgroup>
+          <col style="width:100px">
+          <col>
+          <col>
+          <col style="width:150px">
+          <% if can?(:update, Course) or can?(:delete, Course) %>
+            <col<%= manage_width(Course) %>>
+          <% end %>
+        </colgroup>
+        <thead class="thead-default">
+        <tr>
+          <th><%= t(:order_no, scope: [:activerecord, :attributes, :course]) %></th>
+          <th><%= t(:title, scope: [:activerecord, :attributes, :course]) %></th>
+          <th class="text-end"><%= t(:price, scope: [:activerecord, :attributes, :course]) %></th>
+          <th class="text-center"><%= t(:content, scope: [:activerecord, :attributes, :product_content]) %></th>
+          <th class="text-center"><%= t(:manage) %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% unless @courses.empty? %>
+          <% @courses.each_with_index do |course, index| %>
+            <tr>
+              <td><%= course.order_no %></td>
+              <td><%= link_to course.product.title, admin_facility_path(course) %></td>
+              <td class="text-end"><%=number_to_currency course.product.price %></td>
+              <td class="text-center">
+                <% if course.product.product_content.present? %>
+                  <%= link_to t(:show_content), admin_product_content_path(course.product.product_content), { class: 'btn btn-secondary btn-modal' } %>
+                <% else %>
+                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: course.product), { class: 'btn btn-secondary btn-modal' } %>
+                <% end %>
+              </td>
+              <% if can?(:update, course) or can?(:delete, course) %>
+                <td class="text-center">
+                  <% if can? :update, course %>
+                    <%= link_to edit_admin_course_path(course), :class => "btn btn-secondary" do %>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+                  <% if can? :delete, course %>
+                    <%= link_to admin_course_path(course), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="9" class="text-center"><%= t(:no_data) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= paginate @courses %>
+    </div>
+    <% if can? :create, Course %>
+      <div class="col-12">
+        <%= link_to t(:add), new_admin_course_path, :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</section>

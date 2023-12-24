@@ -1,0 +1,30 @@
+<section id="show-message" class="container">
+  <div class="row">
+    <h2 class="col-12"><%=t(:show_message) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals=>{:errors=>@message.errors, :notice=>notice,:alert=>alert} %>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header"><%=@message.title %></h3>
+        <div class="card-body">
+          <div>
+            <label><%= t(:content, scope: [:activerecord, :attributes, :message_content]) %></label>
+            <p><%=@message.message_content.content %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-xl-6">
+      <%=link_to t(:link_list),admin_messages_path,class:'btn btn-secondary' %>
+    </div>
+    <div class="col-12 col-xl-6 text-right">
+      <%=link_to t(:edit),edit_admin_message_path(@message),class:'btn btn-secondary' %>
+      <%=link_to t(:delete),admin_messages_path(@message),class:'btn btn-danger' %>
+    </div>
+  </div>
+</section>

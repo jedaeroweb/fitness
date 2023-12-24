@@ -1,0 +1,13 @@
+<section id="edit-job" class="container">
+  <div class="row">
+    <h2 class="col-12"><%= t(:edit_job) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @job.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= render 'form', job: @job %>
+    </div>
+  </div>
+</section>

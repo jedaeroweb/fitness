@@ -1,0 +1,13 @@
+<article class="col-12 col-lg-6">
+  <h3>공지사항</h3>
+	<% unless @notices.empty? %>
+	<ul>
+		<% @notices.each do |notice| %>
+		<li><%=notice.admin.name %> : <%=link_to(notice.title,notice) %> <span class="float-right text-secondary d-none d-sm-block"><%= notice.created_at.to_date %></span></li>
+		<% end %>
+	</ul>
+	<% else %>
+	<p><%=t(:no_data) %></p>
+	<% end %>
+	<%=link_to t(:link_more),notices_path,:class=>'more none_more',:title=>'공지사항 더보기' %>
+</article>

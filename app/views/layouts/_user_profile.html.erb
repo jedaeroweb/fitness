@@ -1,0 +1,84 @@
+<div class="col-12 col-xl-3">
+  <h3>사용자정보</h3>
+  <div class="card">
+    <div class="card-body">
+      <% if @user.present? %>
+      <div id="user_info" class="row">
+        <div class="col-12 col-xl-6">
+          <%=image_tag 'bg_photo_none.gif',:width=>"100%",:height=>"100%",:id=>"profile_photo" %>
+        </div>
+        <div class="col-12 col-xl-6">
+          <div class="row">
+            <div class="col-12">
+              <label>회원명</label>
+              <p id="user_name"><%=@user.name %></p></div>
+            <div class="col-12">
+              <label>생일</label>
+              <p id="user_address"><%=@user.birthday %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 col-xl-6 text-left">
+            </div>
+            <div class="col-12 col-xl-6">
+              <label>전화번호</label>
+              <p id="user_phone"><%=@user.phone %></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+        <% else %>
+        <article id="user_search"<% if @user %> style="display:none"<% end %>>
+          <h3><span><%= t(:search_user) %></span></h3>
+          <%= form_with(url: "", method: "get") do %>
+              <div class="form-group non-anon">
+                <div class="form-check form-check-inline">
+                  <input type="radio" name="search_type" id="type1" value="name"<%=user_search_type_check('name',true) %>>
+                  <label for="type1" class="form-check-label">&nbsp;<%= t(:name) %></label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="radio" name="search_type" id="type2" value="phone"<%=user_search_type_check('phone') %>>
+                  <label for="type2" class="form-check-label">&nbsp;<%= t(:phone) %></label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input type="radio" name="search_type" id="type3" value="unique_number"<%=user_search_type_check('unique_number') %>>
+                  <label for="type3" class="form-check-label">&nbsp;<%= t(:unique_number) %></label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div id="search_select" class="non-anon">
+                  <label for="u_search_word" id="search_label">
+                    <% case params[:user_search_type]
+                       when 'name'
+                         search_label=t(:name)
+                       when 'phone'
+                         search_label=t(:phone)
+                       when 'card_no'
+                         search_label=t(:access_card)
+                       else
+                         search_label=t(:name)
+                       end
+                    %>
+                    <%=search_label %>
+                  </label>
+                  <div class="input-group">
+                    <%= text_field_tag(:search_word, params[:search_word], :class => "form-control") %>
+                    <span class="input-group-btn">
+              <%= submit_tag(t(:search), :class => "btn btn-success") %>
+            </span>
+                  </div>
+                </div>
+              </div>
+              <div id="user_select_list_layer" class="non-anon">
+
+              </div>
+              <%= render :partial => 'admin/users/select_user' %>
+          <% end %>
+        </article>
+      <% end  %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<% if params[:popup].present? %>
+  <div class="modal-header">
+    <h5 class="modal-title"><%= t(:prepared_message_content, scope: [:activerecord, :models]) %></h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+<% end %>
+
+<div>
+  <%= @prepared_message_content.content %>
+</div>
+
+<% if params[:popup].present? %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t(:close) %></button>
+  </div>
+<% else %>
+  </div>
+  </div>
+<% end %>

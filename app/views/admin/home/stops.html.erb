@@ -1,0 +1,37 @@
+<section id="users" class="container">
+  <div class="row">
+    <h2 class="col-12 di-title"><%= t(:account) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'aside' %>
+    <div class="col-12 col-lg-7 col-xl-8 col-xxl-9 user_sub">
+      <section class="row">
+        <div class="col-12">
+          <h2 class="di-title"><%= t(:stop_order, scope: [:activerecord, :models]) %></h2>
+          <% if @user.nil? %>
+            <%= render :partial => 'not_found' %>
+          <% else %>
+            <%= render :partial => 'nav' %>
+            <div class="row">
+              <div class="col-12">
+                <article class="card">
+                  <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills">
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <div class="row">
+                        <div class="col-12">
+                          <ul class="sl-bnt-group">
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          <% end %>
+          </div>
+          </section>
+    </div>
+  </div>
+</section>

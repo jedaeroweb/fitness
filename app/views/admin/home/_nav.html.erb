@@ -1,0 +1,17 @@
+<div class="row">
+  <nav class="col-12 sub-nav">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><%= link_to t(:default_info), admin_user_path(@user), class: get_nav_active_class(['index','show','edit']) %></li>
+      <li class="nav-item"><%= link_to t(:enroll, scope: [:activerecord, :models]), admin_home_enrolls_path(@user), class: get_nav_active_class('enrolls') %></li>
+      <li class="nav-item"><%= link_to t(:stop_order), admin_home_stops_path(@user), class: get_nav_active_class('stops') %></li>
+      <li class="nav-item"><%= link_to t(:rent, scope: [:activerecord, :models]), admin_home_rents_path(@user), class: get_nav_active_class('rents') %></li>
+      <li class="nav-item"><%= link_to t(:rent_sw, scope: [:activerecord, :models]), admin_home_rent_sws_path(@user), class: get_nav_active_class('rent_sws') %></li>
+      <li class="nav-item"><%= link_to t(:entrance, scope: [:activerecord, :models]), admin_home_entrances_path(@user), class: get_nav_active_class('entrances') %></li>
+      <li class="nav-item"><%= link_to t(:account, scope: [:activerecord, :models]), admin_home_accounts_path(@user), class: get_nav_active_class('accounts') %></li>
+      <li class="nav-item"><%= link_to t(:body_index), admin_home_body_indexes_path(@user), class: get_nav_active_class('body_indexes') %></li>
+      <li class="nav-item"><%= link_to t(:memo), admin_home_memos_path(@user), class: get_nav_active_class('memos') %></li>
+      <li class="nav-item"><%= link_to t(:reservation, scope: [:activerecord, :models]), admin_home_reservations_path(@user), class: get_nav_active_class('reservations') %></li>
+      <li class="nav-item"><%= link_to t(:message, scope: [:activerecord, :models]), admin_home_messages_path(@user), class: get_nav_active_class('messages') %></li>
+    </ul>
+  </nav>
+</div>

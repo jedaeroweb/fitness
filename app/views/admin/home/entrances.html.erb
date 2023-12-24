@@ -1,0 +1,73 @@
+<section id="users" class="container">
+  <div class="row">
+    <h2 class="col-12 di-title"><%= t(:account) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'aside' %>
+    <div class="col-12 col-lg-7 col-xl-8 col-xxl-9 user_sub">
+      <section class="row">
+        <div class="col-12">
+          <h2 class="di-title"><%= t(:entrance, scope: [:activerecord, :models]) %></h2>
+          <% if @user.nil? %>
+            <%= render :partial => 'not_found' %>
+          <% else %>
+            <%= render :partial => 'nav' %>
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <article class="card">
+                  <div class="card-header">
+                    <%=t(:entrance_list) %>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-striped">
+                      <colgroup>
+                        <col >
+                        <col style="width:160px">
+                      </colgroup>
+                      <thead>
+                      <tr class="thead-default">
+                        <th><%= t(:in_time, scope: [:activerecord, :attributes, :entrance]) %></th>
+                        <th><%= t(:manage) %></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% unless @entrances.empty? %>
+                        <% @entrances.each_with_index do |entrance, index| %>
+                        <tr>
+                          <td><%=entrance.in_time %></td>
+                          <td></td>
+                        </tr>
+                        <% end %>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </article>
+              </div>
+              <div class="col-12 col-lg-6">
+                <article class="card">
+                  <div class="card-header">
+                    <%=t(:new_entrance) %>
+                  </div>
+                  <div class="card-body">
+                    <%= form_with(model: [:admin, @entrance], local: true) do |form| %>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <%= form.hidden_field :user_id,{:value=>@user.id.to_s} %>
+                        <%= form.date_field :in_time,{:class => 'form-control', :required => 'required'} %>
+                        <span class="input-group-btn">
+                         <%= form.submit value: t(:entrance, scope: [:activerecord, :models]),class: 'btn btn-primary' %>
+                        </span>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+                </article>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

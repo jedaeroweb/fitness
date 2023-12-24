@@ -1,0 +1,33 @@
+<input type="hidden" id="user-select-count" value="<%=@user_count %>" />
+<table id="user-select-list" class="table table-hover"<% unless @users %> style="display:none"<% end %>>
+  <colgroup>
+    <col style="width:60px;" />
+    <col />
+    <col />
+    <col />
+  </colgroup>
+  <thead>
+  <tr class="thead-default">
+    <th><%=t(:check) %></th>
+    <th><%=t(:name) %></th>
+    <th><%=t(:phone) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% unless @user_count.zero? %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><input type="radio" name="id" value="<%=user.id %>"></td>
+        <td class="name"><%=user.name %></td>
+        <td class="phone"><%=user.phone %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td><%=t(:no_data) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="sl_pagination">
+</div>

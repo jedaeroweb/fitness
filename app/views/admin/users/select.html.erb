@@ -1,0 +1,57 @@
+<%= form_with(url: 'admin/users/select', local: true, html: { id: 'user-select-search' }) do |form| %>
+  <% if params[:popup].present? %>
+    <div class="modal-header">
+      <h3 class="modal-title"><%= t(:select_user) %></h3>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  <% else %>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+  <% end %>
+  <%= hidden_field_tag :message_type, params[:message_type] %>
+  <div class="card">
+    <div class="card-header">
+      <h3><%= t(:search_user) %></h3>
+      <div class="float-right buttons" style="cursor:pointer">
+        <i class="material-icons">keyboard_arrow_up</i>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-4">
+          <label for="s_search_field"><%= t(:search_field) %></label>
+          <%= select_tag :search_field, options_for_select([[t(:name), 'name'], [t(:phone), 'phone']], params[:search_field]), { :class => 'form-control', 'id' => 'su-search-field', :required => 'required' } %>
+        </div>
+        <div class="form-group col-8">
+          <label for="s_search_word"><%= t(:search_word) %></label>
+          <div class="input-group">
+            <input type="search" id="su-search-word" name="search_word"
+                   value="<%= params[:search_word] %>" class="form-control"
+                   placeholder="<%= t(:insert_search_word) %>"/>
+            <span class="input-group-btn">
+      <%= form.submit :value => t(:search), :class => "btn btn-primary btn-block" %>
+      </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render :partial => 'select_user' %>
+
+  <% if params[:popup].present? %>
+    </div>
+    <div class="modal-footer">
+      <%= form.submit :value => t(:select), id: 'su-select', class: 'btn btn-primary btn-block' %>
+    </div>
+    <%= javascript_include_tag @script, 'data-turbolinks-track' => true %>
+  <% else %>
+    <%= form.submit :value => t(:select), id: 'su-select', class: 'btn btn-primary btn-block btn-lg' %>
+    </div>
+    </div>
+    </div>
+  <% end %>
+<% end %>

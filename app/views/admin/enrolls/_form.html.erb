@@ -1,0 +1,65 @@
+<div class="col-12 col-xl-9">
+  <%= form_with(model: [:admin, enroll], local: true) do |form| %>
+    <article class="row">
+      <h3 class="col-12"><%= t(:course_info) %></h3>
+      <div class="col-12">
+        <div class="card course_info">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="col-12 form-group">
+
+                <%= form.fields_for :order do |o| %>
+                  <%
+
+                       if @user.present?
+                         user_id=@user.id
+                       end
+                  %>
+                  <%= o.hidden_field :user_id,:value=>user_id %>
+                <%= o.fields_for :order_products do |op| %>
+                <%= op.label :product_id %>
+                <%= op.select :product_id, options_from_collection_for_select(Course.joins(:product).select('products.*,courses.*').where(:enable => true).all, 'product_id', 'title'),{:include_blank => t('select_course')}, { :class => "form-control" } %>
+                <% end  %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <div class="row mt-3">
+      <article class="col-12 col-xl-6 col-xxl-5">
+        <h3><%= t(:enroll_info) %></h3>
+        <div class="card">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="col-12 form-group">
+                <%= form.label :quantity %>
+                <%= form.number_field :quantity, {:class => "form-control",min:1,max:100} %>
+              </div>
+              <div class="col-12 form-group">
+                <%= form.fields_for :enroll_trainer do |et| %>
+                <%= et.label :admin_id %>
+                  <%= et.select :admin_id, options_from_collection_for_select(Admin.where(branch_id: current_admin.branch_id, is_trainer: true, enable: true).all, 'id', 'name'),{:include_blank => t('select_enroll_trainer') }, { :class => "form-control" } %>
+                <% end %>
+              </div>
+              <div class="col-12 form-group">
+                <%= form.label :start_date %>
+                <%= form.date_field :start_date, :class => "form-control" %>
+              </div>
+              <div class="col-12 form-group">
+                <%= form.label :end_date %>
+                <%= form.date_field :end_date, :class => "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <%= render :partial => 'layouts/form_account', locals: {f: form}  %>
+    </div>
+    <%= render :partial => 'admin/order_contents/form_content', locals: {f: form} %>
+    <div class="form-submit mt-3">
+      <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+    </div>
+  <% end %>
+</div>

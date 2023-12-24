@@ -1,0 +1,13 @@
+<section id="new-user" class="container">
+  <div class="row">
+    <h2 class="col-12"><%= t(:new_user) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @user.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= render 'form', user: @user %>
+    </div>
+  </div>
+</section>

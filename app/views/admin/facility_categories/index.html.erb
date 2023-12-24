@@ -1,0 +1,74 @@
+<section id="facility-categories" class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="float-left"><%= t(:facility_category_list) %></h2>
+      <div class="float-right">
+        <p class="summary">
+          <span id="list_count" style="display:none"><%= @facility_category_count %></span>
+          <%= raw t(:there_are_n_course_categories, count: @facility_category_count) %>
+        </p>
+      </div>
+    </div>
+    <div class="col-12">
+      <table class="table table-bordered table-hover">
+        <colgroup>
+          <col style="width:100px">
+          <col>
+          <col>
+          <col style="width:150px">
+          <col style="width:200px">
+          <% if can?(:update, FacilityCategory) or can?(:delete, FacilityCategory) %>
+            <col<%= manage_width(FacilityCategory) %>>
+          <% end %>
+        </colgroup>
+        <thead class="thead-default">
+        <tr>
+          <th><%= t(:order_no, scope: [:activerecord, :attributes, :product_category]) %></th>
+          <th><%= t(:title, scope: [:activerecord, :attributes, :product_category]) %></th>
+          <th class="text-center"><%= t(:products_count, scope: [:activerecord, :attributes, :product_category]) %></th>
+          <th class="text-center"><%= t(:content, scope: [:activerecord, :attributes, :product_category_content]) %></th>
+          <th class="text-center"><%= t(:created_at, scope: [:activerecord, :attributes, :product_category]) %></th>
+          <th class="text-center"><%= t(:manage) %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% unless @facility_categories.empty? %>
+          <% @facility_categories.each_with_index do |facility_category, index| %>
+            <tr>
+              <td><%= facility_category.order_no %></td>
+              <td><%= link_to facility_category.title,admin_facility_category_path(facility_category) %></td>
+              <td class="text-right"><%= facility_category.products_count %></td>
+              <td class="text-right"></td>
+              <td class="text-right text-secondary"><%=get_dt_format facility_category.created_at.to_date %></td>
+              <% if can?(:update, facility_category) or can?(:delete, facility_category) %>
+                <td class="text-center">
+                  <% if can? :update, facility_category %>
+                    <%= link_to edit_admin_facility_category_path(facility_category), :class => "btn btn-secondary" do %>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+                  <% if can? :delete, facility_category %>
+                    <%= link_to admin_facility_category_path(facility_category), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="5" class="text-center"><%=t(:no_data) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= paginate @facility_categories %>
+    </div>
+    <% if can? :create, FacilityCategory %>
+    <div class="col-12">
+      <%= link_to t(:add), new_admin_facility_category_path, :class => "btn btn-primary" %>
+    </div>
+      <% end %>
+  </div>
+</section>

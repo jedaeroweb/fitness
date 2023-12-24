@@ -1,0 +1,136 @@
+<%= f.fields_for :order do |o| %>
+  <%= o.fields_for :accounts do |a| %>
+<%
+  is_today = true
+  is_dc = false
+  default_payment_method = 1
+  default_price_check = true
+  dc_rate_value = 0
+  dc_point_value = 0
+%>
+<article id="order_account" class="col-12 col-xl-6 col-xxl-7">
+  <h3>수강가격정보</h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-xl-6 form-group">
+          <label for="no_discount"><%= t(:original_price) %>&nbsp;
+            <input id="no_discount" type="checkbox" name="no_discount" value="1"
+                   <% unless dc_rate_value and dc_point_value %>checked="checked"
+                   <% end %>>
+            <%= t(:no_discount) %>
+          </label>
+
+          <p>
+            <span id="display_original_price"> origin price</span>
+          </p>
+        </div>
+        <div class="col-12 col-xl-6 form-group">
+
+          <label for="is_today"><%= t(:transaction_date) %>&nbsp;&nbsp;
+            <input id="is_today" type="checkbox" name="transaction_date_is_today" value="1"<% if is_today %> checked="checked"<% end %>>
+            <%= t(:today) %>
+          </label>
+          <div id="o_transaction_date_layer"<% if is_today %> style="display:none"<% end %>>
+                <%= a.date_field :transaction_date,:class=>'form-control' %>
+          </div>
+          <p id="today_display"<% unless is_today %>  style="display:none"<% end %>>
+            <label style="margin:0;padding:0"><%=get_dt_format Date.today %></label>
+          </p>
+        </div>
+        <div class="col-12 col-lg-6 form-group dc_layer"
+             <% unless is_dc %> style="display:none"
+             <% end %>>
+          <label for="o_dc_rate"><%= t(:dc_rate) %>(%)</label>
+
+        </div>
+        <div class="col-12 col-lg-6 form-group dc_layer"
+             <% unless is_dc %> style="display:none"
+             <% end %>>
+          <label for="o_dc_price"><%= t(:dc_price) %></label>
+
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+          <label for="use_default_price"><%= t(:sell_price) %>
+            <% unless ['edit', 'update'].include?(params[:action]) %>
+              <input id="use_default_price" type="checkbox" name="use_default_price" value="1"
+                     <% if default_price_check %> checked="checked"
+                     <% end %>>
+              <%= t(:use_default_price) %>
+            <% end %>
+          </label>
+          <div id="sell_price_layer"
+               <% if default_price_check %>style="display:none"
+               <% end %>>
+
+          </div>
+          <p id="display_sell_price_layer"
+             <% unless default_price_check %> style="display:none"
+             <% end %>>
+
+  <span id="o_sell_price"> sell_price
+          </p>
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+
+        </div>
+
+        <div class="col-12 col-lg-6 form-group">
+          <label for="payment_complete"><%= t(:payment) %></label>
+          <div id="payment_layer" style="display:none">
+
+          </div>
+          <p id="display_payment_layer">
+            <span id="display_payment"> price </span>
+          </p>
+        </div>
+
+        <div class="col-12 col-lg-6 form-group">
+          <label><%= t(:payment_method) %></label>
+        </div>
+        <div class="col-12 col-lg-6 form-group mix"
+             <% unless default_payment_method == 4 %> style="display:none"
+             <% end %>>
+          <label for="o_credit" class="payment_label">credit</label>
+
+        </div>
+        <div class="col-12 col-lg-6 form-group mix"
+             <% unless default_payment_method == 4 %> style="display:none"
+             <% end %>>
+          <label for="o_cash" class="payment_label">cash</label>
+
+        </div>
+        <% if params[:controller] == 'admin/enrolls' %>
+          <%
+            commission_settting = false
+            if @enroll
+              commission_settting = true
+            end
+
+          %>
+          <div class="col-12 col-lg-6 form-group" style="margin-bottom:0px;">
+            <% if current_admin.role_admin.role_id < 3 %>
+              <div id="commission_layer" style="<% if @enroll.course.present? %>display:none<% else %>display:none
+                <% end %>">
+                <label><%= t(:commission) %>(<%= t(:currency) %>)
+                  <input id="commission_default" type="checkbox" name="commission_default" value="1"
+                         <% unless commission_settting %> checked="checked"
+                         <% end %>> <%= t(:defualt) %>
+                  <span id="commission_default_percentage"></span></label>
+                <div id="o_commission_layer"
+                     <% unless commission_settting %> style="display:none"
+                     <% else %> style="display:block"
+                     <% end %>>
+
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</article>
+  <% end %>
+<% end %>

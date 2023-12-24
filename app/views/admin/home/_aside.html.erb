@@ -1,0 +1,11 @@
+<aside class="col-12 col-lg-5 col-xl-4 col-xxl-3">
+  <%= render :partial => 'admin/users/profile' %>
+  <% if session[:premium] %>
+    <%= render :partial => 'admin/users/search' %>
+  <% end %>
+  <%= render :partial => 'admin/users/list' %>
+  <%= paginate @users %>
+  <div class="d-grid gap-2">
+    <%=link_to t(:add),new_admin_user_path,class: 'btn btn-primary' %>
+    </div>
+</aside>

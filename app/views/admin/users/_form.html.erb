@@ -1,0 +1,86 @@
+<%= form_with(model: [:admin, user], local: true) do |form| %>
+  <% if session[:premium] %>
+  <% unless Group.where(:branch_id => current_admin.branch_id, :enable => true).count.zero? %>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <%= form.fields_for :user_group do |ug| %>
+              <%= ug.label :group_id %>
+              <%= ug.select :group_id, options_from_collection_for_select(Group.where(:branch_id => current_admin.branch_id, :enable => true).order('id desc'), 'id', 'title', user.user_group.group_id), { :include_blank => t(:select_group) }, { :class => "form-control" } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
+  <div class="card mt-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, :class => 'form-control', :required => 'required' %>
+        </div>
+        <%= form.fields_for :user_unique_number do |uun| %>
+          <div class="col-12 col-md-6 col-xl-4 form-group">
+            <%= uun.label :unique_number %>
+            <%= uun.text_field :unique_number, :class => 'form-control', :required => 'required' %>
+          </div>
+        <% end %>
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.label :phone %>
+          <%= form.text_field :phone, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6 col-xl-4 form-group">
+          <%= form.label :birthday %>
+          <div class="input-group-prepend date">
+            <%= form.date_field :birthday, :class => 'form-control' %>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.fields_for :user_fc do |ufc| %>
+            <%= ufc.label :admin_id %>
+            <%= ufc.select :admin_id, options_from_collection_for_select(Admin.where(branch_id: current_admin.branch_id, is_fc: true, enable: true).all, 'id', 'name', @user.user_fc.admin_id), { :include_blank => t(:select_user_fc) }, { :class => "form-control" } %>
+          <% end %>
+        </div>
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.fields_for :user_trainer do |utrainer| %>
+            <%= utrainer.label :admin_id %>
+            <%= utrainer.select :admin_id, options_from_collection_for_select(Admin.where(branch_id: current_admin.branch_id, is_trainer: true, enable: true).all, 'id', 'name', @user.user_trainer.admin_id), { :include_blank => t(:select_user_trainer) }, { :class => "form-control" } %>
+          <% end %>
+        </div>
+      </div>
+      <%= form.fields_for :user_additional do |ua| %>
+        <div class="row">
+          <div class="col-12 col-md-6 col-xl-4 form-group">
+            <%= ua.label :visit_route %>
+            <%= ua.select :visit_route_id, options_from_collection_for_select(VisitRoute.where(enable: true).all, 'id', 'title', @user.user_additional.visit_route_id), { :include_blank => '방문경로 선택' }, { :class => "form-control" } %>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 form-group">
+            <%= ua.label :job %>
+            <%= ua.select :job_id, options_from_collection_for_select(Job.where(enable: true).all, 'id', 'title', @user.user_additional.job_id), { :include_blank => '직업 선택' }, { :class => "form-control" } %>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 form-group">
+            <%= ua.label :company %>
+            <%= ua.text_field :company, :class => 'form-control' %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <%= form.label :registration_date %>
+          <div class="input-group-prepend date">
+            <%= form.date_field :registration_date, :class => 'form-control' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render :partial => 'admin/user_contents/form_content', locals: { f: form } %>
+  <div class="form-submit mt-3">
+  <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+  </div>
+<% end %>

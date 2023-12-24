@@ -1,0 +1,12 @@
+<section id="show-temp-user" class="container">
+  <div class="row">
+    <h2 class="col-12"><%= t(:show_temp_user) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @temp_user.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="col-12">
+    <div class="sl_view_bottom">
+    </div>
+  </div>
+</section>

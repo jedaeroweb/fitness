@@ -1,0 +1,85 @@
+<section id="users" class="container">
+  <div class="row">
+    <h2 class="col-12 di-title"><%= t(:account) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'aside' %>
+    <div class="col-12 col-lg-7 col-xl-8 col-xxl-9 user_sub">
+      <section class="row">
+        <div class="col-12">
+          <h2 class="di-title"><%= t(:memo) %></h2>
+          <% if @user.nil? %>
+            <%= render :partial => 'not_found' %>
+          <% else %>
+            <%= render :partial => 'nav' %>
+            <div class="row">
+              <div class="col-12">
+                <article class="card">
+                  <div class="card-header">
+                  </div>
+                  <div class="card-body">
+                    <div class="card-block">
+                      <div class="row">
+                        <div class="col-12">
+                          <table class="table table-striped">
+                            <colgroup>
+                              <col style="width:120px"/>
+                              <col/>
+                              <col/>
+                              <col style="width:160px"/>
+                              <col/>
+                              <col style="width:100px"/>
+                            </colgroup>
+                            <thead>
+                            <tr class="thead-default">
+                              <th>type</th>
+                              <th>Image</th>
+                              <th>Title</th>
+                              <th>Content</th>
+                              <th><%= t(:created_at, scope: [:activerecord, :attributes, :message]) %></th>
+                              <th><%= t(:manage) %></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% unless @memos.empty? %>
+                              <% @memos.each_with_index do |memo, index| %>
+                                <tr>
+                                  <td></td>
+                                  <td>
+                                  </td>
+                                  <td><%= memo.title %></td>
+                                  <td>content</td>
+                                  <td><%= memo.created_at %></td>
+                                  <% if can?(:update, memo) or can?(:delete, memo) %>
+                                    <td class="text-center">
+                                      <% if can? :update, message %>
+                                        <%= link_to edit_admin_memo_path(memo), :class => "btn btn-secondary" do %>
+                                          <%= t(:edit) %>
+                                        <% end %>
+                                      <% end %>
+                                      <% if can? :delete, memo %>
+                                        <%= link_to admin_memo_path(memo), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
+                                          <%= t(:delete) %>
+                                        <% end %>
+                                      <% end %>
+                                    </td>
+                                  <% end %>
+                                </tr>
+                              <% end %>
+                            <% else %>
+                              <tr>
+                                <td colspan="6" class="text-center"><%= t(:not_insert) %></td>
+                              </tr>
+                            <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          <% end %>
+          </div>
+          </section>
+    </div>
+  </div>
+</section>

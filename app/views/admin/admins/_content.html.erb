@@ -1,0 +1,42 @@
+<article class="card">
+  <div class="card-header">
+    <h3><%=t(:admin_info) %></h3>
+    <%= link_to edit_admin_admin_path(@admin), class: 'more2' do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to admin_admin_path(@admin), class: 'more' do %>
+      <i class="material-icons">delete</i>
+    <% end %>
+  </div>
+  <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <label><%=t(:name, scope: [:activerecord, :attributes, :admin]) %></label>
+          <p>
+            <%= @admin.name %>
+          </p>
+        </div>
+        <% if @admin.attributes['card_no'] %>
+          <div class="col-12 col-md-6 col-xl-4 form-group">
+            <label><%=t(:card_no, scope: [:activerecord, :attributes, :admin]) %></label>
+            <p><%= @admin.card_no %></p>
+          </div>
+        <% end %>
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <label><%=t(:phone, scope: [:activerecord, :attributes, :admin]) %></label>
+          <p><%= @admin.phone %></p>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <label><%=t(:birthday, scope: [:activerecord, :attributes, :admin]) %></label>
+
+          <p></p>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4 form-group">
+          <label><%=t(:registration_date, scope: [:activerecord, :attributes, :admin]) %></label>
+          <p><%=@admin.registration_date %></p>
+        </div>
+      </div>
+  </div>
+</article>

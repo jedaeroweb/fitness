@@ -1,0 +1,68 @@
+<div id="prepared-messages" class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="float-left"><%= t(:prepared_message_list) %></h2>
+      <div class="float-right">
+        <p class="summary">
+          <span id="list_count" style="display:none"><%= @prepared_message_count %></span>
+          <%= raw t(:there_are_n_prepared_messages, count: @prepared_message_count) %>
+        </p>
+      </div>
+    </div>
+    <div class="col-12">
+      <table class="table table-bordered table-hover">
+        <colgroup>
+          <col>
+          <col style="width:150px">
+          <col style="width:200px">
+          <% if can?(:update, PreparedMessage) or can?(:delete, PreparedMessage) %>
+            <col<%= manage_width(PreparedMessage) %>>
+          <% end %>
+        </colgroup>
+        <thead class="thead-default">
+        <tr>
+          <th><%= t(:title, scope: [:activerecord, :attributes, :prepared_message]) %></th>
+          <th class="text-center"><%= t(:content, scope: [:activerecord, :attributes, :prepared_message_content]) %></th>
+          <th class="text-center"><%= t(:created_at, scope: [:activerecord, :attributes, :prepared_message]) %></th>
+          <th class="text-center"><%= t(:manage) %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% unless @prepared_messages.empty? %>
+          <% @prepared_messages.each_with_index do |prepared_message, index| %>
+            <tr>
+              <td><%= link_to prepared_message.title, admin_prepared_message_path(prepared_message) %></td>
+              <td class="text-center"><%= link_to t(:show_content), admin_prepared_message_content_path(prepared_message), { class: 'btn btn-secondary btn-modal' } %></td>
+              <td class="text-center"><%= get_dt_format(prepared_message.created_at) %> </td>
+              <% if can?(:update, prepared_message) or can?(:delete, prepared_message) %>
+                <td class="text-center">
+                  <% if can? :update, prepared_message %>
+                    <%= link_to edit_admin_prepared_message_path(prepared_message), :class => "btn btn-secondary" do %>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+                  <% if can? :delete, prepared_message %>
+                    <%= link_to admin_prepared_message_path(prepared_message), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="4" class="text-center"><%= t(:no_data) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= paginate @prepared_messages %>
+    </div>
+    <% if can? :create, PreparedMessage %>
+      <div class="col-12">
+        <%= link_to t(:add), new_admin_prepared_message_path, :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

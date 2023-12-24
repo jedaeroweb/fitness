@@ -1,0 +1,22 @@
+<%= f.fields_for :user_contents do |content| %>
+<div class="card mt-3">
+  <div class="card-header" style="cursor: pointer;">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item"><a class="nav-link" href="#"><%= t(:content, scope: [:activerecord, :attributes, :user_content]) %></a></li>
+    </ul>
+    <div class="float-right buttons">
+      <i class="material-icons">keyboard_arrow_down</i>
+    </div>
+  </div>
+  <div class="card-body" style="display:none">
+    <div class="card-block">
+      <div class="row">
+          <div class="col-12 form-group">
+            <%= content.label :content %>
+            <%= content.text_area :content, :id => "sl_content", :class => 'form-control' %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

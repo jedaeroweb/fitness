@@ -1,0 +1,16 @@
+<div class="container">
+<div class="row">
+  <div class="col-12">
+<div id="sl_ad" class="mb-2">
+  <% if Rails.env.production? %>
+    <script src="https://ads-partners.coupang.com/g.js"></script>
+    <script>
+        new PartnersCoupang.G({"id":589934,"trackingCode":"AF6308864","subId":null,"template":"carousel","width":"100%","height":"140"});
+    </script>
+  <% else %>
+    <div style="width:100%;padding-top:10%;background:red">&nbsp;</div>
+  <% end %>
+</div>
+  </div>
+</div>
+</div>

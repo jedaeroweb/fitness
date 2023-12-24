@@ -1,0 +1,57 @@
+<aside class="col-12 col-lg-3">
+  <div class="row">
+    <h2 class="col-12">title</h2>
+  </div>
+  <article class="row">
+    <div class="col-12">
+      <div class="card">
+        <form class="card-body">
+          <div class="form-group">
+            <label for=""><%= t(:date) %></label>
+            <div class="input-group-prepend date">
+              <input type="text" name="date" data-date-end-date="0d" class="form-control datepicker" value="">
+              <div class="input-group-text">
+                <span class="material-icons">date_range</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </article>
+  <article id="user_list" class="row">
+    <div class="col-12">
+      <table class="table table-striped table-hover">
+        <colgroup>
+          <col/>
+          <col/>
+          <col/>
+        </colgroup>
+        <thead class="thead-default">
+        <tr>
+          <th><%= t(:increment_number) %></th>
+          <th><%= t(:user_name) %></th>
+          <th><%= t(:in_time) %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% unless @entrances.empty? %>
+          <% @entrances.each_with_index do |entrance, index| %>
+            <tr<% if @entrance.id == entrance.id %> class="table-primary"<% end %>>
+              <td></td>
+              <td><%= entrance.name %></td>
+              <td><%= get_dt_format entrance.in_time %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="3" class="text-center"><%= t(:no_data) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </article>
+  <%= paginate @entrances %>
+  <%=link_to t(:add),new_admin_entrance_path,class: 'btn btn-primary' %>
+</aside>

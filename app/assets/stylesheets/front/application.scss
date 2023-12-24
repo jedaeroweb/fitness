@@ -1,0 +1,101 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+@charset "utf-8";
+@import "bootstrap";
+
+@font-face {
+  font-family: 'Nanum Gothic';
+  src: local('☺'),url(asset-path('NanumGothic-Regular.eot?#iefix')) format('embedded-opentype'),url(asset-path('NanumGothic-Regular.woff')) format('woff');
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src:  url(asset-path('material-icon.woff2')) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+html,body {margin:0;padding:0;height: 100%}
+body { font-family: "Nanum Gothic","나눔고딕","Malgun Gothic","맑은 고딕","굴림",gulim,"돋움",Dotum,Arial,Helvetica, sans-serif}
+label {vertical-align:middle;cursor:pointer}
+a img {border:none}
+input {vertical-align:middle}
+fieldset {border:none}
+legend {display:none}
+a{color:#666;text-decoration:none;}
+a:active {color:red}
+a:hover{color:#333;text-decoration:underline;}
+a img {border:none}
+
+h1 {font-size :180%}
+h2 {font-size :160%}
+h3 {font-size :140%}
+h4,h5,h6 {font-size : 120%}
+
+/* Common Class */
+$red_default: #f95090;
+$red_hover: #ff96b4;
+$blue_default: #50b9d8;
+$blue_hover: #78dcff;
+$green_default: #8dc63f;
+$green_hover: #c8dc5c;
+$blue_amicogen: #073683;
+
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
+mark, rp, rt, ruby, summary, time {display:inline;}
+
+/* layout */
+#mom {clear:both;float:left;width:100%;padding:0}
+.sub_main {padding-bottom:30px}
+.page-header {margin-top:30px}
+.page-header div {border-bottom:1px solid #999;margin-bottom:40px}
+.page-header h2 {float:left;margin:0.4em 0;padding:0;font-weight:bold;color:#666}
+.page-header nav  {float:right;margin:0}
+.page-header nav ol {margin:0;padding-right:0}
+.alert-success {clear:both}
+.container {max-width:2500px}
+.modal-header {background:#37474f;color:#fff}
+.modal-header * {color:#eee}
+.modal-body,.modal-footer {background:#eee}
+.thead-default th {
+  background-color: #868e96;
+  color: #fff;
+  font-weight:600;
+}
+
+.h2, h2 {font-size:1.2rem}
+.h3, h3 {font-size:1.1rem}
+.h4, h4 {font-size:1rem}

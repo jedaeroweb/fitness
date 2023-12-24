@@ -1,0 +1,9 @@
+<div class="row">
+  <nav class="col-12 sub-nav">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><%= link_to t(:default_info),'', class: get_nav_active_class(['index','show','edit']) %></li>
+      <li class="nav-item"><%= link_to t(:my_user),'', class: get_nav_active_class(['users']) %></li>
+      <li class="nav-item"><%= link_to t(:memo),'', class: get_nav_active_class(['memo']) %></li>
+    </ul>
+  </nav>
+</div>
