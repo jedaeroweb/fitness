@@ -1,22 +1,24 @@
 class Users::SessionsController < Devise::SessionsController
-    def set_og_title
-        @page_title=t(:login)
-        if @title
-            @og_title = @title
-        else
-            @og_title = t(:default_title)
-        end
-    end
+    def create
+        super
 
-    def after_sign_in_path_for(_resource)
-        session['user_return_to'] || root_path
+        #require 'ipaddr'
+        #UserLoginLog.create!(admin_id: current_admin.id, client_ip: IPAddr.new(request.remote_ip).to_i)
+
+        branch_id=current_user.branch_id
+        session[:branch_id]=branch_id
+
+        #branch=Branch.find(branch_id)
+        #if branch.company.premium
+        #    session[:premium]=true
+        #end
     end
 
     def after_sign_out_path_for(_resource_or_scope)
-        if Rails.application.config.i18n.default_locale==I18n.locale
-            root_path()
+        if Rails.application.config.i18n.default_locale == I18n.locale
+            new_user_session_path()
         else
-            root_path(:locale=>I18n.locale)
+            new_user_session_path(:locale => I18n.locale)
         end
     end
 end

@@ -5,6 +5,10 @@ class ExercisesController < ApplicationController
   # GET /Products
   # GET /Products.json
   def index
+    condition = { enable: true }
+
+    @exercise_count = Exercise.where(condition).count
+    @exercises = Exercise.where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
   end
 
   # GET /Products/1

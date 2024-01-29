@@ -1,0 +1,7 @@
+<main id="excercises">
+  <ul class="row">
+    <% @exercises.each do |exercise| %>
+    <li class="col-12 col-md-6 col-lg-4 col-xxl-3"><%=exercise.title %></li>
+    <% end  %>
+  </ul>
+</main>

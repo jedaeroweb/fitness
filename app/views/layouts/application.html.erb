@@ -13,8 +13,22 @@
 </head>
 <body>
 <%= render :partial => 'layouts/header' %>
-<%= yield %>
+<div id="mom">
+  <div id="main" class="container">
+    <div class="sub-main">
+      <% unless session[:premium] %>
+        <div class="row">
+          <%= render :partial => 'layouts/ad' %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </div>
+</div>
 <%= render :partial => 'layouts/footer' %>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+
+</div>
 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </body>
 </html>

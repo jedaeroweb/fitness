@@ -37,7 +37,7 @@ class Admin::HomeController < Admin::AdminController
     end
 
     @user = nil
-    if @user_count
+    unless @user_count.zero?
       @user = @users[0]
       @user_additional = UserAdditional.find_by_user_id(@user.id)
     end

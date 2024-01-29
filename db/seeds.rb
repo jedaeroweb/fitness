@@ -27,13 +27,15 @@ MessageSendType.create!(:id => 1, :title => 'SMS')
 MessageSendType.create!(:id => 2, :title => 'Push')
 MessageSendType.create!(:id => 3, :title => 'Available Push Or SMS')
 
-Company.create!(id: 1, title: '헬스클럽')
-Company.create!(id: 2, title: '피트니스')
-Company.create!(id: 3, title: '필라테스')
+Company.create!(id: 1, title: '제대로웹')
+Company.create!(id: 2, title: '헬스클럽')
+Company.create!(id: 3, title: '피트니스')
+Company.create!(id: 4, title: '필라테스')
 
-Branch.create!(id: 1, company_id: 1, title: '헬스클럽1', sample: 1, branch_setting_attributes: { use_unique_number: true, branch_setting_payments_attributes: [{ payment_id: 1 }, { payment_id: 2 }]})
-Branch.create!(id: 2, company_id: 2, title: '피트니스', branch_setting_attributes: { use_unique_number: true, branch_setting_payments_attributes: [{ payment_id: 1 }, { payment_id: 2 }]})
-Branch.create!(id: 3, company_id: 3, title: '필라테스', branch_setting_attributes: { use_unique_number: true, branch_setting_payments_attributes: [{ payment_id: 1 }, { payment_id: 2 }]})
+Branch.create!(id: 1, company_id: 1, title: '클럽미정', sample: 1, branch_setting_attributes: { use_unique_number: true, branch_setting_payments_attributes: [{ payment_id: 1 }, { payment_id: 2 }]})
+Branch.create!(id: 2, company_id: 2, title: '헬스클럽1', sample: 1, branch_setting_attributes: { use_unique_number: true, branch_setting_payments_attributes: [{ payment_id: 1 }, { payment_id: 2 }]})
+Branch.create!(id: 3, company_id: 3, title: '피트니스', branch_setting_attributes: { use_unique_number: true, branch_setting_payments_attributes: [{ payment_id: 1 }, { payment_id: 2 }]})
+Branch.create!(id: 4, company_id: 4, title: '필라테스', branch_setting_attributes: { use_unique_number: true, branch_setting_payments_attributes: [{ payment_id: 1 }, { payment_id: 2 }]})
 
 Role.create!(id: 1, title: '최고관리자', role: 'super_administrator')
 Role.create!(id: 2, title: '센터관리자', role: 'administrator')
@@ -63,9 +65,9 @@ VisitRoute.create!(:id => 6, :title => 'SNS')
 VisitRoute.create!(:id => 7, :title => '인터넷검색')
 VisitRoute.create!(:id => 8, :title => '기타')
 
-Admin.create!(:id => 1, :branch_id => 1, :email => 'admin@jedaeroweb.co.kr', :name => '잠자는-사자', :password => 'a12345', :password_confirmation => 'a12345', role_admin_attributes: { role_id: 3 })
-Admin.create!(:id => 2, :branch_id => 1, :email => 'trainer@jedaeroweb.co.kr', :name => '트레이너', :is_trainer => 1, :password => 'a12345', :password_confirmation => 'a12345', role_admin_attributes: { role_id: 3 })
-Admin.create!(:id => 3, :branch_id => 1, :email => 'fc@jedaeroweb.co.kr', :name => 'FC', :is_fc => 1, :password => 'a12345', :password_confirmation => 'a12345', role_admin_attributes: { role_id: 3 })
+Admin.create!(:id => 1, :branch_id => 1, :name => '잠자는-사자', role_admin_attributes: { role_id: 3 })
+Admin.create!(:id => 2, :branch_id => 1, :name => '트레이너', :is_trainer => 1, role_admin_attributes: { role_id: 3 })
+Admin.create!(:id => 3, :branch_id => 1, :name => 'FC', :is_fc => 1, role_admin_attributes: { role_id: 3 })
 
 AccountCategory.create!(id: 1, title: '구입', enable: true)
 AccountCategory.create!(id: 2, title: '수정', enable: true)
@@ -94,51 +96,70 @@ Product.create!(id: 7, branch_id: 1, product_category_id: 3, title: '락커 3달
 Product.create!(id: 8, branch_id: 1, product_category_id: 3, title: '락커 6달', price: 10000, enable: true)
 Product.create!(id: 9, branch_id: 1, product_category_id: 3, title: '락커 1년', price: 20000, enable: true)
 
-Course.create!(id: 1, product_id: 1);
-Course.create!(id: 2, product_id: 2);
-Course.create!(id: 3, product_id: 3);
-Course.create!(id: 4, product_id: 4);
-Course.create!(id: 5, product_id: 5);
+Course.create!(id: 1, product_id: 1)
+Course.create!(id: 2, product_id: 2)
+Course.create!(id: 3, product_id: 3)
+Course.create!(id: 4, product_id: 4)
+Course.create!(id: 5, product_id: 5)
 
-Facility.create!(id: 1, product_id: 6);
-Facility.create!(id: 2, product_id: 7);
-Facility.create!(id: 3, product_id: 8);
-Facility.create!(id: 4, product_id: 9);
+Facility.create!(id: 1, product_id: 6)
+Facility.create!(id: 2, product_id: 7)
+Facility.create!(id: 3, product_id: 8)
+Facility.create!(id: 4, product_id: 9)
 
 Group.create!(id: 1, branch_id: 1, title: 'VIP')
 Group.create!(id: 2, branch_id: 1, title: 'Special')
 Group.create!(id: 3, branch_id: 1, title: 'Normal')
 
-User.create!(id: 1, branch_id: 1, name: '사용자1', phone: '111-1111', registration_date: '2020-11-23')
-User.create!(id: 2, branch_id: 1, name: '사용자2', phone: '222-2222', registration_date: '2020-11-23')
-User.create!(id: 3, branch_id: 1, name: '사용자3', phone: '333-3333', registration_date: '2020-11-23')
-User.create!(id: 4, branch_id: 1, name: '사용자4', phone: '444-4444', registration_date: '2020-11-23')
+User.create!(id: 1, branch_id: 1, email: 'user1@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자1', phone: '111-1111', registration_date: '2020-11-23')
+User.create!(id: 2, branch_id: 1, email: 'user2@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자2', phone: '222-2222', registration_date: '2020-11-23')
+User.create!(id: 3, branch_id: 1, email: 'user3@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자3', phone: '333-3333', registration_date: '2020-11-23')
+User.create!(id: 4, branch_id: 1, email: 'user4@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '444-4444', registration_date: '2020-11-23')
 
-User.create!(id: 5, branch_id: 2, name: '사용자4', phone: '555-5555', registration_date: '2020-11-23')
-User.create!(id: 6, branch_id: 2, name: '사용자4', phone: '666-6666', registration_date: '2020-11-23')
-User.create!(id: 7, branch_id: 2, name: '사용자4', phone: '777-7777', registration_date: '2020-11-23')
-User.create!(id: 8, branch_id: 2, name: '사용자4', phone: '888-8888', registration_date: '2020-11-23')
+User.create!(id: 5, branch_id: 2, email: 'user5@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '555-5555', registration_date: '2020-11-23')
+User.create!(id: 6, branch_id: 2, email: 'user6@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '666-6666', registration_date: '2020-11-23')
+User.create!(id: 7, branch_id: 2, email: 'user7@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '777-7777', registration_date: '2020-11-23')
+User.create!(id: 8, branch_id: 2, email: 'user8@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '888-8888', registration_date: '2020-11-23')
 
-User.create!(id: 9, branch_id: 3, name: '사용자4', phone: '999-9999', registration_date: '2020-11-23')
-User.create!(id: 10, branch_id: 3, name: '사용자4', phone: '121-1211', registration_date: '2020-11-23')
-User.create!(id: 11, branch_id: 3, name: '사용자4', phone: '333-4444', registration_date: '2020-11-23')
-User.create!(id: 12, branch_id: 3, name: '사용자4', phone: '444-5555', registration_date: '2020-11-23')
+User.create!(id: 9, branch_id: 3, email: 'user9@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '999-9999', registration_date: '2020-11-23')
+User.create!(id: 10, branch_id: 3, email: 'user10@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '121-1211', registration_date: '2020-11-23')
+User.create!(id: 11, branch_id: 3, email: 'user11@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '333-4444', registration_date: '2020-11-23')
+User.create!(id: 12, branch_id: 3, email: 'user12@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '444-5555', registration_date: '2020-11-23')
 
 UserGroup.create!(user_id: 1, group_id: 1)
 UserGroup.create!(user_id: 2, group_id: 3)
 UserGroup.create!(user_id: 3, group_id: 3)
 
 UserAdmin.create!(user_id: 1, admin_id: 1)
-UserAdmin.create!(user_id: 2, admin_id: 1)
-UserAdmin.create!(user_id: 3, admin_id: 1)
-UserAdmin.create!(user_id: 4, admin_id: 1)
-UserAdmin.create!(user_id: 5, admin_id: 1)
-UserAdmin.create!(user_id: 6, admin_id: 1)
-UserAdmin.create!(user_id: 7, admin_id: 1)
-UserAdmin.create!(user_id: 8, admin_id: 1)
-UserAdmin.create!(user_id: 9, admin_id: 1)
-UserAdmin.create!(user_id: 10, admin_id: 1)
-UserAdmin.create!(user_id: 11, admin_id: 1)
-UserAdmin.create!(user_id: 12, admin_id: 1)
+UserAdmin.create!(user_id: 5, admin_id: 2)
+UserAdmin.create!(user_id: 9, admin_id: 3)
 
 PreparedMessage.create!(id: 1, branch_id: 1, title: '준비된 메세지', prepared_message_content_attributes: { content: 'asdgasdgasdg' })
+
+
+Notice.create!(id:1 ,branch_id: 1,title: '교환/반품 규정',notice_content_attributes: {
+  content: "1. 교환/반품이 가능한 경우"})
+Notice.create!(id: 2,branch_id: 1,title: '교환/반품 규정',notice_content_attributes: {
+  content: "1. 교환/반품이 가능한 경우"})
+Notice.create!(id: 3,branch_id: 1,title: '교환/반품 규정',notice_content_attributes: {
+  content: "1. 교환/반품이 가능한 경우"})
+
+
+
+ExerciseCategory.create!(id: 1, branch_id: 1, title: '가슴')
+ExerciseCategory.create!(id: 2, branch_id: 1, title: '등')
+ExerciseCategory.create!(id: 3, branch_id: 1, title: '팔')
+ExerciseCategory.create!(id: 4, branch_id: 1, title: '어깨')
+ExerciseCategory.create!(id: 5, branch_id: 1, title: '복근')
+ExerciseCategory.create!(id: 6, branch_id: 1, title: '하체')
+ExerciseCategory.create!(id: 7, branch_id: 1, title: '전신')
+ExerciseCategory.create!(id: 8, branch_id: 1, title: '유산소')
+ExerciseCategory.create!(id: 9, branch_id: 1, title: '밴드')
+
+
+Exercise.create!(id: 1, branch_id: 1,exercise_category_id:1,:title=>'교환/반품 규정',exercise_content_attributes: {
+  content: "1. 교환/반품이 가능한 경우"})
+Exercise.create!(id: 2, branch_id: 1,exercise_category_id:1,:title=>'교환/반품 규정',exercise_content_attributes: {
+  content: "1. 교환/반품이 가능한 경우"})
+Exercise.create!(id: 3, branch_id: 1,exercise_category_id:1,:title=>'교환/반품 규정',exercise_content_attributes: {
+  content: "1. 교환/반품이 가능한 경우"})

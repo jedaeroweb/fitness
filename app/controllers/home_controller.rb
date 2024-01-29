@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, except: [ :index]
+  load_and_authorize_resource
 
-  def index  
-    
-    @script='home/index'
+  def index
+    if current_user.branch_id==1
+      render 'home/setting'
+    end
   end
   
   def no_auth

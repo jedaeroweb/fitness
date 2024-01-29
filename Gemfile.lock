@@ -568,6 +568,7 @@ DEPENDENCIES
   sprockets (~> 3.7.2)
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
+  tzinfo-data
   uglifier
   web-console (>= 3.3.0)
   webdrivers

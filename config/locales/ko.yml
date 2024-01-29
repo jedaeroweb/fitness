@@ -1,17 +1,24 @@
 ko:
-  service_name: "SL Fitness"
-  hello: "Hello world"
+  service_name: "Jedaeroweb Fitness"
 
   korean: '한국어'
   chineses: '汉语'
   english: 'english'
 
+
+  title: '제대로웹 헬스'
+  login_title: '로그인'
+  search: "검색"
+  submit: "제출"
+  choose_file: '파일선택'
+  browse: '찾기'
+  setting: '설정'
+  sign : '회원가입'
+
+
   not_inserted: '입력안됨'
   not_inserted_memo: '메모 입력안됨'
-  search: "검색"
-  search_field: '검색항목'
-  search_word: '검색어'
-  submit: "제출"
+
 
   search_order: "주문 내역"
   search_user: "사용자 검색"

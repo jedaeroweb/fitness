@@ -57,6 +57,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   # DELETE /Users/1
   # DELETE /Users/1.json
   def destroy
@@ -65,10 +66,6 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def weight
-
   end
 
   private

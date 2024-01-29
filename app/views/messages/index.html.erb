@@ -1,0 +1,7 @@
+<main id="messages">
+  <ul class="row">
+    <% @messages.each do |message| %>
+      <li class="col-12 col-md-6 col-lg-4 col-xxl-3"><%=message.title %></li>
+    <% end  %>
+  </ul>
+</main>

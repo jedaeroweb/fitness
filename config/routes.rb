@@ -8,14 +8,14 @@ Rails.application.routes.draw do
   resources :messages
   resources :attendances
   resources :pts
-  resources :users
+  resources :user_branches
+  resources :user_weights
 
-  get 'weight', :to=>'users#weight'
-
-  #devise_for :users, :controllers => {:omniauth_callbacks=>'users/omniauth_callbacks', :sessions => "users/sessions",:registrations => "users/registrations",:passwords => "users/passwords"}, :path_names =>  {:sign_up=>'new',:sign_in => 'login', :sign_out => 'logout'} do
-    #  get '/users', :to => 'users/registrations#index', :as => :user_root # Rails 3s
-    #  get '/login', :to => 'users/sessions#new'
-  #end
+  devise_for :users, :controllers => {:omniauth_callbacks=>'users/omniauth_callbacks', :sessions => "users/sessions",:registrations => "users/registrations",:passwords => "users/passwords"}, :path_names =>  {:sign_up=>'new',:sign_in => 'login', :sign_out => 'logout'} do
+    get 'edit', :to => 'users::Registrations#edit'
+    get 'login', :to => 'users::Sessions#new'
+    get 'logout', :to=> 'users::Sessions#destroy'
+  end
 
   # 관리사용자
   devise_for :admins, :controllers => {:sessions => "admins/sessions",:registrations => "admins/registrations" }, :path_names =>  {:sign_up=>'new',:sign_in => 'login', :sign_out => 'logout'} do

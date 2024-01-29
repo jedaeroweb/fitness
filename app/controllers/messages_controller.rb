@@ -5,6 +5,10 @@ class MessagesController < ApplicationController
   # GET /Products
   # GET /Products.json
   def index
+    condition = { enable: true }
+
+    @message_count = Message.where(condition).count
+    @messages = Message.where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
   end
 
   # GET /Products/1
@@ -38,5 +42,6 @@ class MessagesController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_message
+    @message = Message.find(params[:id])
   end
 end

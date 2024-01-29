@@ -1,5 +1,48 @@
 <header>
-  <h1><%=link_to t(:title),'/' %></h1>
-  <%=link_to t(:prev_page),'',:class=>'' %>
-  <%=link_to t(:refresh),'/',:class=>'' %>
+  <div  class="container-fluid">
+  <h1><%=link_to @title,'/' %></h1>
+    <div id="top-menu">
+      <% unless current_page?(root_path) %>
+        <div id="mobile-back">
+          <%=link_to 'javascript:history.go(-1);' do %>
+            <span class="material-icons" class="d-block d-lg-none">keyboard_arrow_left</span>
+          <% end %>
+        </div>
+      <% end %>
+      <div id="mobile-menu-back">&nbsp;</div>
+      <div id="mobile-menu" class="d-block d-lg-none">
+        <%=link_to '' do %>
+          <span class="material-icons">menu</span>
+        <% end %>
+      </div>
+
+      <div id="top-user-menu">
+        <%=link_to '',id: 'mobile-menu-close',class: 'd-block d-lg-none' do %>
+          <span class="material-icons">cancel</span>
+        <% end %>
+        <ul>
+          <% if user_signed_in? %>
+            <li id="user-info">
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, {id:"p_logout",method: :delete} do %>
+                <i class="material-icons">highlight_off</i><span><%= t(:logout) %></span>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to new_user_session_path do %>
+                <i class="material-icons">login</i><span><%= t(:login) %></span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path do %>
+                <i class="material-icons">person_add</i><span><%= t(:new_user)%></span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </header>

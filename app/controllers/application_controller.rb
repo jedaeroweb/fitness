@@ -1,16 +1,31 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout
+
+  before_action :set_title
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def set_title
+    if user_signed_in?
+      if current_user.branch_id==1
+        @title=t(:title)
+      else
+        @branch=Branch.find(current_user.branch_id)
+        @title=@branch.title
+    end
+    else
+      @title=t(:title)
+    end
+  end
+
   def current_ability
-    @current_ability ||= AdminAbility.new(current_admin)
+    @current_ability ||= UserAbility.new(current_user)
   end
 
   rescue_from CanCan::AccessDenied do |exception|
     session["user_return_to"] = request.fullpath
-    redirect_to new_admin_session_path, :notice => t(:login_first)
+    redirect_to new_user_session_path, :notice => t(:login_first)
   end
 
   def set_locale

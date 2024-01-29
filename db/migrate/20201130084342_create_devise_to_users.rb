@@ -3,6 +3,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       t.references :branch, null: false
       t.string :name, null: false, limit: 60
+      t.string :encrypted_password, null: false, limit: 60
       t.string :email, limit: 60
       t.string :phone, limit: 20
       t.date :birthday
@@ -13,7 +14,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
       # t.datetime :reset_password_sent_at
 
       ## Rememberable
-      # t.datetime :remember_created_at
+      t.datetime :remember_created_at
 
       ## Trackable
       t.integer  :sign_in_count, :default => 0
@@ -44,6 +45,6 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
     end
 
     add_index :users, :email, unique: true
-    add_index :users, [:branch_id, :phone], unique: true
+    add_index :users, :phone, unique: true
   end
 end

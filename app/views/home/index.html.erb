@@ -1,36 +1,36 @@
-<div class="mdl-layout__drawer">
-  <span class="mdl-layout-title">xx님</span>
-  <nav class="mdl-navigation">
-    <%=link_to t(:edit_height) %>
-    <%=link_to t(:log_out) %>
-  </nav>
-</div>
-<main id="home" class="main_container">
+<main id="home">
   <nav>
-    <ul>
-      <li><%=link_to t(:trainer),trainers_path %></li>
-      <li><%=link_to attendances_path do %>
-          <span class="material-icons-outlined">
-edit_calendar
-</span>
-      <%=t(:attendance) %>
-    <% end %>
+    <ul class="row">
+      <li class="col-12 col-md-6 col-lg-4"><%=link_to trainers_path,{class: 'media p-3 rounded-3 h-100'}  do %>
+          <span class="material-icons"> accessibility_new</span>
+          <%=t(:trainer) %>
+        <% end %>
+
           </li>
-      <li><%=link_to exercises_path do %>
-          <span class="material-icons">
-fitness_center
-</span><%=t(:exercise) %>
+      <li class="col-12 col-md-6 col-lg-4"><%=link_to attendances_path,{class: 'media p-3 rounded-3 h-100'} do %>
+          <span class="material-icons">today</span>
+          <%=t(:attendance) %>
+          <% end %>
+          </li>
+      <li class="col-12 col-md-6 col-lg-4"><%=link_to exercises_path,{class: 'media p-3 rounded-3 h-100'}  do %>
+          <span class="material-icons">fitness_center</span><%=t(:exercise) %>
         <% end %>
       </li>
-      <li><%=link_to weight_path do %>
-        <span class="material-icons">
-monitor_weight
-</span>
+      <li class="col-12 col-md-6 col-lg-4"><%=link_to new_user_weight_path,{class: 'media p-3 rounded-3 h-100'}  do %>
+        <span class="material-icons">monitor_weight</span>
           <%=t(:weight) %>
         <% end %>
       </li>
-      <li><%=link_to t(:message),messages_path %></li>
-      <li><%=link_to t(:pt),pts_path %></li>
+      <li class="col-12 col-md-6 col-lg-4"><%=link_to messages_path,{class: 'media p-3 rounded-3 h-100'}  do %>
+          <span class="material-icons">chat</span>
+          <%=t(:message) %>
+        <% end %>
+      </li>
+      <li class="col-12 col-md-6 col-lg-4"><%=link_to pts_path,{class: 'media p-3 rounded-3 h-100'}  do %>
+        <span class="material-icons">supervisor_account</span>
+        <%=t(:pt) %>
+        <% end %>
+      </li>
     </ul>
   </nav>
 </main>
