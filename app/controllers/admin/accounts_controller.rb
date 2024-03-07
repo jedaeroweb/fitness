@@ -75,6 +75,6 @@ class Admin::AccountsController < Admin::AdminController
 
   # Only allow a list of trusted parameters through.
   def account_params
-    params.fetch(:account, {}).merge(admin_id: current_admin.id, branch_id: session[:branch_id])
+    params.fetch(:account, {}).merge(admin_id: session[:admin_id],branch_id: session[:branch_id])
   end
 end

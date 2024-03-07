@@ -35,9 +35,9 @@
         </tr>
         </thead>
         <tbody>
-        <% unless @entrances.empty? %>
-          <% @entrances.each_with_index do |entrance, index| %>
-            <tr<% if @entrance.id == entrance.id %> class="table-primary"<% end %>>
+        <% unless @attendance_count.zero? %>
+          <% @attendances.each_with_index do |entrance, index| %>
+            <tr<% if @attendance.id == entrance.id %> class="table-primary"<% end %>>
               <td></td>
               <td><%= entrance.name %></td>
               <td><%= get_dt_format entrance.in_time %></td>
@@ -52,6 +52,6 @@
       </table>
     </div>
   </article>
-  <%= paginate @entrances %>
-  <%=link_to t(:add),new_admin_entrance_path,class: 'btn btn-primary' %>
+  <%= paginate @attendances %>
+  <%=link_to t(:add),new_admin_attendance_path,class: 'btn btn-primary' %>
 </aside>

@@ -7,7 +7,7 @@ class EnrollsController < ApplicationController
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
-    condition={branch_id: current_admin.branch_id ,enable: true}
+    condition={branch_id: current_user.branch_id ,enable: true}
 
     @enroll_count = Enroll.where(condition).count
     @enrolls = Enroll.where(condition).page(params[:page]).per(params[:per_page])

@@ -1,6 +1,6 @@
-class CreateEntrances < ActiveRecord::Migration[6.0]
+class CreateAttendances < ActiveRecord::Migration[6.0]
   def change
-    create_table :entrances do |t|
+    create_table :attendances do |t|
       t.references :branch, null: false
       t.references :user, null: false
       t.datetime :in_time, null: false

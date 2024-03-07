@@ -1,14 +1,14 @@
-<div id="visit-routes" class="container">
+<section id="visit-routes" class="container">
   <div class="row">
-    <div class="col-12">
-      <h2 class="float-left"><%= t(:visit_route_list) %></h2>
-      <div class="float-right">
+      <h2 class="col-12 col-lg-6"><%= t(:visit_route_list) %></h2>
+      <div class="col-12 col-lg-6 text-end">
         <p class="summary">
           <span id="list_count" style="display:none"><%= @visit_route_count %></span>
           <%= raw t(:there_are_n_visit_routes, count: @visit_route_count) %>
         </p>
       </div>
     </div>
+    <div class="row">
     <div class="col-12">
       <table class="table table-bordered table-hover">
         <colgroup>
@@ -74,4 +74,4 @@
       </div>
     <% end %>
   </div>
-</div>
+</section>

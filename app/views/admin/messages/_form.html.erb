@@ -5,7 +5,10 @@
         <div class="col-12 col-lg-6 form-group">
           <label><%= t(:send_type, scope: [:activerecord, :attributes, :message]) %></label>
           <div class="">
-            <%= form.select :product_id, options_from_collection_for_select(MessageSendType.where(:enable => true).all, 'id', 'title'), { :include_blank => t('select_message_send_type') }, { :class => "form-control" } %>
+            <% MessageSendType.where(:enable => true).all.each do |select_message_send_type| %>
+              <br><%= radio_button_tag 'select_message_send_type', select_message_send_type, @theme == select_message_send_type %>
+              <%= label_tag "select_message_send_type_#{select_message_send_type}", select_message_send_type.title %>
+            <% end %>
           </div>
         </div>
         <div class="col-12 col-lg-6 form-group">
@@ -15,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="card">
+  <div class="card  mt-3"">
     <div class="card-body">
       <div class="form-row">
         <div class="col-12 form-group">
@@ -93,7 +96,7 @@
             <% end %>
           </div>
           <div style="margin-top:10px">
-            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type), { 'id' => 'user_select', :class => 'btn btn-secondary btn-modal' } %>&nbsp;&nbsp;
+            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type,'popup': true), { 'id' => 'user_select', :class => 'btn btn-secondary btn-modal' } %>&nbsp;&nbsp;
             <%= link_to t(:select_temp_user), admin_temp_user_select_path(:type => @message_type), { 'id' => 'temp_user_select', :class => 'btn btn-secondary btn-modal' } %>
           </div>
         </div>
@@ -113,5 +116,7 @@
       </div>
     </div>
   </div>
-  <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+  <div class="form-submit mt-3">
+    <%= form.submit :class => "btn btn-primary btn-block btn-lg" %>
+  </div>
 <% end %>

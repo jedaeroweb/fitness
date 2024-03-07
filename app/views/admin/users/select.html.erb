@@ -2,9 +2,7 @@
   <% if params[:popup].present? %>
     <div class="modal-header">
       <h3 class="modal-title"><%= t(:select_user) %></h3>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
   <% else %>
@@ -47,7 +45,7 @@
     <div class="modal-footer">
       <%= form.submit :value => t(:select), id: 'su-select', class: 'btn btn-primary btn-block' %>
     </div>
-    <%= javascript_include_tag @script, 'data-turbolinks-track' => true %>
+    <%= javascript_pack_tag 'user_select', 'data-turbolinks-track': 'reload' %>
   <% else %>
     <%= form.submit :value => t(:select), id: 'su-select', class: 'btn btn-primary btn-block btn-lg' %>
     </div>

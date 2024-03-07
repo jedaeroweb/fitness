@@ -9,7 +9,7 @@
   <%= stylesheet_link_tag "front/application", :media => "all", "data-turbolinks-track" => true %>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <%= csp_meta_tag -%>
 </head>
 <body>
 <%= render :partial => 'layouts/header' %>
@@ -26,9 +26,7 @@
   </div>
 </div>
 <%= render :partial => 'layouts/footer' %>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-
-</div>
+<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </body>
 </html>

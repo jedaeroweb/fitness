@@ -74,6 +74,6 @@ class Admin::GroupsController < Admin::AdminController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.require(:group).permit(:title, :description, :enable).merge(branch_id: session[:branch_id], admin_id: current_admin.id)
+    params.require(:group).permit(:title, :description, :enable).merge(branch_id: session[:branch_id], admin_id: session[:admin_id])
   end
 end

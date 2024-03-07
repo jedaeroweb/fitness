@@ -40,6 +40,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
       t.date :registration_date, null: false
       t.integer :orders_count, null: false, default: 0
       t.integer :accounts_count, null: false, default: 0
+      t.integer :user_admins_count, null: false, default: 0
       t.boolean :enable, null: false, default: true
       t.timestamps null: false
     end

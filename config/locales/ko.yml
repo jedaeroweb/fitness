@@ -19,6 +19,10 @@ ko:
   not_inserted: '입력안됨'
   not_inserted_memo: '메모 입력안됨'
 
+  success_title : '축하합니다!!'
+  message_success_create : '이(가) 성공적으로  등록되었습니다.'
+  message_success_update : '이(가) 성공적으로  수정되었습니다.'
+  message_success_recommend : '추천되었습니다.'
 
   search_order: "주문 내역"
   search_user: "사용자 검색"
@@ -136,6 +140,7 @@ ko:
   there_are_n_branches: "지점이 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_visit_routes: "방문경로가 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_jobs: "직업이 <strong class=\"mark\">%{count}개</strong> 있습니다"
+  there_are_n_notices: "공지사항이 <strong class=\"mark\">%{count}개</strong> 있습니다"
 
   account_list: '정산 목록'
   group_list: '그룹 목록'

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     get 'home/stops/:id', :to=>'home#stops', as: 'home_stops'
     get 'home/rents/:id', :to=>'home#rents', as: 'home_rents'
     get 'home/rent_sws/:id', :to=>'home#rent_sws', as: 'home_rent_sws'
-    get 'home/entrances/:id', :to=>'home#entrances', as: 'home_entrances'
+    get 'home/attendances/:id', :to=>'home#entrances', as: 'home_entrances'
     get 'home/accounts/:id', :to=>'home#accounts', as: 'home_accounts'
     get 'home/body_indexes/:id', :to=>'home#body_indexes', as: 'home_body_indexes'
     get 'home/memos/:id', :to=>'home#memos', as: 'home_memos'
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     resources :user_contents
     resources :user_pictures
     resources :temp_users
-    resources :entrances
+    resources :attendances
     resources :analysis
     resources :branches
     resources :reservations

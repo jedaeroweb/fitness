@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
-    @product_categories= ProductCategory.where({branch_id: current_admin.branch_id ,enable: true})
+    @product_categories= ProductCategory.where({branch_id: current_user.branch_id ,enable: true})
 
 
     if params[:product_category]
@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
       end
     end
 
-    condition={product_category_id: @product_category,branch_id: current_admin.branch_id ,enable: true}
+    condition={product_category_id: @product_category,branch_id: current_user.branch_id ,enable: true}
 
     @product_count = Product.where(condition).count()
     @products = Product.where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.build_product_picture
 
-    @product_categories = ProductCategory.where({branch_id: current_admin.branch_id ,enable: true})
+    @product_categories = ProductCategory.where({branch_id: current_user.branch_id ,enable: true})
   end
 
   # GET /Products/1/edit
@@ -89,6 +89,6 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:product_category_id, :title, :price, product_picture_attributes: [:photo]).merge(branch_id: current_admin.branch_id)
+    params.require(:product).permit(:product_category_id, :title, :price, product_picture_attributes: [:photo]).merge(branch_id: session[:branch_id])
   end
 end

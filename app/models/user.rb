@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one :user_fc, dependent: :destroy
   has_one :user_trainer, dependent: :destroy
   has_one :user_admin, dependent: :destroy
+  has_one :admin, through: :user_admin
   has_one :user_additional, dependent: :destroy
   has_one :user_picture, -> { order id: :desc }, dependent: :destroy
   has_one :user_group, dependent: :destroy

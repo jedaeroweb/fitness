@@ -75,6 +75,6 @@ class Admin::CounselsController < Admin::AdminController
 
   # Only allow a list of trusted parameters through.
   def counsel_params
-    params.require(:counsel).permit(:title).merge(admin_id: current_admin.id, branch_id: session[:branch_id])
+    params.require(:counsel).permit(:title).merge(admin_id: session[:admin_id], branch_id: session[:branch_id])
   end
 end

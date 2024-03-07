@@ -7,7 +7,7 @@ class RentsController < ApplicationController
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
-    condition={branch_id: current_admin.branch_id ,enable: true}
+    condition={branch_id: current_user.branch_id ,enable: true}
 
     @rent_count = Rent.where(condition).count
     @rents = Rent.where(condition).page(params[:page]).per(params[:per_page])

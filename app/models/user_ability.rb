@@ -7,7 +7,10 @@ class UserAbility
     can :create, []
     if user
       can :read, :all
-      can :create, [Enroll,Rent, UserBranch, UserWeight]
+      can :create, [UserWeight]
+      unless user.user_admins_count.zero?
+        can :manage, :all
+      end
     end
   end
 end

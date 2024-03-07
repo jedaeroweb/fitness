@@ -14,7 +14,12 @@ class Admin::AdminController < ApplicationController
   end
 
   def set_branch_setting
-    @current_branch = Branch.where(id: session[:branch_id], enable: true).first
+    if session[:branch_id]
+      @current_branch = Branch.where(id: session[:branch_id], enable: true).first
+    else
+      @current_branch = Branch.where(id: current_user.branch_id, enable: true).first
+      session[:branch_id]=@current_branch.id
+    end
     @current_branch_setting = BranchSetting.where(branch_id: @current_branch, enable: true).first
 
     @use_point = false
@@ -26,26 +31,26 @@ class Admin::AdminController < ApplicationController
   end
 
   def current_ability
-    @current_ability ||= AdminAbility.new(current_admin)
+    @current_ability ||= UserAbility.new(current_user)
   end
 
   def resource_name
-    :admin
+    :user
   end
 
   def resource
-    @resource ||= Admin.new
+    @resource ||= User.new
   end
 
   def devise_mapping
-    @devise_mapping ||= Devise.mappings[:admin]
+    @devise_mapping ||= Devise.mappings[:user]
   end
 
   rescue_from CanCan::AccessDenied do |_exception|
-    if current_admin
+    if current_user
       render file: "#{Rails.root}/public/403.html", status: 403, layout: false
     else
-      redirect_to new_admin_session_path
+      redirect_to new_user_session_path
     end
   end
 

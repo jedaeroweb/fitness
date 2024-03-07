@@ -3,15 +3,15 @@ class Users::SessionsController < Devise::SessionsController
         super
 
         #require 'ipaddr'
-        #UserLoginLog.create!(admin_id: current_admin.id, client_ip: IPAddr.new(request.remote_ip).to_i)
+        #UserLoginLog.create!(admin_id: current_user.id, client_ip: IPAddr.new(request.remote_ip).to_i)
 
         branch_id=current_user.branch_id
         session[:branch_id]=branch_id
 
-        #branch=Branch.find(branch_id)
-        #if branch.company.premium
-        #    session[:premium]=true
-        #end
+        unless current_user.user_admins_count.zero?
+            user=User.find(current_user.id)
+            session[:admin_id] = user.admin.id
+        end
     end
 
     def after_sign_out_path_for(_resource_or_scope)

@@ -6,6 +6,7 @@ class CreateDeviseToAdmins < ActiveRecord::Migration[6.0]
       ## Database authenticatable
       t.string :name, null: false, limit: 60
       t.date :birthday
+      t.string :phone
       t.boolean :gender
       t.boolean :is_fc, null: false, default: 0
       t.boolean :is_trainer, null: false, default: 0

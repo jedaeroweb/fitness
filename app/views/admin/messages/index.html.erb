@@ -1,14 +1,14 @@
 <section id="messages" class="container">
   <div class="row">
-    <div class="col-12">
-      <h2 class="float-left"><%= t(:message_list) %></h2>
-      <div class="float-right">
+      <h2 class="col-12 col-lg-6"><%= t(:message_list) %></h2>
+      <div class="col-12 col-lg-6 text-end">
         <p class="summary">
           <span id="list_count" style="display:none"><%= @message_count %></span>
           <%= raw t(:there_are_n_messages, count: @message_count) %>
         </p>
       </div>
     </div>
+  <div class="row">
     <div class="col-12">
       <table class="table table-bordered table-hover">
         <colgroup>

@@ -1,14 +1,14 @@
 <div id="prepared-messages" class="container">
   <div class="row">
-    <div class="col-12">
-      <h2 class="float-left"><%= t(:prepared_message_list) %></h2>
-      <div class="float-right">
+      <h2 class="col-12 col-lg-6"><%= t(:prepared_message_list) %></h2>
+      <div class="col-12 col-lg-6 text-end">
         <p class="summary">
           <span id="list_count" style="display:none"><%= @prepared_message_count %></span>
           <%= raw t(:there_are_n_prepared_messages, count: @prepared_message_count) %>
         </p>
       </div>
     </div>
+  <div class="row">
     <div class="col-12">
       <table class="table table-bordered table-hover">
         <colgroup>

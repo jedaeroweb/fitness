@@ -65,10 +65,6 @@ VisitRoute.create!(:id => 6, :title => 'SNS')
 VisitRoute.create!(:id => 7, :title => '인터넷검색')
 VisitRoute.create!(:id => 8, :title => '기타')
 
-Admin.create!(:id => 1, :branch_id => 1, :name => '잠자는-사자', role_admin_attributes: { role_id: 3 })
-Admin.create!(:id => 2, :branch_id => 1, :name => '트레이너', :is_trainer => 1, role_admin_attributes: { role_id: 3 })
-Admin.create!(:id => 3, :branch_id => 1, :name => 'FC', :is_fc => 1, role_admin_attributes: { role_id: 3 })
-
 AccountCategory.create!(id: 1, title: '구입', enable: true)
 AccountCategory.create!(id: 2, title: '수정', enable: true)
 AccountCategory.create!(id: 3, title: '환불', enable: true)
@@ -125,6 +121,11 @@ User.create!(id: 9, branch_id: 3, email: 'user9@jedaeroweb.co.kr', password: 'a1
 User.create!(id: 10, branch_id: 3, email: 'user10@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '121-1211', registration_date: '2020-11-23')
 User.create!(id: 11, branch_id: 3, email: 'user11@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '333-4444', registration_date: '2020-11-23')
 User.create!(id: 12, branch_id: 3, email: 'user12@jedaeroweb.co.kr', password: 'a12345', password_confirmation: 'a12345', name: '사용자4', phone: '444-5555', registration_date: '2020-11-23')
+
+Admin.create!(:id => 1, :branch_id => 1, :name => '잠자는-사자', role_admin_attributes: { role_id: 3 })
+Admin.create!(:id => 2, :branch_id => 1, :name => '트레이너', :is_trainer => 1, role_admin_attributes: { role_id: 3 })
+Admin.create!(:id => 3, :branch_id => 1, :name => 'FC', :is_fc => 1, role_admin_attributes: { role_id: 3 })
+
 
 UserGroup.create!(user_id: 1, group_id: 1)
 UserGroup.create!(user_id: 2, group_id: 3)

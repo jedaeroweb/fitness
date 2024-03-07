@@ -10,7 +10,7 @@ class AccountsProductsController < ApplicationController
       @product=Product.find(params[:product])
     end
 
-    condition={accounts: {branch_id: current_admin.branch_id, enable: true }}
+    condition={accounts: {branch_id: current_user.branch_id, enable: true }}
 
     if @product.present?
       condition[:product_id]=@product.id
@@ -19,7 +19,7 @@ class AccountsProductsController < ApplicationController
     @accounts_product_count=  AccountsProduct.includes(:account).where(condition).count
     @accounts_products = AccountsProduct.includes(:account).where(condition).page(params[:page]).per(params[:per_page])
 
-    @products = Product.where({branch_id: current_admin.branch_id, enable: true }).order('id desc')
+    @products = Product.where({branch_id: session[:branch_id], enable: true }).order('id desc')
   end
 
   # GET /AccountProducts/1

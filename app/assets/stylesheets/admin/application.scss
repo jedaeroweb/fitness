@@ -322,8 +322,8 @@ header nav ul li ul li.active a {
   color: #fff
 }
 header nav ul.nav li.sl-dropdown {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 15px;
+  margin-right: 25px;
   vertical-align: middle;
 }
 
@@ -876,11 +876,9 @@ aside .user-search .card-body {
     color: #333
   }
   a:visited {
-    color: #999
+    color: #666
   }
   a:active {
     color: #000
   }
-
-  aside a,aside a:visited {color:#fff}
 }

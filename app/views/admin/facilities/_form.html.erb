@@ -6,14 +6,14 @@
     end
   %>
 
-  <% unless FacilityCategory.where(:branch_id => current_admin.branch_id, :enable => true).count.zero? %>
+  <% unless FacilityCategory.where(:branch_id => current_user.branch_id, :enable => true).count.zero? %>
     <div class="card">
       <div class="card-body">
         <div class="row">
           <div class="col-12">
             <%= form.fields_for :product do |p| %>
               <%= p.label :product_category_id %>
-              <%= p.select :product_category_id, options_from_collection_for_select(FacilityCategory.where(:branch_id => current_admin.branch_id, :enable => true), 'id', 'title', nil), { :include_blank => t(:select_facility_category) }, { :class => "form-control" } %>
+              <%= p.select :product_category_id, options_from_collection_for_select(FacilityCategory.where(:branch_id => current_user.branch_id, :enable => true), 'id', 'title', nil), { :include_blank => t(:select_facility_category) }, { :class => "form-control" } %>
             <% end %>
           </div>
         </div>

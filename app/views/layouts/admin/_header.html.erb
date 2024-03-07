@@ -1,8 +1,8 @@
 <header>
   <ul id="top-menu">
-    <% if admin_signed_in? %>
+    <% if user_signed_in? %>
       <li style="margin-right:30px">
-        <%= link_to edit_admin_registration_path do %><%= t(:welcome) %>
+        <%= link_to edit_user_registration_path do %><%= t(:welcome) %>
         <% end %></li>
       <li>
         <%= link_to admin_home_setting_path do %>
@@ -33,7 +33,7 @@
     <div class="container">
       <ul class="nav">
         <li class="sl-dropdown
-            <% if ['admin/home','admin/users','admin/groups', 'admin/entrances'].include? params[:controller] %> active
+            <% if ['admin/home','admin/users','admin/groups', 'admin/attendances'].include? params[:controller] %> active
             <% end %>">
           <%= link_to admin_path do %>
             <%=raw '<i class="material-icons">person</i>' + t(:user, scope: [:activerecord, :models]) %>
@@ -46,8 +46,8 @@
               <% if current_page?(admin_groups_path) %> class="active"
               <% end %>><%= link_to raw('<i class="material-icons">group</i>' + t(:group, scope: [:activerecord, :models])), admin_groups_path %></li>
             <li
-              <% if current_page?(admin_entrances_path) %> class="active"
-              <% end %>><%= link_to raw('<i class="material-icons">add_location</i>' + t(:entrance, scope: [:activerecord, :models])), admin_entrances_path %></li>
+              <% if current_page?(admin_attendances_path) %> class="active"
+              <% end %>><%= link_to raw('<i class="material-icons">add_location</i>' + t(:entrance, scope: [:activerecord, :models])), admin_attendances_path %></li>
           </ul>
         </li>
         <li class="sl-dropdown

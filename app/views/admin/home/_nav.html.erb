@@ -6,7 +6,7 @@
       <li class="nav-item"><%= link_to t(:stop_order), admin_home_stops_path(@user), class: get_nav_active_class('stops') %></li>
       <li class="nav-item"><%= link_to t(:rent, scope: [:activerecord, :models]), admin_home_rents_path(@user), class: get_nav_active_class('rents') %></li>
       <li class="nav-item"><%= link_to t(:rent_sw, scope: [:activerecord, :models]), admin_home_rent_sws_path(@user), class: get_nav_active_class('rent_sws') %></li>
-      <li class="nav-item"><%= link_to t(:entrance, scope: [:activerecord, :models]), admin_home_entrances_path(@user), class: get_nav_active_class('entrances') %></li>
+      <li class="nav-item"><%= link_to t(:entrance, scope: [:activerecord, :models]), admin_home_entrances_path(@user), class: get_nav_active_class('attendances') %></li>
       <li class="nav-item"><%= link_to t(:account, scope: [:activerecord, :models]), admin_home_accounts_path(@user), class: get_nav_active_class('accounts') %></li>
       <li class="nav-item"><%= link_to t(:body_index), admin_home_body_indexes_path(@user), class: get_nav_active_class('body_indexes') %></li>
       <li class="nav-item"><%= link_to t(:memo), admin_home_memos_path(@user), class: get_nav_active_class('memos') %></li>

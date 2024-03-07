@@ -6,7 +6,7 @@ class Admin::BranchesController < Admin::AdminController
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
-    condition = { company_id: current_admin.branch.company_id}
+    condition = { company_id: current_user.branch.company_id}
 
     @branch_count = Branch.where(condition).count
     @branches = Branch.where(condition).page(params[:page]).per(params[:per_page]).order('id desc')

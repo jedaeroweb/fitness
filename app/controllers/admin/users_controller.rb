@@ -25,8 +25,6 @@ class Admin::UsersController < Admin::AdminController
       @user_count = User.where(condition).count
       @users = User.where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
     end
-
-    @script='users/select'
   end
   # GET /users
   # GET /users.json

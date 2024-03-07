@@ -1,13 +1,13 @@
 <%= form_with(model: [:admin, user], local: true) do |form| %>
   <% if session[:premium] %>
-  <% unless Group.where(:branch_id => current_admin.branch_id, :enable => true).count.zero? %>
+  <% unless Group.where(:branch_id => session[:branch_id], :enable => true).count.zero? %>
     <div class="card">
       <div class="card-body">
         <div class="row">
           <div class="col-12">
             <%= form.fields_for :user_group do |ug| %>
               <%= ug.label :group_id %>
-              <%= ug.select :group_id, options_from_collection_for_select(Group.where(:branch_id => current_admin.branch_id, :enable => true).order('id desc'), 'id', 'title', user.user_group.group_id), { :include_blank => t(:select_group) }, { :class => "form-control" } %>
+              <%= ug.select :group_id, options_from_collection_for_select(Group.where(:branch_id => session[:branch_id], :enable => true).order('id desc'), 'id', 'title', user.user_group.group_id), { :include_blank => t(:select_group) }, { :class => "form-control" } %>
             <% end %>
           </div>
         </div>
@@ -43,13 +43,13 @@
         <div class="col-12 col-md-6 col-xl-4 form-group">
           <%= form.fields_for :user_fc do |ufc| %>
             <%= ufc.label :admin_id %>
-            <%= ufc.select :admin_id, options_from_collection_for_select(Admin.where(branch_id: current_admin.branch_id, is_fc: true, enable: true).all, 'id', 'name', @user.user_fc.admin_id), { :include_blank => t(:select_user_fc) }, { :class => "form-control" } %>
+            <%= ufc.select :admin_id, options_from_collection_for_select(Admin.where(branch_id: session[:branch_id], is_fc: true, enable: true).all, 'id', 'name', @user.user_fc.admin_id), { :include_blank => t(:select_user_fc) }, { :class => "form-control" } %>
           <% end %>
         </div>
         <div class="col-12 col-md-6 col-xl-4 form-group">
           <%= form.fields_for :user_trainer do |utrainer| %>
             <%= utrainer.label :admin_id %>
-            <%= utrainer.select :admin_id, options_from_collection_for_select(Admin.where(branch_id: current_admin.branch_id, is_trainer: true, enable: true).all, 'id', 'name', @user.user_trainer.admin_id), { :include_blank => t(:select_user_trainer) }, { :class => "form-control" } %>
+            <%= utrainer.select :admin_id, options_from_collection_for_select(Admin.where(branch_id: session[:branch_id], is_trainer: true, enable: true).all, 'id', 'name', @user.user_trainer.admin_id), { :include_blank => t(:select_user_trainer) }, { :class => "form-control" } %>
           <% end %>
         </div>
       </div>

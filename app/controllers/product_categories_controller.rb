@@ -7,7 +7,7 @@ class ProductCategoriesController < ApplicationController
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
-    condition={branch_id: current_admin.branch_id ,enable: true}
+    condition={branch_id: current_user.branch_id ,enable: true}
 
     @product_category_count = ProductCategory.where(condition).count
     @product_categories = ProductCategory.where(condition).page(params[:page]).per(params[:per_page])
@@ -75,6 +75,6 @@ class ProductCategoriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_category_params
-    params.require(:product_category).permit(:title).merge(branch_id: current_admin.branch_id)
+    params.require(:product_category).permit(:title).merge(branch_id: current_user.branch_id)
   end
 end

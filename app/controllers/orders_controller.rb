@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
-    condition = { branch_id: current_admin.branch_id, enable: true }
+    condition = { branch_id: current_user.branch_id, enable: true }
     condition_sql='1=1'
     sql_params=[]
 
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.orders_products.build
 
-    @product_categories = ProductCategory.where({ branch_id: current_admin.branch_id, enable: true })
+    @product_categories = ProductCategory.where({ branch_id: current_user.branch_id, enable: true })
 
     if params[:product_category]
       @product_category = ProductCategory.find(params[:product_category])
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
 
     if params[:search_type] and params[:search_word]
       if ['name', 'phone', 'access_card'].include?(params[:search_type])
-        @users = User.where({ branch_id: current_admin.branch_id, enable: true }).where("#{params[:search_type]} like ?", "%#{params[:search_word]}%")
+        @users = User.where({ branch_id: current_user.branch_id, enable: true }).where("#{params[:search_type]} like ?", "%#{params[:search_word]}%")
 
         if @users.count == 1
           @user = @users[0];
@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
       end
     end
 
-    @products = Product.where({ product_category_id: @product_category, branch_id: current_admin.branch_id, enable: true }).order('id desc').page(params[:page]).per(params[:per_page])
+    @products = Product.where({ product_category_id: @product_category, branch_id: session[:branch_id], enable: true }).order('id desc').page(params[:page]).per(params[:per_page])
   end
 
   # GET /orders/1/edit
@@ -97,10 +97,10 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.save!
 
-    OrdersAdmin.create!(:order_id=>@order.id,:admin_id=>current_admin.id)
+    OrdersAdmin.create!(order_id: @order.id,admin_id: session[:admin_id])
 
     ca = calculate_account(@order.orders_products, params[:payment_method])
-    account = Account.create!(account_category_id: 1, branch_id: current_admin.branch_id, user_id: @order.user_id, cash: ca[:cash], credit: ca[:credit], point: ca[:point])
+    account = Account.create!(account_category_id: 1, branch_id: session[:branch_id], user_id: @order.user_id, cash: ca[:cash], credit: ca[:credit], point: ca[:point])
 
     @order.orders_products.each do |order_product|
       @accounts_product=AccountsProduct.create!(:account_id=>account.id, :product_id=>order_product.product_id)
@@ -161,6 +161,6 @@ class OrdersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def order_params
-    params.require(:order).permit(:user_id, :transaction_date, :price, :discount, :payment, orders_products_attributes: [:id, :product_id, :price, :quantity]).merge(branch_id: current_admin.branch_id)
+    params.require(:order).permit(:user_id, :transaction_date, :price, :discount, :payment, orders_products_attributes: [:id, :product_id, :price, :quantity]).merge(branch_id: session[:branch_id])
   end
 end

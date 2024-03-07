@@ -83,6 +83,6 @@ class Admin::OrdersController < Admin::AdminController
 
   # Only allow a list of trusted parameters through.
   def order_params
-    params.require(:order).permit(:product_id, :type, :order_no, :quantity, :start_no, :gender, :use_not_set, :enable).merge(admin_id: current_admin.id, branch_id: session[:branch_id])
+    params.require(:order).permit(:product_id, :type, :order_no, :quantity, :start_no, :gender, :use_not_set, :enable).merge(admin_id: session[:admin_id], branch_id: session[:branch_id])
   end
 end
