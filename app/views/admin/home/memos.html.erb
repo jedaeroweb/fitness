@@ -25,40 +25,32 @@
                             <colgroup>
                               <col style="width:120px"/>
                               <col/>
-                              <col/>
-                              <col style="width:160px"/>
-                              <col/>
-                              <col style="width:100px"/>
+                              <% if can?(:update, UserContent) or can?(:delete, UserContent) %>
+                                <col<%= manage_width(UserContent) %>>
+                              <% end %>
                             </colgroup>
                             <thead>
                             <tr class="thead-default">
-                              <th>type</th>
-                              <th>Image</th>
-                              <th>Title</th>
                               <th>Content</th>
                               <th><%= t(:created_at, scope: [:activerecord, :attributes, :message]) %></th>
-                              <th><%= t(:manage) %></th>
+                              <th class="text-center"><%= t(:manage) %></th>
                             </tr>
                             </thead>
                             <tbody>
                             <% unless @memos.empty? %>
                               <% @memos.each_with_index do |memo, index| %>
                                 <tr>
-                                  <td></td>
-                                  <td>
-                                  </td>
-                                  <td><%= memo.title %></td>
                                   <td>content</td>
                                   <td><%= memo.created_at %></td>
                                   <% if can?(:update, memo) or can?(:delete, memo) %>
                                     <td class="text-center">
-                                      <% if can? :update, message %>
-                                        <%= link_to edit_admin_memo_path(memo), :class => "btn btn-secondary" do %>
+                                      <% if can? :update, memo %>
+                                        <%= link_to edit_admin_user_content_path(memo), :class => "btn btn-secondary" do %>
                                           <%= t(:edit) %>
                                         <% end %>
                                       <% end %>
                                       <% if can? :delete, memo %>
-                                        <%= link_to admin_memo_path(memo), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
+                                        <%= link_to admin_user_content_path(memo), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
                                           <%= t(:delete) %>
                                         <% end %>
                                       <% end %>

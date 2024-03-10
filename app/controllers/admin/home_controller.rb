@@ -59,17 +59,17 @@ class Admin::HomeController < Admin::AdminController
     common_index
   end
 
-  def entrances
+  def attendances
     common_index
 
     params[:per_page] = 10 unless params[:per_page].present?
 
     condition = { branch_id: session[:branch_id], user_id: @user.id, enable: true }
 
-    @entrance_count = Entrance.where(condition).count
-    @entrances = Entrance.where(condition).page(params[:page]).per(params[:per_page])
+    @attendance_count = Attendance.where(condition).count
+    @attendances = Attendance.where(condition).page(params[:page]).per(params[:per_page])
 
-    @entrance = Entrance.new
+    @attendance = Attendance.new
   end
 
   def accounts
