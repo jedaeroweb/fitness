@@ -10,7 +10,6 @@ require("@rails/ujs").start()
 require("jquery");
 require("bootstrap");
 require("./jquery.uri")
-require("jquery.easing")
 require("@fancyapps/fancybox")
 require("./common");
 require("./index");

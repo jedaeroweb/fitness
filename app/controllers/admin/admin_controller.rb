@@ -8,6 +8,14 @@ class Admin::AdminController < ApplicationController
     before_init
   end
 
+  helper_method :current_admin
+
+  def current_admin
+    Admin.find(session[:admin_id])
+  rescue
+    nil
+  end
+
   def before_init
     #  @script='admin/application'
     # @contact_count=Contact.where(:confirm=>false).count

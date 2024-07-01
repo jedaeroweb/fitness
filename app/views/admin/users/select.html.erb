@@ -1,5 +1,4 @@
-<%= form_with(url: 'admin/users/select', local: true, html: { id: 'user-select-search' }) do |form| %>
-  <% if params[:popup].present? %>
+<% if params[:popup].present? %>
     <div class="modal-header">
       <h3 class="modal-title"><%= t(:select_user) %></h3>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -10,6 +9,7 @@
       <div class="row">
         <div class="col-12">
   <% end %>
+<%= form_with(url: 'admin/users/select', local: true, html: { id: 'user-select-search' }) do |form| %>
   <%= hidden_field_tag :message_type, params[:message_type] %>
   <div class="card">
     <div class="card-header">
@@ -38,18 +38,19 @@
       </div>
     </div>
   </div>
+<% end %>
   <%= render :partial => 'select_user' %>
 
   <% if params[:popup].present? %>
     </div>
     <div class="modal-footer">
-      <%= form.submit :value => t(:select), id: 'su-select', class: 'btn btn-primary btn-block' %>
+      <%= button_tag t(:select), id: 'su-select', class: 'btn btn-primary btn-block' %>
     </div>
-    <%= javascript_pack_tag 'user_select', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'users/select' %>
   <% else %>
-    <%= form.submit :value => t(:select), id: 'su-select', class: 'btn btn-primary btn-block btn-lg' %>
+    <%= button_tag t(:select), id: 'su-select', class: 'btn btn-primary btn-block btn-lg' %>
     </div>
     </div>
     </div>
   <% end %>
-<% end %>
+

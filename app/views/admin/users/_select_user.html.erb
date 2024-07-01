@@ -8,7 +8,7 @@
   </colgroup>
   <thead>
   <tr class="thead-default">
-    <th><%=t(:check) %></th>
+    <th><input type="checkbox" id="user_select_check_all"><%=t(:check) %></th>
     <th><%=t(:name) %></th>
     <th><%=t(:phone) %></th>
   </tr>
@@ -17,7 +17,7 @@
   <% unless @user_count.zero? %>
     <% @users.each do |user| %>
       <tr>
-        <td><input type="radio" name="id" value="<%=user.id %>"></td>
+        <td><input type="checkbox" name="id[]" value="<%=user.id %>"></td>
         <td class="name"><%=user.name %></td>
         <td class="phone"><%=user.phone %></td>
       </tr>

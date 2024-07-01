@@ -126,6 +126,7 @@ Admin.create!(:id => 1, :branch_id => 1, :name => '잠자는-사자', role_admin
 Admin.create!(:id => 2, :branch_id => 1, :name => '트레이너', :is_trainer => 1, role_admin_attributes: { role_id: 3 })
 Admin.create!(:id => 3, :branch_id => 1, :name => 'FC', :is_fc => 1, role_admin_attributes: { role_id: 3 })
 
+RoleAdmin.create!(role_id: 1, admin_id: 1)
 
 UserGroup.create!(user_id: 1, group_id: 1)
 UserGroup.create!(user_id: 2, group_id: 3)

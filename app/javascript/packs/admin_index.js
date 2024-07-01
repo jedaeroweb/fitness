@@ -252,19 +252,6 @@ $(document).ready(function() {
         alert('준비중입니다.');
     });
 
-    $('.btn-modal').click(function(event){
-        event.preventDefault();
-        $('#myModal').removeData("modal");
-        if($(this).attr('href').indexOf('?')=='-1') {
-            var url=$(this).attr('href')+'?popup=true';
-        } else {
-            var url=$(this).attr('href')+'&popup=true';
-        }
-        $('#myModal').load(url,function(){
-            $('#myModal').modal();
-        });
-    });
-
     // 메세지 닫기
     $('#message .m_close').click(function(){
         $(this).parent().remove();
@@ -569,26 +556,6 @@ function list_count_minus() {
     return s_count;
 }
 
-// 리스트 선택후 다시 돌아왔을때 선택되어있게 하기
-function check_checked(table_id,save_input_name) {
-    save_input_name = save_input_name || 'user[]';
-    $('#'+table_id+' tbody input:checkbox').each(function(){
-        var exists=false;
-        var i_val=$(this).val();
-
-        var users_input=$('.users_input');
-        users_input.find('input').each(function(){
-            if(i_val==$(this).val()) {
-                exists=true;
-            }
-        });
-
-        if(exists) {
-            $(this).prop('checked',true);
-            $(this).closest('tr').addClass('table-primary');
-        }
-    });
-}
 
 function delete_form_submit(data, statusText, xhr, $form) {
     if(data.result=='success') {
@@ -847,9 +814,6 @@ function display_gender(gender)
     }
 }
 
-function deleteSelectedUser() {
-    $(this).closest('.select_user').remove();
-}
 
 function stripComma(str) {
     var re = /,/g;

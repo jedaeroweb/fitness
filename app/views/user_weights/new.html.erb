@@ -8,7 +8,7 @@
       <div class="card-body">
         <div class="form-group">
           <%= form.label :weight %>
-          <%= form.select :weight, options_from_collection_for_select(Branch.where(:enable => true).all, 'id', 'title'),{:include_blank => t('select_branch')}, { :class => "form-control" } %>
+          <%= form.select :weight, options_for_select((40..150).to_a.map{|s| ["#{s}Kg", s]}),{}, { :class => "form-control" } %>
         </div>
       </div>
     </article>

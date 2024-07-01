@@ -22,3 +22,4 @@ Rails.application.config.assets.precompile << Proc.new { |path|
     true
   end
 }
+Rails.application.config.assets.precompile += %w( users/select.js )

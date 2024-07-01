@@ -98,33 +98,5 @@ $(function () {
             myModal.show();
         });
     }
-
-
-    function pageselectCallback(page_index, jq) {
-        if ($(jq).data("load") == true)
-            getList(page_index, jq);
-        else
-            $(jq).data("load", true);
-
-        return false;
-    }
-
-    function initPagination(num_entries, items_per_page, current_page) {
-        if(!current_page) {
-            var current_page=0;
-        }
-
-        if(num_entries<=items_per_page) {
-            return false;
-        }
-
-        $(".sl_pagination").pagination(num_entries, {
-            current_page : current_page,
-            num_edge_entries : 2,
-            num_display_entries : 8,
-            callback : pageselectCallback,
-            items_per_page : items_per_page
-        });
-        return false;
-    }
 });
+
