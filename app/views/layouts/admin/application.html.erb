@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>" data-bs-theme="auto">
 <head>
-  <meta charset="utf-8" />
-  <title><%=t(:service_name)%></title>
-  <meta name="description" content="<%=t(:service_name)%>" />
-  <meta name="author" content="Sleeping-Lion" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <meta charset="utf-8">
+  <title><%= t(:service_name) %></title>
+  <meta name="description" content="<%= t(:service_name) %>">
+  <meta name="author" content="Sleeping-Lion">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
   <%= stylesheet_link_tag "admin/application", :media => "all", "data-turbolinks-track" => true %>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
-  <%= csp_meta_tag -%>
+  <%= csp_meta_tag %>
 </head>
 <body>
-<%= render :partial => 'layouts/admin/header' %>
-<div id="mom">
-  <div id="main">
-    <div class="sub_main">
-      <% unless session[:premium] %>
-        <%= render :partial => 'layouts/admin/ad' %>
-      <% end %>
-      <%= yield %>
+<div class="container-fluid">
+  <div class="row">
+    <%= render :partial => 'layouts/admin/aside' %>
+    <div class="col-12 col-md-10 col-xxl-11">
+      <%= render :partial => 'layouts/admin/header' %>
+      <div id="mom">
+        <div id="main">
+          <div class="sub-main">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <%= render :partial => 'layouts/admin/footer' %>
     </div>
   </div>
 </div>
-<%= render :partial => 'layouts/admin/footer' %>
-<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
+<%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 </body>
 </html>

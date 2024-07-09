@@ -1,27 +1,24 @@
-# What is Jedaeroweb Fitness
+# README
 
-Jedaeroweb Fitness is fitness center management system
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-This Application is composed of [Rails](http://rubyonrails.org/)(user-pages,admin-pages) + UI [Boostrap](http://getbootstrap.com)
+Things you may want to cover:
 
-## Server Requirements
+* Ruby version
 
-[Rails](http://rubyonrails.org/) version 6 or newer is recommended.
+* System dependencies
 
+* Configuration
 
-## DEMO
-[사용자 페이지(User Page)](https://fitness.jedaeroweb.co.kr)
-[관리자 페이지(Admin Page)](https://fitness.jedaeroweb.co.kr/admin)
+* Database creation
 
-먼저 관리자 페이지로 admin@jedaeroweb.co.kr : a12345로 로그인 한뒤
-회원 관리메뉴에서 회원을 생성하고(아이디:비밀번호등 설정)
+* Database initialization
 
-Go Page(Login Use Email:admin@jedaeroweb.co.kr / Password:a12345 ) And Order
+* How to run the test suite
 
-## License
+* Services (job queues, cache servers, search engines, etc.)
 
-MIT, All Free
+* Deployment instructions
 
-## Author
-
-[jedaeroweb](https://www.jedaeroweb.co.kr)
+* ...

@@ -27,6 +27,6 @@
 </div>
 <%= render :partial => 'layouts/footer' %>
 <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 </body>
 </html>
