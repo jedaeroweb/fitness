@@ -1,7 +1,7 @@
 set :application, "fitness"
 set :repo_url, "git@github.com:jedaeroweb/fitness.git"
 set :branch, 'master'
-set :deploy_to, '/var/www/html/fitness'
+set :deploy_to, '/home/deploy/fitness'
 
 # set :format, :pretty
 # set :log_level, :debug
