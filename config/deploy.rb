@@ -1,5 +1,5 @@
 set :application, "fitness"
-set :repo_url, 'git@github.com:jedaeroweb/fitness.git'
+set :repo_url, "git@github.com:jedaeroweb/fitness.git"
 set :branch, 'master'
 set :deploy_to, '/var/www/html/fitness'
 
@@ -8,13 +8,14 @@ set :deploy_to, '/var/www/html/fitness'
 #set :pty, true
 set :linked_files, %w{config/database.yml config/master.key .env}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/assets public/uploads}
+
 set :rbenv_type, :user
-set :rbenv_ruby, "3.2.2"
+set :rbenv_ruby, "3.3.4"
 set :ssh_options, verify_host_key: :never
 set :default_env, {'NODE_OPTIONS'=>'--openssl-legacy-provider'}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-set :keep_releases, 2
+set :keep_releases, 5
 
 namespace :deploy do
   after :restart, :clear_cache do
@@ -37,6 +38,6 @@ namespace :deploy do
     end
   end
 
-  #  after :finishing, 'deploy:refresh_sitemap'
+  after :finishing, 'deploy:refresh_sitemap'
   after :finishing, 'deploy:cleanup'
 end
