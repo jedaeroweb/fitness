@@ -15,7 +15,6 @@ module Fitness
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
-    config.time_zone = 'Seoul'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     #config.i18n.load_path += Dir[Rails.root.join('locales', '*.{rb,yml}').to_s]
@@ -32,7 +31,7 @@ module Fitness
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = 'Seoul'
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
