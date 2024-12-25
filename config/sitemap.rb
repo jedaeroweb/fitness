@@ -15,9 +15,9 @@ SitemapGenerator::Sitemap.create do
   #
   # Examples:
 
-  add notices_path, :priority => 0.9, :changefreq => 'weekly'
+  add products_path, :priority => 0.9, :changefreq => 'weekly'
 
-  Notice.find_each do |notice|
-    add notice_path(notice), :lastmod => notice.updated_at
+  Product.find_each do |product|
+    add product_path(product), :lastmod => product.updated_at
   end
 end
