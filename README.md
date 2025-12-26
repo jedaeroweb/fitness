@@ -1,3 +1,7 @@
+![Rails](https://img.shields.io/badge/Rails-7-red)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Template](https://img.shields.io/badge/Template-Repository-blue)
+
 # What is Jedaeroweb Fitness
 
 Jedaeroweb Fitness is fitness center management program
@@ -14,9 +18,14 @@ this application is composed of [Rails](http://rubyonrails.org/)(user-pages,admi
 go page(login use email:user@jedaeroweb.co.kr / password:a12345 ) and order
 admin page  (/admin)
 
+📌 Server Requirements
+
+Rails
+ version 7 or newer is recommended.
+
 ## License
 
-MIT, All Free
+MIT License – completely free to use and modify
 
 ## Author
 
