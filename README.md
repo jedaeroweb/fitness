@@ -18,12 +18,12 @@ this application is composed of [Rails](http://rubyonrails.org/)(user-pages,admi
 go page(login use email:user@jedaeroweb.co.kr / password:a12345 ) and order
 admin page  (/admin)
 
-📌 Server Requirements
+## 📌 Server Requirements
 
 Rails
  version 7 or newer is recommended.
 
-## License
+## 📄 License
 
 MIT License – completely free to use and modify
 
