@@ -27,6 +27,6 @@ Rails
 
 MIT License – completely free to use and modify
 
-## Author
+## ✍️ Author
 
 [jedaeroweb](https://www.jedaeroweb.co.kr)
