@@ -345,21 +345,21 @@ GEM
     net-ssh (7.3.0)
     netrc (0.11.0)
     nio4r (2.7.4)
-    nokogiri (1.18.8-aarch64-linux-gnu)
+    nokogiri (1.18.10-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-aarch64-linux-musl)
+    nokogiri (1.18.10-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm-linux-gnu)
+    nokogiri (1.18.10-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm-linux-musl)
+    nokogiri (1.18.10-arm-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.18.8-arm64-darwin)
+    nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-darwin)
+    nokogiri (1.18.10-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-linux-gnu)
+    nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.8-x86_64-linux-musl)
+    nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
     oauth (1.1.0)
       oauth-tty (~> 1.0, >= 1.0.1)
@@ -622,8 +622,8 @@ DEPENDENCIES
   kaminari
   meta-tags
   mysql2
-  nokogiri (>= 1.14.3)
-  oauth2 (= 1.4.11)
+  nokogiri (>= 1.18.9)
+  oauth2
   omniauth
   omniauth-apple
   omniauth-facebook
@@ -634,7 +634,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   omniauth-twitter
   puma (>= 5.0)
-  rails (~> 7.1.5, >= 7.1.5.1)
+  rails (~> 7.1.5)
   rails-letsencrypt
   recaptcha
   redis (~> 5.0)
@@ -648,9 +648,6 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
-
-RUBY VERSION
-   ruby 3.3.4p94
 
 BUNDLED WITH
    2.6.1

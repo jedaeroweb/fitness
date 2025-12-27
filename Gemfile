@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-ruby "3.3.4"
+#ruby "3.3.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.5", ">= 7.1.5.1"
+gem "rails", "~> 7.1.5"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -48,7 +48,7 @@ gem 'rmagick'
 gem 'sitemap_generator'
 gem 'meta-tags'
 gem 'gretel'
-gem 'nokogiri', '>= 1.14.3'
+gem 'nokogiri', '>= 1.18.9'
 gem 'impressionist'
 gem 'acts-as-taggable-on'
 gem 'acts_as_commentable_with_threading'
@@ -57,7 +57,7 @@ gem 'globalize'
 gem 'carrierwave-base64'
 
 gem 'omniauth'
-gem 'oauth2', '1.4.11'
+gem 'oauth2'
 gem 'omniauth-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-facebook'
