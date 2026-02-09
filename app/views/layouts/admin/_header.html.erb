@@ -1,24 +1,30 @@
 <header class="row">
   <div class="col-12">
-    <% if params[:controller]=='admin/orders' %>
+    <% if ['admin/users','admin/check_ins','admin/searches','admin/home'].include?(params[:controller]) %>
+      <%= render 'admin/home/nav' %>
+    <% end %>
+    <% if ['admin/orders','admin/payments'].include?(params[:controller]) %>
       <%= render 'admin/orders/nav' %>
     <% end %>
     <% if ['admin/products','admin/product_categories'].include?(params[:controller]) %>
       <%= render 'admin/products/nav' %>
     <% end %>
-    <% if ['admin/users','admin/groups','admin/points'].include?(params[:controller]) %>
-      <%= render 'admin/users/nav' %>
+    <% if ['admin/messages','admin/prepared_messages'].include?(params[:controller]) %>
+      <%= render 'admin/messages/nav' %>
     <% end %>
-    <% if ['admin/admins','admin/branches'].include?(params[:controller]) %>
-      <%= render 'admin/admins/nav' %>
+    <% if ['admin/employee','admin/notices'].include?(params[:controller]) %>
+      <%= render 'admin/settings/nav' %>
     <% end %>
     <ul id="top-menu">
       <% if admin_signed_in? %>
         <li id="admin-info">
-            <%= current_admin.name %>
+            <% if current_admin.admin_picture.present? %>
+              <%= image_tag(current_admin.admin_picture.picture.small_thumb.url, { :height => 50, :width => 50 }) %>
+            <% end %>
+            <span class="text-dark"><%= current_admin.name %></span>
         </li>
         <li>
-          <%= link_to destroy_admin_session_path, {id: "p_logout",method: 'delete' } do %>
+          <%= link_to destroy_admin_session_path, :id => "p_logout", :method => :delete do %>
             <i class="material-icons" style="font-size:35px;vertical-align:middle">highlight_off</i><span><%= t(:logout) %></span>
           <% end %>
         </li>
@@ -32,3 +38,4 @@
     </ul>
   </div>
 </header>
+

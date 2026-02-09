@@ -1,14 +1,14 @@
-<section id="counsels" class="container">
+<section id="counsels">
   <div class="row">
-    <div class="col-12">
-      <h2 class="float-left"><%= t(:counsel_list) %></h2>
-      <div class="float-right">
-        <p class="summary">
-          <span id="list_count" style="display:none"><%= @counsel_count %></span>
-          <%= raw t(:there_are_n_counsels, count: @counsel_count) %>
-        </p>
-      </div>
+    <h2 class="col-12 col-lg-6"><%= t(:message_list) %></h2>
+    <div class="col-12 col-lg-6 text-end">
+      <p class="summary">
+        <span id="list_count" style="display:none"><%= @counsel_count %></span>
+        <%= raw t(:there_are_n_counsels, count: @counsel_count) %>
+      </p>
     </div>
+  </div>
+  <div class="row">
     <div class="col-12">
       <table class="table table-bordered table-hover">
         <colgroup>
@@ -16,24 +16,20 @@
           <col>
           <col>
           <col>
-          <col>
-          <col>
-          <col>
-          <col>
-          <% if can?(:update, Branch) or can?(:delete, Branch) %>
-            <col<%= manage_width(Branch) %>>
+          <col style="width:150px">
+          <col style="width:200px">
+          <% if can?(:delete, Counsel) %>
+            <col<%= manage_width(Counsel) %>>
           <% end %>
         </colgroup>
         <thead class="thead-default">
         <tr>
-          <th><%= t(:order_no, scope: [:activerecord, :attributes, :facility]) %></th>
-          <th><%= t(:title, scope: [:activerecord, :attributes, :facility]) %></th>
-          <th class="text-center"><%= t(:gender, scope: [:activerecord, :attributes, :facility]) %></th>
-          <th class="text-center"><%= t(:quantity, scope: [:activerecord, :attributes, :facility]) %></th>
-          <th class="text-center"><%= t(:start_no, scope: [:activerecord, :attributes, :facility]) %></th>
-          <th class="text-center"><%= t(:use_not_set, scope: [:activerecord, :attributes, :facility]) %></th>
-          <th class="text-center"><%= t(:price, scope: [:activerecord, :attributes, :facility]) %></th>
-          <th class="text-center"><%= t(:memo, scope: [:activerecord, :attributes, :facility]) %></th>
+          <th><%= t(:send_type, scope: [:activerecord, :attributes, :message]) %></th>
+          <th><%= t(:user_id, scope: [:activerecord, :attributes, :message]) %></th>
+          <th class="text-center"><%= t(:title, scope: [:activerecord, :attributes, :message]) %></th>
+          <th class="text-center"><%= t(:price, scope: [:activerecord, :attributes, :message]) %></th>
+          <th class="text-center"><%= t(:content, scope: [:activerecord, :attributes, :message_content]) %></th>
+          <th class="text-center"><%= t(:created_at, scope: [:activerecord, :attributes, :message]) %></th>
           <th class="text-center"><%= t(:manage) %></th>
         </tr>
         </thead>
@@ -41,24 +37,16 @@
         <% unless @counsels.empty? %>
           <% @counsels.each_with_index do |counsel, index| %>
             <tr>
+              <td><%= message.message_send_type.title %></td>
               <td></td>
+              <td><%= link_to message.title, admin_message_path(message) %></td>
               <td></td>
-              <td class="text-right"></td>
-              <td class="text-right"></td>
-              <td class="text-right"></td>
-              <td class="text-right">
-              </td>
-              <td class="text-right"></td>
-              <td class="text-center">memo</td>
-              <% if can?(:update, counsel) or can?(:delete, counsel) %>
+              <td class="text-center"><%= link_to t(:show_content), admin_message_content_path(message), { class: 'btn btn-secondary btn-modal' } %></td>
+              <td class="text-center"><%= get_dt_format(message.created_at) %></td>
+              <% if can?(:delete, message) %>
                 <td class="text-center">
-                  <% if can? :update, counsel %>
-                    <%= link_to edit_admin_facility_path(counsel), :class => "btn btn-secondary" do %>
-                      <%= t(:edit) %>
-                    <% end %>
-                  <% end %>
-                  <% if can? :delete, counsel %>
-                    <%= link_to admin_facility_path(counsel), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
+                  <% if can? :delete, message %>
+                    <%= link_to admin_message_path(message), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
                       <%= t(:delete) %>
                     <% end %>
                   <% end %>
@@ -66,6 +54,10 @@
               <% end %>
             </tr>
           <% end %>
+        <% else %>
+          <tr>
+            <td colspan="7" class="text-center"><%= t(:no_data) %></td>
+          </tr>
         <% end %>
         </tbody>
       </table>
@@ -73,7 +65,7 @@
     </div>
     <% if can? :create, Counsel %>
       <div class="col-12">
-        <%= link_to t(:add), new_admin_branch_path, :class => "btn btn-primary" %>
+        <%= link_to t(:add), new_admin_counsel_path, :class => "btn btn-primary" %>
       </div>
     <% end %>
   </div>

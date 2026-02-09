@@ -1,4 +1,4 @@
-<section id="users" class="container">
+<section id="users">
   <div class="row">
     <h2 class="col-12 di-title"><%= t(:account) %></h2>
   </div>
@@ -11,7 +11,7 @@
           <% if @user.nil? %>
             <%= render :partial => 'not_found' %>
           <% else %>
-            <%= render :partial => 'nav' %>
+            <%= render :partial => '/admin/users/nav' %>
             <div class="row">
               <div class="col-12">
                 <article class="card">

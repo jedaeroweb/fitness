@@ -467,17 +467,17 @@ ko:
       product: '상품'
       product_content: '상품 메모'
       course: '과목'
-      facility: '락커'
+      locker_rental: '락커'
       order: '주문'
       enroll: '수강'
-      rent: '대여'
+      search : '검색'
       user: '회원'
       account: '정산'
       point: '포인트'
       notice: '공지사항'
       branch: '지점'
-      rent_sw: '운동복대여'
-      entrance: '입출입'
+      sports_weare_rental: '운동복대여'
+      check_in: '입출입'
       reservation: '예약'
       message: '메세지'
       prepared_message: '준비된메세지'
@@ -586,9 +586,9 @@ ko:
         end_date: '종료일'
       enroll_trainer:
         admin_id: '담당강사'
-      entrance :
+      check_in :
         in_time : '출입시간'
-      rent:
+      locker_rental:
         no: '번호'
         quantity: '수량'
         start_date: '시작일'

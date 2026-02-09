@@ -8,8 +8,8 @@ class Admin::OrdersController < Admin::AdminController
 
     condition = { :products => { branch_id: session[:branch_id], enable: true } }
 
-    @facility_count = Facility.joins(:product).where(condition).count
-    @facilities = Facility.joins(:product).where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
+    @order_count = Order.joins(:products).where(condition).count
+    @orders = Order.joins(:products).where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
   end
 
   # GET /facilities/1
@@ -19,7 +19,7 @@ class Admin::OrdersController < Admin::AdminController
 
   # GET /facilities/new
   def new
-    @facility = Facility.new
+    @facility = Locker.new
   end
 
   # GET /facilities/1/edit

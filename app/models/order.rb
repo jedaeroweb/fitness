@@ -9,7 +9,8 @@ class Order < ApplicationRecord
   has_many :products, through: :order_products
   has_many :accounts, through: :account_orders
   has_many :enrolls, dependent: :destroy
-  has_many :rents, dependent: :destroy
+  has_many :locker_rentals, dependent: :destroy
+  has_many :sports_wear_rentals, dependent: :destroy
   has_one :order_content, dependent: :destroy
 
   validates :order_products, presence: true

@@ -1,16 +1,19 @@
+key ='jedaeroweb_fitness_session'
+
 if Rails.env.production?
-  session_url = "#{ENV.fetch('REDIS_SESSION_URL', 'redis://127.0.0.1:6379/1')}/session"
-  secure = Rails.env.production?
-  key = Rails.env.production? ? "_app_session" : "_app_session_#{Rails.env}"
-  domain = ENV.fetch("DOMAIN_NAME", "localhost")
+  session_url = 'redis://127.0.0.1:6379/1/session'
+  secure = true
+  domain = 'fitness.jedaeroweb.co.kr'
 
   Rails.application.config.session_store :redis_store,
                                          url: session_url,
-                                         expire_after: 180.days,
+                                         expire_after: nil,
                                          key: key,
                                          domain: domain,
                                          threadsafe: true,
                                          secure: secure,
                                          same_site: :lax,
                                          httponly: true
+else
+  Rails.application.config.session_store :cookie_store,  key: key, expire_after: nil
 end

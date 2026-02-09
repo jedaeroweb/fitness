@@ -1,4 +1,4 @@
-<section id="users" class="container">
+<section id="users">
   <div class="row">
     <%= render :partial => 'layouts/notice', :locals => {  :notice => notice, :alert => alert } %>
   </div>
@@ -14,7 +14,7 @@
           <% if @user.nil? %>
             <%= render :partial => 'not_found' %>
           <% else %>
-            <%= render :partial => 'nav' %>
+            <%= render :partial => 'admin/users/nav' %>
             <%= render :partial => 'admin/users/content' %>
           <% end %>
         </div>

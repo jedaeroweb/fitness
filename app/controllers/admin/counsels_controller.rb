@@ -6,10 +6,10 @@ class Admin::CounselsController < Admin::AdminController
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
-    condition = { :products => { branch_id: session[:branch_id], enable: true } }
+    condition = { :counsels => { branch_id: session[:branch_id], enable: true } }
 
-    @counsel_count = Counsel.joins(:product).where(condition).count
-    @counsels = Counsel.joins(:product).where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
+    @counsel_count = Counsel.joins(:counsel_content).where(condition).count
+    @counsels = Counsel.joins(:counsel_content).where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
   end
 
   # GET /counsels/1

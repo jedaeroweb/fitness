@@ -1,0 +1,8 @@
+<div class="row">
+  <nav class="col-12 sub-nav">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><%= link_to t(:message, scope: [:activerecord, :models]), admin_messages_path, class: get_nav_active_class('messages') %></li>
+      <li class="nav-item"><%= link_to t(:prepared_message, scope: [:activerecord, :models]), admin_prepared_messages_path, class: get_nav_active_class('prepared_messages') %></li>
+    </ul>
+  </nav>
+</div>

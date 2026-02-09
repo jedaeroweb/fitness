@@ -1,4 +1,4 @@
-<section id="edit-user" class="container">
+<section id="edit-user">
   <div class="row">
     <h2 class="col-12 di-title"><%= t(:edit_user) %></h2>
   </div>
@@ -14,7 +14,7 @@
           <% if @user.nil? %>
             <%= render :partial => 'admin/home/not_found' %>
           <% else %>
-            <%= render :partial => 'admin/home/nav' %>
+            <%= render :partial => 'nav' %>
             <%= render 'form', user: @user %>
           <% end %>
         </div>

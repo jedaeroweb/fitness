@@ -1,5 +1,5 @@
 class Admin::MessagesController < Admin::AdminController
-  before_action :set_message, only: [:show, :update, :destroy]
+  before_action :set_message, only: [:show, :destroy]
   before_action :send_message
 
   def send_message

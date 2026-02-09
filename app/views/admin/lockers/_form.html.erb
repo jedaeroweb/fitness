@@ -1,0 +1,63 @@
+<%= form_with(model: [:admin, locker], local: true) do |form| %>
+  <%
+    product_category_id = nil
+    if facility.product.present?
+      product_category_id = facility.product.product_category_id
+    end
+  %>
+
+  <% unless FacilityCategory.where(:branch_id => current_user.branch_id, :enable => true).count.zero? %>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <%= form.fields_for :product do |p| %>
+              <%= p.label :product_category_id %>
+              <%= p.select :product_category_id, options_from_collection_for_select(LockerType.where(:branch_id => current_user.branch_id, :enable => true), 'id', 'title', nil), { :include_blank => t(:select_facility_category) }, { :class => "form-control" } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="card">
+    <div class="card-body">
+      <div class="form-row">
+        <%= form.fields_for :product do |p| %>
+          <div class="col-12 col-lg-6 form-group">
+            <%= p.label :title %>
+            <%= p.text_field :title, :class => "form-control", :required => "required" %>
+          </div>
+          <div class="col-12 col-lg-6 form-group">
+            <%= p.label :price %>
+            <%= p.number_field :price, :class => "form-control" %>
+          </div>
+        <% end %>
+        <div class="col-12 col-lg-6 form-group">
+          <%= form.label :use_not_set %>
+          <%= form.text_field :use_not_set, :class => "form-control" %>
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+          <%= form.label :gender %>
+          <%= form.text_field :gender, :class => "form-control" %>
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+          <%= form.label :order_no %>
+          <%= form.number_field :order_no, :class => "form-control" %>
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+          <%= form.label :start_no %>
+          <%= form.number_field :start_no, :class => "form-control" %>
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+          <%= form.label :quantity %>
+          <%= form.number_field :quantity, :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= form.fields_for :product do |p| %>
+    <%= render :partial => 'admin/product_contents/form_content', locals: { f: p } %>
+  <% end %>
+  <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+<% end %>

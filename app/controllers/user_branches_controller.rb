@@ -1,6 +1,6 @@
 class UserBranchesController < ApplicationController
   load_and_authorize_resource
-  before_action :set_user_branch, only: [:show, :edit, :create, :update, :destroy]
+  before_action :set_user_branch, only: [ :edit, :create, :update]
 
   # GET /Users/new
   def new

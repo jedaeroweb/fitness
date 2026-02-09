@@ -1,0 +1,61 @@
+<aside id="main-menu" class="col-12 col-md-3 col-lg-2 col-xl-1">
+  <h1 class="col-12"><%= link_to t(:service_name), admin_root_path %></h1>
+  <nav>
+    <ul class="nav">
+      <li class="nav-item
+            <% if ['admin/users','admin/check_ins','admin/searches','admin/home'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_users_path, :class => "nav-link" do %>
+          <i class="material-icons">person</i><span><%= t(:user, scope: [:activerecord, :models]) %></span>
+        <% end %>
+      </li>
+      <li class="nav-item
+            <% if ['admin/locker_rentals'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_locker_rentals_path, :class => "nav-link" do %>
+          <i class="material-icons">rent</i><span><%= t(:locker_rental, scope: [:activerecord, :models]) %></span>
+        <% end %>
+      </li>
+      <li class="nav-item
+            <% if ['admin/orders'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_orders_path, :class => "nav-link" do %>
+          <i class="material-icons">shopping_cart</i><span><%= t(:order, scope: [:activerecord, :models]) %></span>
+        <% end %>
+      </li>
+      <li class="nav-item
+            <% if ['admin/products','admin/product_categories'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_products_path, :class => "nav-link" do %>
+          <i class="material-icons">shopping_cart</i><span><%= t(:product, scope: [:activerecord, :models]) %></span>
+        <% end %>
+      </li>
+
+      <li class="nav-item
+            <% if ['admin/messages','admin/prepared_messages'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_messages_path, :class => "nav-link" do %>
+          <i class="material-icons">message</i><span><%= t(:message, scope: [:activerecord, :models]) %></span>
+        <% end %>
+      </li>
+
+      <li class="nav-item
+            <% if ['admin/counsels','admin/notices'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_counsels_path, :class => "nav-link" do %>
+          <i class="material-icons">message</i><span><%= t(:counsel, scope: [:activerecord, :models]) %></span>
+        <% end %>
+      </li>
+
+      <li class="nav-item
+            <% if ['admin/admins','admin/contacts','admin/faqs'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_employees_path, :class => "nav-link" do %>
+          <i class="material-icons">people</i><span><%= t(:employee, scope: [:activerecord, :models]) %></span>
+        <% end %>
+      </li>
+
+    </ul>
+  </nav>
+</aside>
+

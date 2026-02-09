@@ -47,7 +47,7 @@ class Admin::HomeController < Admin::AdminController
     common_index
   end
 
-  def rents
+  def locker_rentals
     common_index
   end
 
@@ -55,21 +55,21 @@ class Admin::HomeController < Admin::AdminController
     common_index
   end
 
-  def rent_sws
+  def sports_wear_rentals
     common_index
   end
 
-  def attendances
+  def check_ins
     common_index
 
     params[:per_page] = 10 unless params[:per_page].present?
 
     condition = { branch_id: session[:branch_id], user_id: @user.id, enable: true }
 
-    @attendance_count = Attendance.where(condition).count
-    @attendances = Attendance.where(condition).page(params[:page]).per(params[:per_page])
+    @check_in_count = CheckIn.where(condition).count
+    @check_ins = CheckIn.where(condition).page(params[:page]).per(params[:per_page])
 
-    @attendance = Attendance.new
+    @check_in = CheckIn.new
   end
 
   def accounts

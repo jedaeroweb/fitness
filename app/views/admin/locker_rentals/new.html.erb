@@ -1,0 +1,12 @@
+<section id="new-locker_rental">
+  <div class="row">
+    <h2 class="col-12 di-title"><%= t(:new_locker_rental) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @locker_rental.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/user_profile' %>
+    <%= render 'form', locker_rental: @locker_rental %>
+  </div>
+</section>

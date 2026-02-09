@@ -1,31 +1,76 @@
-<footer>
-  <div class="container">
-    <div class="row">
-      <address class="col-12 col-lg-9">
-        <a href="https://www.jedaeroweb.co.kr" target="_blank"><%=t(:jedearoweb) %></a>
-        &nbsp;&nbsp; CopyLeft. 2020, jedaeroweb. All wrongs reserved.</address>
-      <div class="col-12 col-lg-3 dropdown">
+<%
+  l_class='dropdown-item d-flex align-items-center'
+
+  ko_class=l_class+' ko'
+  en_class=l_class+' en'
+  zh_cn_class=l_class+' zh-CN'
+
+  case session[:locale].to_s
+  when 'en'
+    en_class+=' active'
+  when 'zh-CN'
+    zh_cn_class+=' active'
+  else
+    ko_class+=' active'
+  end
+
+%>
+<footer class="row">
+  <div class="col-12 text-center">
+    <ul class="row justify-content-center">
+      <li class="col-6 text-center text-xl-start">
+        <address class="col-12 text-center">
+            <a href="https://www.jedaeroweb.co.kr" target="_blank"><%=t(:jedearoweb) %></a>
+            &nbsp;&nbsp; CopyLeft. 2020, jedaeroweb. All wrongs reserved.
+        </address>
+      </li>
+      <!--  <li class="col-6 col-lg-4 dropdown">
         <%= link_to '#', { class: 'dropdown-toggle',role:"button",'data-bs-toggle': "dropdown",'aria-expanded':"false"} do %>
-          테마설정
+          <%=t(:language) %>
         <% end %>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+        <ul class="dropdown-menu dropdown-menu-end">
           <li>
-            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-              밝은
+            <%=link_to '🇰🇷 한국어', url_for(:locale => 'ko'),:class=>ko_class,:'aria-pressed'=>"true" %>
+          </li>
+          <li>
+            <%=link_to '🇺🇸 english', url_for( :locale => 'en'),:class=>en_class,:'aria-pressed'=>"false" %>
+          </li>
+          <li>
+            <%=link_to '🇨🇳 汉语', url_for( :locale => 'zh-CN'),:class=>zh_cn_class,:'aria-pressed'=>"false" %>
+          </li>
+        </ul>
+      </li> -->
+      <li class="col-6 text-center text-xl-start">
+        <%= link_to '#', { class: 'dropdown-toggle d-flex align-items-center gap-2',
+                           role: "button",
+                           'data-bs-toggle': "dropdown",
+                           'aria-expanded': "false" } do %>
+          <span><%=t(:theme) %></span>
+          <span class="current-theme-icon"></span>
+        <% end %>
+        <ul class="dropdown-menu">
+          <li>
+            <button class="dropdown-item d-flex align-items-center gap-2" data-bs-theme-value="light">
+              <span class="icon">☀️</span>
+              <%=t(:light) %>
             </button>
           </li>
           <li>
-            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-              어두운
+            <button class="dropdown-item d-flex align-items-center gap-2" data-bs-theme-value="dark">
+              <span class="icon">🌙</span>
+              <%=t(:dark) %>
             </button>
           </li>
           <li>
-            <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-              자동
+            <button class="dropdown-item d-flex align-items-center gap-2" data-bs-theme-value="auto">
+              <span class="icon">🌓</span>
+              <%=t(:auto) %>
             </button>
           </li>
         </ul>
-      </div>
-    </div>
+      </li>
+
+    </ul>
   </div>
 </footer>
+

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :trainers
   resources :exercises
   resources :messages
-  resources :attendances
+  resources :check_ins
   resources :pts
   resources :user_branches
   resources :user_weights
@@ -25,15 +25,15 @@ Rails.application.routes.draw do
   end
 
   # 관리자
-  scope 'admin', module: 'admin', as: 'admin' do
-    get '/' => 'home#index'
+  namespace :admin do
+    root to: 'home#index'
 
     get 'home/settings', :to=>'home#settings', as: 'home_setting'
     get 'home/enrolls/:id', :to=>'home#enrolls', as: 'home_enrolls'
     get 'home/stops/:id', :to=>'home#stops', as: 'home_stops'
-    get 'home/rents/:id', :to=>'home#rents', as: 'home_rents'
-    get 'home/rent_sws/:id', :to=>'home#rent_sws', as: 'home_rent_sws'
-    get 'home/attendances/:id', :to=>'home#attendances', as: 'home_attendances'
+    get 'home/locker_rentals/:id', :to=>'home#locker_rentals', as: 'home_locker_rentals'
+    get 'home/sports_wear_rentals/:id', :to=>'home#sports_wear_rentals', as: 'home_sports_wear_rentals'
+    get 'home/check_ins/:id', :to=>'home#check_ins', as: 'home_check_ins'
     get 'home/accounts/:id', :to=>'home#accounts', as: 'home_accounts'
     get 'home/body_indexes/:id', :to=>'home#body_indexes', as: 'home_body_indexes'
     get 'home/memos/:id', :to=>'home#memos', as: 'home_memos'
@@ -43,14 +43,16 @@ Rails.application.routes.draw do
     get 'users/select', :to=>'users#select', as: 'user_select'
     get 'temp_users/select', :to=>'temp_users#select', as: 'temp_user_select'
     get 'prepared_messages/select', :to=>'prepared_messages#select', as: 'prepared_message_select'
+    get 'users', to: 'home#index', as: 'users'
 
     resources :admin_pictures
+    resources :counsels
     resources :groups
     resources :users
     resources :user_contents
     resources :user_pictures
     resources :temp_users
-    resources :attendances
+    resources :check_ins
     resources :analysis
     resources :branches
     resources :reservations
@@ -60,17 +62,21 @@ Rails.application.routes.draw do
     resources :product_contents
     resources :course_categories
     resources :courses
-    resources :facility_categories
-    resources :facilities
+    resources :locker_types
+    resources :lockers
+    resources :sports_wears
     resources :orders
+    resources :searches
     resources :enrolls
-    resources :rents
+    resources :locker_rentals
+    resources :sports_wear_rentals
     resources :messages
     resources :message_contents
     resources :prepared_messages
     resources :prepared_message_contents
     resources :points
     resources :admins
+    resources :employees, controller: "admins"
     resources :admins_users
     resources :notices
     resources :visit_routes

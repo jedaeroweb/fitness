@@ -1,15 +1,13 @@
 source "https://rubygems.org"
 
-#ruby "3.3.4"
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem "cssbundling-rails"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 1.4"
+gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -21,7 +19,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-# gem "stimulus-rails"
+gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
@@ -39,6 +37,7 @@ gem "connection_pool", "~> 2.4"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
+gem "propshaft"
 gem "bootsnap", require: false
 gem 'devise'
 gem 'cancancan'
@@ -66,9 +65,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-apple'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
-
-gem 'sassc-rails'
-gem 'bootstrap', '~> 5.3'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
