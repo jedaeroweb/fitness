@@ -1,5 +1,5 @@
 class Admin::PreparedMessageContentsController < Admin::AdminController
-  before_action :set_prepared_message_content, only: [:show, :edit, :update, :destroy]
+  before_action :set_prepared_message_content, only: [:show]
 
   # GET /prepared_message_content/1
   # GET /prepared_message_content/1.json

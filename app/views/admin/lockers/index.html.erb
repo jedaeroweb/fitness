@@ -38,33 +38,33 @@
         </tr>
         </thead>
         <tbody>
-        <% unless @lcokers.empty? %>
-          <% @lcokers.each_with_index do |facility, index| %>
+        <% unless @lockers.empty? %>
+          <% @lockers.each_with_index do |locker, index| %>
             <tr>
-              <td><%= facility.order_no %></td>
-              <td><%= link_to facility.product.title, admin_facility_path(facility) %></td>
-              <td class="text-end"><%= facility.gender %></td>
-              <td class="text-end"><%= facility.quantity %></td>
-              <td class="text-end"><%= facility.start_no %></td>
+              <td><%= locker.order_no %></td>
+              <td><%= link_to locker.product.title, admin_locker_path(locker) %></td>
+              <td class="text-end"><%= locker.gender %></td>
+              <td class="text-end"><%= locker.quantity %></td>
+              <td class="text-end"><%= locker.start_no %></td>
               <td class="text-end">
               </td>
-              <td class="text-end"><%= number_to_currency facility.product.price %></td>
+              <td class="text-end"><%= number_to_currency locker.product.price %></td>
               <td class="text-center">
-                <% if facility.product.product_content.present? %>
-                  <%= link_to t(:show_content), admin_product_content_path(facility.product.product_content), { class: 'btn btn-secondary btn-modal' } %>
+                <% if locker.product.product_content.present? %>
+                  <%= link_to t(:show_content), admin_product_content_path(locker.product.product_content), { class: 'btn btn-secondary btn-modal' } %>
                 <% else %>
-                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: facility.product), { class: 'btn btn-secondary btn-modal' } %>
+                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: locker.product), { class: 'btn btn-secondary btn-modal' } %>
                 <% end %>
               </td>
-              <% if can?(:update, facility) or can?(:delete, facility) %>
+              <% if can?(:update, locker) or can?(:delete, locker) %>
                 <td class="text-center">
-                  <% if can? :update, facility %>
-                    <%= link_to edit_admin_locker_path(facility), :class => "btn btn-secondary" do %>
+                  <% if can? :update, locker %>
+                    <%= link_to edit_admin_locker_path(locker), :class => "btn btn-secondary" do %>
                       <%= t(:edit) %>
                     <% end %>
                   <% end %>
-                  <% if can? :delete, facility %>
-                    <%= link_to admin_locker_path(facility), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
+                  <% if can? :delete, locker %>
+                    <%= link_to admin_locker_path(locker), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
                       <%= t(:delete) %>
                     <% end %>
                   <% end %>
