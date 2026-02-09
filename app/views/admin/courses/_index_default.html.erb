@@ -1,0 +1,17 @@
+<section class="row">
+  <% unless @course_count.zero? %>
+    <% @courses.each do |course| %>
+      <%=render 'index_media',course: course %>
+    <% end %>
+    <div class="col-12">
+      <%= paginate @courses %>
+    </div>
+  <% else %>
+    <div class="course col-12">
+      <%= t(:no_data) %>
+    </div>
+  <% end %>
+  <div class="col-12">
+    <%=link_to t(:new_course),new_admin_course_path,class: 'btn btn-primary btn-large' %>
+  </div>
+</section>

@@ -13,7 +13,7 @@
           <% else %>
             <%= render :partial => '/admin/users/nav' %>
             <div class="row">
-              <div class="col-12 col-lg-6">
+              <div class="col-12 col-xxl-6">
                 <article class="card">
                   <div class="card-header">
                     <%=t(:entrance_list) %>
@@ -35,7 +35,19 @@
                         <% @check_ins.each_with_index do |check_in, index| %>
                         <tr>
                           <td><%= I18n.l check_in.in_time, :format => :long %></td>
-                          <td></td>
+                          <td>
+                            <% if can? :update, check_in %>
+                              <%= link_to edit_admin_check_in_path(check_in), :class => "btn btn-secondary" do %>
+                                <%= t(:edit) %>
+                              <% end %>
+                            <% end %>
+                            <% if can? :delete, check_in %>
+                              <%= link_to admin_check_in_path(check_in), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
+                                <%= t(:delete) %>
+                              <% end %>
+                            <% end %>
+
+                          </td>
                         </tr>
                         <% end %>
                       <% end %>
@@ -44,7 +56,7 @@
                   </div>
                 </article>
               </div>
-              <div class="col-12 col-lg-6">
+              <div class="col-12 col-xxl-6">
                 <article class="card">
                   <div class="card-header">
                     <%=t(:new_entrance) %>

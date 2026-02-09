@@ -457,6 +457,7 @@ ko:
   activerecord:
     models:
       admin: '관리자'
+      counsel : '상담'
       employee: '직원'
       group: '그룹'
       job: '직업'

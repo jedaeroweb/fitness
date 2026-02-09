@@ -17,16 +17,16 @@
         <% end %>
       </li>
       <li class="nav-item
-            <% if ['admin/orders'].include?(params[:controller]) %> active
+            <% if ['admin/enrolls','admin/locker_rentals','admin/sports_wear_rentals'].include?(params[:controller]) %> active
             <% end %>">
-        <%= link_to admin_orders_path, :class => "nav-link" do %>
+        <%= link_to admin_enrolls_path, :class => "nav-link" do %>
           <i class="material-icons">shopping_cart</i><span><%= t(:order, scope: [:activerecord, :models]) %></span>
         <% end %>
       </li>
       <li class="nav-item
-            <% if ['admin/products','admin/product_categories'].include?(params[:controller]) %> active
+            <% if ['admin/courses','admin/lockers','admin/sports_wears'].include?(params[:controller]) %> active
             <% end %>">
-        <%= link_to admin_products_path, :class => "nav-link" do %>
+        <%= link_to admin_courses_path, :class => "nav-link" do %>
           <i class="material-icons">shopping_cart</i><span><%= t(:product, scope: [:activerecord, :models]) %></span>
         <% end %>
       </li>

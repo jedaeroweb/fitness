@@ -1,7 +1,7 @@
 <div class="col-12 col-xl-9">
-  <%= form_with(model: [:admin, rent], local: true) do |form| %>
+  <%= form_with(model: [:admin, locker_rental], local: true) do |form| %>
     <article class="row">
-      <h3 class="col-12"><%= t(:facility_info) %></h3>
+      <h3 class="col-12"><%= t(:locker_rental) %></h3>
       <div class="col-12">
         <div class="card course_info">
           <div class="card-body">
@@ -9,7 +9,7 @@
               <div class="col-12 form-group">
                 <%= form.fields_for :orders_products do |op| %>
                   <%= op.label :product_id %>
-                  <%= op.select :product_id, options_from_collection_for_select(Facility.joins(:product).select('products.*,facilities.*').where(:enable => true).all, 'product_id', 'title'),{:include_blank => t('select_facility')}, { :class => "form-control" } %>
+                  <%= op.select :product_id, options_from_collection_for_select(Locker.joins(:product).select('products.*,lockers.*').where(:enable => true).all, 'product_id', 'title'),{:include_blank => t('select_facility')}, { :class => "form-control" } %>
                 <% end  %>
               </div>
             </div>
@@ -19,7 +19,7 @@
     </article>
     <div class="row mt-3">
       <article class="col-12 col-xl-6 col-xxl-5">
-        <h3><%= t(:rent_info) %></h3>
+        <h3><%= t(:locker_rental) %></h3>
         <div class="card">
           <div class="card-body">
             <div class="form-row">

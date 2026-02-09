@@ -1,0 +1,63 @@
+<div class="col-12">
+<%=form_tag admin_courses_path,{method:'get'} do %>
+  <input type="hidden" name="search" value="1">
+    <%
+      search_params={search_detail:true}
+      @course_categories=CourseCategory.where(branch_id: current_user.branch_id).all
+
+      aa_class='nav-link'
+      if @course_category.present?
+        search_params[:category]=@course_category
+      else
+        aa_class+=' active'
+      end
+      %>
+    <select name="category" class="form-control mobile-sub-menu d-block d-lg-none"<% if params[:search_form_show].present? %> style="display:block !important;"<% end %>>
+      <option><%=t(:all) %></option>
+      <% unless @course_categories.empty? %>
+        <% @course_categories.each do |course_category|
+          a_class=''
+
+          if @course_category.present?
+            if @course_category.id==course_category.id
+              a_class=' selected'
+            end
+          end
+
+          if @course_categories.length.zero?
+            a_class=' disabled'
+          end
+        %>
+          <option value="<%=url_for(:category=>course_category) %>"<%=a_class %>><%= course_category.title %></option>
+        <% end %>
+      <% end %>
+    </select>
+    <nav class="sub_nav d-none d-lg-block">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><%=link_to t(:all),admin_courses_path,class: aa_class %></li>
+        <% @course_categories.each do |blog_category|
+          a_class='nav-link'
+
+          if @course_category.present?
+            if @course_category.id==blog_category.id
+              a_class+=' active'
+            end
+          end
+
+          if @course_categories.length.zero?
+            a_class+=' disabled'
+          end
+
+        %>
+          <li class="nav-item">
+            <%=link_to url_for(category: blog_category),{:class=>a_class} do %>
+              <%=blog_category.title %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  <%=link_to admin_courses_path(search_params),id: "search-detail" do %><span class="material-icons">search</span><%=t(:search) %><% end  %>
+  <!-- <%=submit_tag t(:search),class: 'btn btn-primary btn-block btn-search' %> -->
+  <% end %>
+</div>

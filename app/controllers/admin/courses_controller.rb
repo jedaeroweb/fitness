@@ -4,12 +4,47 @@ class Admin::CoursesController < Admin::AdminController
   # GET /courses
   # GET /courses.json
   def index
-    params[:per_page] = 10 unless params[:per_page].present?
+    if params[:search_detail].present?
+      session[:search_detail]=1
+    else
+      if params[:search_summary].present?
+        session.delete(:search_detail)
+      end
+    end
+
+    if params[:list_type].present?
+      if params[:list_type]=='list'
+        session[:course_list_type]='list'
+      else
+        session[:course_list_type]='module'
+      end
+    end
+
+    condition = { branch_id: session[:branch_id], enable: true  }
+
+    @course_category_count=CourseCategory.where(condition).count
+    @course_categories=CourseCategory.where(condition)
+
+    params[:per_page] = 12 unless params[:per_page].present?
+
+    if params[:category]
+      @course_category = CourseCategory.find(params[:category])
+    end
 
     condition = { :products => { branch_id: session[:branch_id], enable: true } }
 
+    if @course_category.present?
+      condition[:course_category_id] = @course_category.id
+    end
+
     @course_count = Course.joins(:product).where(condition).count
     @courses = Course.joins(:product).where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
+
+
+    respond_to do |format|
+      format.html # _slide.html.erb
+      format.json { render json: @courses }
+    end
   end
 
   # GET /Users/1

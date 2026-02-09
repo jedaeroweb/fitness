@@ -3,10 +3,10 @@
     <% if ['admin/users','admin/check_ins','admin/searches','admin/home'].include?(params[:controller]) %>
       <%= render 'admin/home/nav' %>
     <% end %>
-    <% if ['admin/orders','admin/payments'].include?(params[:controller]) %>
+    <% if ['admin/orders','admin/enrolls','admin/locker_rentals','admin/sports_wear_rentals'].include?(params[:controller]) %>
       <%= render 'admin/orders/nav' %>
     <% end %>
-    <% if ['admin/products','admin/product_categories'].include?(params[:controller]) %>
+    <% if ['admin/products','admin/product_categories','admin/courses','admin/lockers','admin/sports_wears'].include?(params[:controller]) %>
       <%= render 'admin/products/nav' %>
     <% end %>
     <% if ['admin/messages','admin/prepared_messages'].include?(params[:controller]) %>

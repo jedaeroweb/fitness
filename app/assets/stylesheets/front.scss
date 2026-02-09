@@ -105,6 +105,10 @@ mark, rp, rt, ruby, summary, time {display:inline;}
   margin-bottom:1.5rem
 }
 
+.type-selector {text-align: right;list-style: none}
+.type-selector li {display:inline-block}
+.type-selector li a span {font-size:30px}
+
 #home nav ul {padding-left:0;margin-top:2rem}
 #home nav ul li {list-style:none;margin-bottom:1.5rem}
 #home nav ul li a {display:block;min-height:5rem;font-size:20px}
