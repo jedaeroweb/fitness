@@ -70,6 +70,12 @@ ko:
   user_detail: '사용자 상세정보'
   memo: '메모'
 
+  sitemap: '사이트맵'
+  theme: '모양'
+  light: '밝은'
+  dark: '어두운'
+  auto: '자동'
+
 
   login_first: "먼저 로그인 해주세요"
   no_exists_order: "주문이 없습니다"
@@ -468,7 +474,8 @@ ko:
       product: '상품'
       product_content: '상품 메모'
       course: '과목'
-      locker_rental: '락커'
+      locker: '락커'
+      locker_rental: '락커대여'
       order: '주문'
       enroll: '수강'
       search : '검색'
@@ -477,7 +484,8 @@ ko:
       point: '포인트'
       notice: '공지사항'
       branch: '지점'
-      sports_weare_rental: '운동복대여'
+      sports_wear : '운동복'
+      sports_wear_rental: '운동복대여'
       check_in: '입출입'
       reservation: '예약'
       message: '메세지'

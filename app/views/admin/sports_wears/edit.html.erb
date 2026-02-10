@@ -1,0 +1,13 @@
+<section id="edit-facility">
+  <div class="row">
+    <h2 class="col-12"><%= t(:edit_sports_wear) %></h2>
+  </div>
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @sports_wear.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= render 'form', sports_wear: @sports_wear %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<%= form_with(model: [:admin, sports_wear], local: true) do |form| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="form-row">
+        <%= form.fields_for :product do |p| %>
+          <div class="col-12 col-lg-6 form-group">
+            <%= p.label :title %>
+            <%= p.text_field :title, :class => "form-control", :required => "required" %>
+          </div>
+          <div class="col-12 col-lg-6 form-group">
+            <%= p.label :price %>
+            <%= p.number_field :price, :class => "form-control" %>
+          </div>
+        <% end %>
+        <div class="col-12 col-lg-6 form-group">
+          <%= form.label :gender %>
+          <%= form.text_field :gender, :class => "form-control" %>
+        </div>
+        <div class="col-12 col-lg-6 form-group">
+          <%= form.label :order_no %>
+          <%= form.number_field :order_no, :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= form.fields_for :product do |p| %>
+    <%= render :partial => 'admin/product_contents/form_content', locals: { f: p } %>
+  <% end %>
+  <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+<% end %>

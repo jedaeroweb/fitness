@@ -1,0 +1,21 @@
+<section id="show-locker">
+  <div class="row">
+    <%= render :partial => 'layouts/notice', :locals => { :errors => @sports_wear.errors, :notice => notice, :alert => alert } %>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <h3 class="card-header"><%=@sports_wear.product.title %></h3>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12 col-xl-6">
+      <%= link_to t(:link_list), admin_sports_wears_path, class: 'btn btn-secondary' %>
+    </div>
+    <div class="col-12 col-xl-6 text-end">
+      <%= link_to t(:edit), edit_admin_sports_wear_path(@sports_wear), class: 'btn btn-secondary' %>
+      <%= link_to t(:delete), admin_sports_wear_path(@sports_wear), class: 'btn btn-danger' %>
+    </div>
+  </div>
+</section>

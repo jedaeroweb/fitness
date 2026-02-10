@@ -8,8 +8,8 @@ class Admin::SportsWearsController < Admin::AdminController
 
     condition = { products: { branch_id: session[:branch_id], enable: true } }
 
-    @sport_wear_count = SportWear.joins(:product).where(condition).count
-    @sport_wears = SportWear.joins(:product)
+    @sports_wear_count = SportsWear.joins(:product).where(condition).count
+    @sports_wears = SportsWear.joins(:product)
                             .where(condition)
                             .page(params[:page])
                             .per(params[:per_page])
@@ -23,9 +23,9 @@ class Admin::SportsWearsController < Admin::AdminController
 
   # GET /sport_wears/new
   def new
-    @sport_wear = SportWear.new
-    @sport_wear.build_product
-    @sport_wear.product.build_product_content
+    @sports_wear = SportsWear.new
+    @sports_wear.build_product
+    @sports_wear.product.build_product_content
   end
 
   # GET /sport_wears/1/edit
@@ -38,15 +38,15 @@ class Admin::SportsWearsController < Admin::AdminController
     cc = sport_wear_params
     cc[:product_attributes].merge!({ branch_id: session[:branch_id] })
 
-    @sport_wear = SportWear.create!(cc)
+    @sports_wear = SportsWear.create!(cc)
 
     respond_to do |format|
-      if @sport_wear.save
-        format.html { redirect_to admin_sport_wear_path(@sport_wear), notice: 'sport_wear was successfully created.' }
-        format.json { render :show, status: :created, location: @sport_wear }
+      if @sports_wear.save
+        format.html { redirect_to admin_sport_wear_path(@sports_wear), notice: 'sport_wear was successfully created.' }
+        format.json { render :show, status: :created, location: @sports_wear }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @sport_wear.errors, status: :unprocessable_entity }
+        format.json { render json: @sports_wear.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,12 +55,12 @@ class Admin::SportsWearsController < Admin::AdminController
   # PATCH/PUT /sport_wears/1.json
   def update
     respond_to do |format|
-      if @sport_wear.update(sport_wear_params)
-        format.html { redirect_to admin_sport_wear_path(@sport_wear), notice: 'sport_wear was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sport_wear }
+      if @sports_wear.update(sport_wear_params)
+        format.html { redirect_to admin_sport_wear_path(@sports_wear), notice: 'sport_wear was successfully updated.' }
+        format.json { render :show, status: :ok, location: @sports_wear }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @sport_wear.errors, status: :unprocessable_entity }
+        format.json { render json: @sports_wear.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -68,7 +68,7 @@ class Admin::SportsWearsController < Admin::AdminController
   # DELETE /sport_wears/1
   # DELETE /sport_wears/1.json
   def destroy
-    @sport_wear.destroy
+    @sports_wear.destroy
     respond_to do |format|
       format.html { redirect_to admin_sport_wears_url, notice: 'sport_wear was successfully destroyed.' }
       format.json { head :no_content }
@@ -78,7 +78,7 @@ class Admin::SportsWearsController < Admin::AdminController
   private
 
   def set_sport_wear
-    @sport_wear = SportWear.find(params[:id])
+    @sports_wear = SportsWear.find(params[:id])
   end
 
   def sport_wear_params

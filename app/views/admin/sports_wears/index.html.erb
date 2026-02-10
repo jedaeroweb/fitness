@@ -1,0 +1,98 @@
+<section id="sports_wears">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="float-left"><%= t(:sports_wears_list) %></h2>
+      <div class="float-right">
+        <p class="summary">
+          <span id="list_count" style="display:none"><%= @sports_wear_count %></span>
+          <%= raw t(:there_are_n_sports_wears, count: @sports_wear_count) %>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <table class="table table-bordered table-hover">
+        <colgroup>
+          <col style="width:100px">
+          <col>
+          <col>
+          <col>
+          <col>
+          <col>
+          <col>
+          <col>
+          <% if can?(:update, SportsWear) or can?(:delete, SportsWear) %>
+            <col<%= manage_width(SportsWear) %>>
+          <% end %>
+        </colgroup>
+
+        <thead class="thead-default">
+        <tr>
+          <th><%= t(:order_no, scope: [:activerecord, :attributes, :facility]) %></th>
+          <th><%= t(:title, scope: [:activerecord, :attributes, :facility]) %></th>
+          <th class="text-center"><%= t(:gender, scope: [:activerecord, :attributes, :facility]) %></th>
+          <th class="text-center"><%= t(:quantity, scope: [:activerecord, :attributes, :facility]) %></th>
+          <th class="text-center"><%= t(:start_no, scope: [:activerecord, :attributes, :facility]) %></th>
+          <th class="text-center"><%= t(:use_not_set, scope: [:activerecord, :attributes, :facility]) %></th>
+          <th class="text-center"><%= t(:price, scope: [:activerecord, :attributes, :facility]) %></th>
+          <th class="text-center"><%= t(:content, scope: [:activerecord, :attributes, :product_content]) %></th>
+          <th class="text-center"><%= t(:manage) %></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% unless @sports_wears.empty? %>
+          <% @sports_wears.each_with_index do |sports_wear, index| %>
+            <tr>
+              <td><%= sports_wear.order_no %></td>
+              <td><%= link_to sports_wear.product.title, admin_sports_wear_path(sports_wear) %></td>
+              <td class="text-end"></td>
+              <td class="text-end"></td>
+              <td class="text-end"></td>
+              <td class="text-end">
+              </td>
+              <td class="text-end"><%= number_to_currency sports_wear.product.price %></td>
+              <td class="text-center">
+                <% if sports_wear.product.product_content.present? %>
+                  <%= link_to t(:show_content), admin_product_content_path(sports_wear.product.product_content), { class: 'btn btn-secondary btn-modal' } %>
+                <% else %>
+                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: sports_wear.product), { class: 'btn btn-secondary btn-modal' } %>
+                <% end %>
+              </td>
+
+              <% if can?(:update, sports_wear) or can?(:delete, sports_wear) %>
+                <td class="text-center">
+                  <% if can? :update, sports_wear %>
+                    <%= link_to edit_admin_sports_wear_path(sports_wear), class: "btn btn-secondary" do %>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+
+                  <% if can? :delete, sports_wear %>
+                    <%= link_to admin_sports_wear_path(sports_wear),
+                                method: :delete,
+                                data: { confirm: t(:delete_cascade_confirm) },
+                                class: "btn btn-danger" do %>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <!-- empty state -->
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= paginate @sports_wears %>
+    </div>
+    <% if can? :create, SportsWear %>
+      <div class="col-12">
+        <%= link_to t(:add), new_admin_sports_wear_path, :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</section>
