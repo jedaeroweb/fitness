@@ -9,13 +9,13 @@
     <% end %>
   </div>
   <div class="col-12 col-sm-6 p-3">
-    <ul>
+    <ul style="list-style:none;">
       <% unless @admin.present? %>
-        <li><span class="btn btn-sm btn-light btn-block btn-outline-info">-</span>
-        <li><span class="btn btn-sm btn-light btn-block btn-outline-info">-</span>
+        <li><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
+        <li><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
       <% else %>
         <li>
-        <span class="btn btn-sm btn-light btn-block btn-outline-info">
+        <span class="btn btn-sm btn-light btn-block btn-outline-info d-block">
           <% if @admin.name.present? %>
           <%= @admin.name %>
           <% else %>
@@ -25,7 +25,7 @@
         </li>
         <li>
           <% if true %>
-        <span class="btn btn-sm btn-light btn-block btn-outline-info">
+        <span class="btn btn-sm btn-light btn-block btn-outline-info d-block">
           <% if @admin.phone.present? %>
           <%= @admin.phone %>
           <% else  %>
@@ -33,16 +33,16 @@
           <% end  %>
         </span>
           <% else %>
-        <span class="btn btn-sm btn-light btn-block btn-outline-info">
+        <span class="btn btn-sm btn-light btn-block btn-outline-info d-block">
           card-no
 				</span>
           <% end %>
         </li>
         <li>
-          <%=link_to t(:photo_shoot),new_admin_admin_picture_path(:admin_id=>@admin),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup'} %>
+          <%=link_to t(:photo_shoot),new_admin_admin_picture_path(:admin_id=>@admin),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup d-block'} %>
         </li>
         <li>
-          <span id="photo_load" class="btn btn-sm btn-outline-secondary btn-block"><%=t(:select_photo) %></span>
+          <span id="photo_load" class="btn btn-sm btn-outline-secondary btn-block d-block"><%=t(:select_photo) %></span>
           <%= form_with(model: [:admin,AdminPicture.new], local: true, html: {:id => 'form_photo', :style => 'display:none'}) do |form| %>
             <input type="hidden" name="admin_id" value="<%=@admin.id %>">
             <input type="file" name="photo[]" accept="image/*" capture="">

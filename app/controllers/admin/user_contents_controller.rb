@@ -15,6 +15,7 @@ class Admin::UserContentsController < Admin::AdminController
   def show
   end
 
+
   # POST /user_content
   # POST /user_content.json
   def create
@@ -31,6 +32,25 @@ class Admin::UserContentsController < Admin::AdminController
 
         format.html { render action: 'new' }
         format.json { render json: @user_content.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  def edit
+  end
+
+
+  # PATCH/PUT /notices/1
+  # PATCH/PUT /notices/1.json
+  def update
+    respond_to do |format|
+      if @notice.update(notice_params)
+        format.html { redirect_to [:admin, @notice], notice: t(:message_success_update) }
+        format.json { render :show, status: :ok, location: @notice }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @notice.errors, status: :unprocessable_entity }
       end
     end
   end

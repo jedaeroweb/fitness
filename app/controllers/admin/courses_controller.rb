@@ -34,7 +34,7 @@ class Admin::CoursesController < Admin::AdminController
     condition = { :products => { branch_id: session[:branch_id], enable: true } }
 
     if @course_category.present?
-      condition[:course_category_id] = @course_category.id
+      condition['products.product_category_id'] = @course_category.id
     end
 
     @course_count = Course.joins(:product).where(condition).count

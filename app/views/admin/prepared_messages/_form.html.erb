@@ -1,4 +1,17 @@
 <%= form_with(model: [:admin, prepared_message], local: true) do |form| %>
+  <% if prepared_message.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <h2><%= pluralize(prepared_message.errors.count, "개의 문제") %>로 진행할 수 없습니다.</h2>
+      <ul>
+        <% prepared_message.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="card">
     <div class="card-body">
       <div class="form-row">
