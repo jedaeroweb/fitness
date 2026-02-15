@@ -43,7 +43,7 @@ class Admin::LockerRentalsController < Admin::OrdersController
   # POST /Users
   # POST /Users.json
   def create
-    @locker_rental = LockerRental.new(rent_params)
+    @locker_rental = LockerRental.new(locker_rental_params)
 
     respond_to do |format|
       if @locker_rental.save
@@ -70,7 +70,7 @@ class Admin::LockerRentalsController < Admin::OrdersController
   # PATCH/PUT /Users/1.json
   def update
     respond_to do |format|
-      if @locker_rental.update(rent_params)
+      if @locker_rental.update(locker_rental_params)
         format.html { redirect_to @locker_rental, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @locker_rental }
       else

@@ -590,7 +590,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_30_084307) do
 
   create_table "sports_wears", force: :cascade do |t|
     t.integer "product_id", null: false
-    t.integer "order_no", default: 1, null: false
     t.boolean "gender", default: true, null: false
     t.boolean "enable", default: true, null: false
     t.datetime "created_at", null: false

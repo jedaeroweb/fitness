@@ -1,12 +1,25 @@
 <%= form_with(model: [:admin, locker], local: true) do |form| %>
+  <% if locker.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <h2><%= pluralize(locker.errors.count, "개의 문제") %>로 진행할 수 없습니다.</h2>
+      <ul>
+        <% locker.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%
     product_category_id = nil
-    if facility.product.present?
-      product_category_id = facility.product.product_category_id
+    if locker.product.present?
+      product_category_id = locker.product.product_category_id
     end
   %>
 
-  <% unless FacilityCategory.where(:branch_id => current_user.branch_id, :enable => true).count.zero? %>
+  <% unless ProductCategory.where(:branch_id => current_user.branch_id, :enable => true).count.zero? %>
     <div class="card">
       <div class="card-body">
         <div class="row">

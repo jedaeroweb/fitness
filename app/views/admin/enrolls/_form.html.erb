@@ -1,8 +1,21 @@
 <div class="col-12 col-xl-9">
   <%= form_with(model: [:admin, enroll], local: true) do |form| %>
+    <% if enroll.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <h2><%= pluralize(enroll.errors.count, "개의 문제") %>로 진행할 수 없습니다.</h2>
+        <ul>
+          <% enroll.errors.full_messages.each do |msg| %>
+            <li>
+              <%= msg %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <article class="row">
-      <h3 class="col-12"><%= t(:course_info) %></h3>
       <div class="col-12">
+        <h3 class="col-12"><%= t(:course_info) %></h3>
         <div class="card course_info">
           <div class="card-body">
             <div class="form-row">

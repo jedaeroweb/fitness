@@ -13255,20 +13255,12 @@ a img {
   border: none;
 }
 
-h1 {
-  font-size: 180%;
-}
-
-h2 {
-  font-size: 160%;
-}
-
-h3 {
-  font-size: 140%;
-}
-
-h4, h5, h6 {
-  font-size: 120%;
+.di-title {
+  text-align: left;
+  text-indent: -99999px;
+  height: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 /* Getting the new tags to behave */
@@ -13326,10 +13318,6 @@ mark, rp, rt, ruby, summary, time {
 .modal-header {
   background: #37474f;
   color: #fff;
-}
-
-.modal-header * {
-  color: #eee;
 }
 
 .modal-body, .modal-footer {
@@ -13499,11 +13487,6 @@ footer a:hover {
 
 .alert-success {
   clear: both;
-}
-
-h1, .h1, h2, .h2, h3, .h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
 }
 
 #top-menu {
@@ -13842,7 +13825,7 @@ h1, .h1, h2, .h2, h3, .h3 {
 [data-bs-theme=dark] .page-header h1, [data-bs-theme=dark] .page-header h2 {
   color: var(--bs-body-color);
 }
-[data-bs-theme=dark] header, [data-bs-theme=dark] footer, [data-bs-theme=dark] .jumbotron, [data-bs-theme=dark] .media, [data-bs-theme=dark] .card-body, [data-bs-theme=dark] aside article, [data-bs-theme=dark] #faqList dt a.title, [data-bs-theme=dark] .modal-body, [data-bs-theme=dark] .modal-footer, [data-bs-theme=dark] .sl_content_header, [data-bs-theme=dark] .thead-default th, [data-bs-theme=dark] .breadcrumb, [data-bs-theme=dark] .box_content, [data-bs-theme=dark] header nav, [data-bs-theme=dark] .menu_back, [data-bs-theme=dark] #faqList dd {
+[data-bs-theme=dark] header, [data-bs-theme=dark] footer, [data-bs-theme=dark] .jumbotron, [data-bs-theme=dark] .media, [data-bs-theme=dark] .card-body, [data-bs-theme=dark] #faqList dt a.title, [data-bs-theme=dark] .modal-body, [data-bs-theme=dark] .modal-footer, [data-bs-theme=dark] .sl_content_header, [data-bs-theme=dark] .thead-default th, [data-bs-theme=dark] .breadcrumb, [data-bs-theme=dark] .box_content, [data-bs-theme=dark] header nav, [data-bs-theme=dark] .menu_back, [data-bs-theme=dark] #faqList dd {
   background-color: var(--bs-secondary-bg);
 }
 [data-bs-theme=dark] .box_header {

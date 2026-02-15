@@ -95,12 +95,11 @@
               <% end %>
             <% end %>
           </div>
-          <div style="margin-top:10px">
-            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type,'popup': true), { 'id' => 'user_select', :class => 'btn btn-secondary btn-modal' } %>&nbsp;&nbsp;
-            <%= link_to t(:select_temp_user), admin_temp_user_select_path(:type => @message_type), { 'id' => 'temp_user_select', :class => 'btn btn-secondary btn-modal' } %>
+          <div style="margin-top:10px"  data-controller="modal">
+            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type,'popup': true), { 'id' => 'user_select', :class => 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open" } %>&nbsp;&nbsp;
+            <%= link_to t(:select_temp_user), admin_temp_user_select_path(:type => @message_type), { 'id' => 'temp_user_select', :class => 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open" } %>
           </div>
         </div>
-
 
         <div class="col-12 form-group">
           <%= form.label :title %>

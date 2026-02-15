@@ -5,7 +5,9 @@
   <% end %>
   <%= render :partial => 'admin/users/list' %>
   <%= paginate @users %>
+  <div class="row">
   <div class="d-grid gap-2">
     <%=link_to t(:add),new_admin_user_path,class: 'btn btn-primary' %>
     </div>
+  </div>
 </aside>

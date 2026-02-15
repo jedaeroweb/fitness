@@ -1,4 +1,4 @@
-class Admin::LockersController < Admin::AdminController
+class Admin::LockersController < Admin::ProductsController
   before_action :set_locker, only: [:show, :edit, :update, :destroy]
 
   # GET /lockers

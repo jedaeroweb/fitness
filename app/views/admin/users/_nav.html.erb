@@ -1,5 +1,5 @@
 <div class="row">
-  <nav class="col-12 sub-nav">
+  <nav class="col-12 sub-nav mb-3">
     <ul class="nav nav-pills">
       <li class="nav-item"><%= link_to t(:default_info), admin_user_path(@user), class: get_nav_active_class(['index','show','edit']) %></li>
       <li class="nav-item"><%= link_to t(:enroll, scope: [:activerecord, :models]), admin_home_enrolls_path(@user), class: get_nav_active_class('enrolls') %></li>

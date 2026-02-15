@@ -7,11 +7,11 @@
 %>
 <article class="card">
   <div class="card-header">
-    <h3><%= t(:user_info) %></h3>
-    <%= link_to edit_admin_user_path(@user), class: 'more2' do %>
+    <h3 class="float-start"><%= t(:user_info) %></h3>
+    <%= link_to edit_admin_user_path(@user), class: 'float-end' do %>
       <i class="material-icons">edit</i>
     <% end %>
-    <%= link_to admin_user_path(@user), class: 'more' do %>
+    <%= link_to admin_user_path(@user), class: 'float-end' do %>
       <i class="material-icons">delete</i>
     <% end %>
   </div>

@@ -1,5 +1,17 @@
 <%= form_with(model: [:admin, course], local: true) do |form| %>
-
+  <% if course.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <h2><%= pluralize(course.errors.count, "개의 문제") %>로 진행할 수 없습니다.</h2>
+      <ul>
+        <% course.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <% unless CourseCategory.where(:branch_id => current_user.branch_id, :enable => true).count.zero? %>
     <div class="card">
       <div class="card-body">

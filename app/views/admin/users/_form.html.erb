@@ -1,4 +1,17 @@
-<%= form_with(model: [:admin, user], local: true) do |form| %>
+<%= form_with(model: [:admin, user], local: true, data: { turbo: false }) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <h2><%= pluralize(user.errors.count, "개의 문제") %>로 진행할 수 없습니다.</h2>
+      <ul>
+        <% user.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <% if session[:premium] %>
   <% unless Group.where(:branch_id => session[:branch_id], :enable => true).count.zero? %>
     <div class="card">

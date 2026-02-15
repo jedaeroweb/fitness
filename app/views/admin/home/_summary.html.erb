@@ -3,11 +3,11 @@
   <div class="col-12">
     <article class="card">
       <div class="card-header">
-        <h3><%= t(:memo) %></h3>
-        <%= link_to new_admin_user_content_path(:user_id => @user), { id: 'add-user-memo', class: 'btn-modal more2' } do %>
+        <h3 class="float-start"><%= t(:memo) %></h3>
+        <%= link_to new_admin_user_content_path(:user_id => @user), { id: 'add-user-memo', class: 'btn-modal float-end' } do %>
           <i class="material-icons">add</i>
         <% end %>
-        <%= link_to admin_home_memos_path(@user), { id: 'add-user-memo', class: 'more' } do %>
+        <%= link_to admin_home_memos_path(@user), { id: 'add-user-memo', class: 'more float-end' } do %>
           <i class="material-icons">redo</i>
         <% end %>
       </div>

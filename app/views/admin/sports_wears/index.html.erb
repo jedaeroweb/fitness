@@ -44,7 +44,7 @@
         <% unless @sports_wears.empty? %>
           <% @sports_wears.each_with_index do |sports_wear, index| %>
             <tr>
-              <td><%= sports_wear.order_no %></td>
+              <td><%= sports_wear.product.order_no %></td>
               <td><%= link_to sports_wear.product.title, admin_sports_wear_path(sports_wear) %></td>
               <td class="text-end"></td>
               <td class="text-end"></td>

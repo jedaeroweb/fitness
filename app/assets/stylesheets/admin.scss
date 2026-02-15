@@ -71,10 +71,7 @@ a:active {color:red}
 a:hover{text-decoration:underline;}
 a img {border:none}
 
-h1 {font-size :180%}
-h2 {font-size :160%}
-h3 {font-size :140%}
-h4,h5,h6 {font-size : 120%}
+.di-title {text-align: left; text-indent: -99999px;height:0px;margin:0;padding:0}
 
 /* Getting the new tags to behave */
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
@@ -90,7 +87,6 @@ mark, rp, rt, ruby, summary, time {display:inline;}
 .alert-success {clear:both}
 .container {max-width:2500px}
 .modal-header {background:#37474f;color:#fff}
-.modal-header * {color:#eee}
 .modal-body,.modal-footer {background:#eee}
 .thead-default th {
   background-color: #868e96;
@@ -179,10 +175,6 @@ footer a:hover {text-decoration:none;}
 
 .alert-success {clear:both}
 
-h1, .h1, h2, .h2, h3, .h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
 
 #top-menu {position:absolute;top:10px;right:30px;margin:0;padding:0;list-style:none;z-index:9999}
 #top-menu li {float:left;margin:0;padding:0;line-height:50px}
@@ -338,7 +330,7 @@ h1, .h1, h2, .h2, h3, .h3 {
   #main-menu li.active a {background-color:  var(--bs-body-bg);color:#fff}
   #faqList dt.on a {background:#ccc}
   .page-header h1, .page-header h2 {color: var(--bs-body-color)}
-  header,footer,.jumbotron,.media,.card-body,aside article,#faqList dt a.title,.modal-body, .modal-footer,.sl_content_header,.thead-default th,.breadcrumb,.box_content, header nav,.menu_back,,#faqList dd {background-color:var(--bs-secondary-bg)}
+  header,footer,.jumbotron,.media,.card-body,#faqList dt a.title,.modal-body, .modal-footer,.sl_content_header,.thead-default th,.breadcrumb,.box_content, header nav,.menu_back,,#faqList dd {background-color:var(--bs-secondary-bg)}
   .box_header {background: #666;border-color:var(--bs-border-color)}
   .box_header h2 {text-shadow: none;color:#ccc}
 }

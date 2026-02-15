@@ -1,4 +1,4 @@
-class Admin::SportsWearsController < Admin::AdminController
+class Admin::SportsWearsController < Admin::ProductsController
   before_action :set_sport_wear, only: [:show, :edit, :update, :destroy]
 
   # GET /sport_wears
@@ -35,14 +35,15 @@ class Admin::SportsWearsController < Admin::AdminController
   # POST /sport_wears
   # POST /sport_wears.json
   def create
-    cc = sport_wear_params
-    cc[:product_attributes].merge!({ branch_id: session[:branch_id] })
+    @sports_wear = SportsWear.new(sports_wear_params)
 
-    @sports_wear = SportsWear.create!(cc)
+    if @sports_wear.product
+      @sports_wear.product.branch_id = session[:branch_id]
+    end
 
     respond_to do |format|
       if @sports_wear.save
-        format.html { redirect_to admin_sport_wear_path(@sports_wear), notice: 'sport_wear was successfully created.' }
+        format.html { redirect_to admin_sports_wear_path(@sports_wear), notice: 'sport_wear was successfully created.' }
         format.json { render :show, status: :created, location: @sports_wear }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -55,8 +56,8 @@ class Admin::SportsWearsController < Admin::AdminController
   # PATCH/PUT /sport_wears/1.json
   def update
     respond_to do |format|
-      if @sports_wear.update(sport_wear_params)
-        format.html { redirect_to admin_sport_wear_path(@sports_wear), notice: 'sport_wear was successfully updated.' }
+      if @sports_wear.update(sports_wear_params)
+        format.html { redirect_to admin_sports_wear_path(@sports_wear), notice: 'sport_wear was successfully updated.' }
         format.json { render :show, status: :ok, location: @sports_wear }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -70,7 +71,7 @@ class Admin::SportsWearsController < Admin::AdminController
   def destroy
     @sports_wear.destroy
     respond_to do |format|
-      format.html { redirect_to admin_sport_wears_url, notice: 'sport_wear was successfully destroyed.' }
+      format.html { redirect_to admin_sports_wears_url, notice: 'sport_wear was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -81,13 +82,9 @@ class Admin::SportsWearsController < Admin::AdminController
     @sports_wear = SportsWear.find(params[:id])
   end
 
-  def sport_wear_params
-    params.require(:sport_wear).permit(
-      :type, :order_no, :quantity, :start_no, :gender, :use_not_set,
-      product_attributes: [
-        :product_category_id, :title, :price,
-        { product_content_attributes: [:content] }
-      ]
+  def sports_wear_params
+    params.require(:sports_wear).permit(:gender,
+      product_attributes: [:id, :title, :price, :order_no]
     )
   end
 end

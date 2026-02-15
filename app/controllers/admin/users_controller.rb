@@ -150,6 +150,6 @@ class Admin::UsersController < Admin::AdminController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:group_id, :name, :phone, :birthday, :gender, :registration_date, :enable, user_unique_number_attributes: [:unique_number], users_fc_attributes: [:admin_id], users_trainer_attributes: [:admin_id], user_additional_attributes: [:visit_route_id, :job_id, :company], users_group_attributes: [:group_id], user_contents_attributes: [:content]).merge(branch_id: session[:branch_id])
+    params.require(:user).permit(:group_id, :name, :phone, :birthday, :gender, :registration_date, :enable, user_unique_number_attributes: [:unique_number], user_fc_attributes: [:admin_id], user_trainer_attributes: [:admin_id], user_additional_attributes: [:visit_route_id, :job_id, :company], users_group_attributes: [:group_id], user_contents_attributes: [:content]).merge(branch_id: session[:branch_id])
   end
 end
