@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "admin_profile_photo_#{@admin.id}" do %>
+  <%= render partial: "admin/admins/profile_photo", locals: { admin: @admin } %>
+<% end %>

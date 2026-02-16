@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     get 'temp_users/select', :to=>'temp_users#select', as: 'temp_user_select'
     get 'prepared_messages/select', :to=>'prepared_messages#select', as: 'prepared_message_select'
     get 'users', to: 'home#index', as: 'users'
+    get 'webcam', to: 'webcam#index', as: 'webcam'
 
     resources :admin_pictures
     resources :counsels

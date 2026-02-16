@@ -1,38 +1,41 @@
 class Admin::AdminPicturesController < Admin::AdminController
-  before_action :set_admin_picture, only: [:show, :edit, :update, :destroy]
-
-  def layout
-    if params[:popup].present?
-      return 'admin/new_picture'
-    else
-      return 'admin/application'
-    end
-  end
+  before_action :set_admin_picture, only: [:show, :destroy]
 
   # GET /user_content/new
   def new
-  end
-
-  # POST /user_contents
-  # POST /user_contents.json
-  def create
-    @admin_picture = AdminPicture.new(admin_picture_params)
-
-    respond_to do |format|
-      if @admin_picture.save
-        format.html { redirect_to admin_admin_path(@admin_picture.admin), notice: 'Gg was successfully created.' }
-        format.json { render :show, status: :created, location: [:admin, @admin_picture] }
-      else
-        format.html { render :new }
-        format.json { render json: @admin_picture.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # GET /user_content s/1
   # GET /user_content s/1.json
   def show
   end
+
+  # POST /user_contents
+  # POST /user_contents.json
+  def create
+    @admin = User.find(admin_picture_params[:admin_id])
+
+    @admin.build_admin_picture unless @admin.admin_picture
+    @admin.admin_picture.assign_attributes(admin_picture_params)
+
+    respond_to do |format|
+      if @admin..admin_picture.save
+        format.turbo_stream
+        format.html { redirect_to admin_admin_path(@admin), notice: "사진이 업로드되었습니다." }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
+  def destroy
+    @user_picture.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_user_pictures_url, notice: 'user picture  was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
 

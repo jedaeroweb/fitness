@@ -1,12 +1,6 @@
 <div class="row user-info">
   <div class="col-12 col-sm-6 p-3">
-    <% if @user.user_picture.present? %>
-      <a href="<%=@user.user_picture.picture.url %>" class="simple_image">
-        <%=image_tag @user.user_picture.picture.medium_thumb.url,:width=>"100%",:height=>"100%",:id=>"profile_photo" %>
-      </a>
-    <% else %>
-      <%=image_tag '/images/bg_photo_none.gif',:width=>"100%",:height=>"100%",:id=>"profile_photo" %>
-    <% end %>
+    <%= render "admin/users/profile_photo", user: @user %>
   </div>
   <div class="col-12 col-sm-6 p-3">
     <ul style="list-style:none;">
@@ -38,17 +32,32 @@
 				</span>
         <% end %>
       </li>
-      <li>
-        <%=link_to t(:photo_shoot),new_admin_user_picture_path(:user_id=>@user),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup d-block'} %>
+      <li data-controller="modal">
+        <%=link_to t(:photo_shoot),new_admin_user_picture_path(user_id: @user),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup d-block', 'data-action'=>"click->modal#open"} %>
       </li>
-      <li>
-        <span id="photo_load" class="btn btn-sm btn-outline-secondary btn-block d-block"><%=t(:select_photo) %></span>
-        <%= form_with(model: [:admin,UserPicture.new], local: true, html: {:id => 'form_photo', :style => 'display:none'}) do |form| %>
-          <input type="hidden" name="user_id" value="<%=@user.id %>">
-          <input type="file" name="photo[]" accept="image/*" capture="">
-        <%= form.submit t(:upload_photo), :class => 'btn btn-sm btn-secondary btn-block' %>
-        <% end %>
-      </li>
+        <li data-controller="photo-upload">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-secondary btn-block d-block w-100"
+            data-action="photo-upload#open">
+            <%= t(:select_photo) %>
+          </button>
+
+          <%= form_with(model: [:admin,UserPicture.new], local: true,
+                        html: {style: 'display:none', multipart: true}) do |form| %>
+
+            <%= form.hidden_field :user_id, value: @user.id %>
+            <%= form.file_field :picture,
+                                accept: "image/*",
+                                data: {
+                                  photo_upload_target: "fileInput",
+                                  action: "change->photo-upload#submit"
+                                } %>
+
+            <%= form.submit t(:upload_photo),
+                            class: 'btn btn-sm btn-secondary btn-block' %>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>

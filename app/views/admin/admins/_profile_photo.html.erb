@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "admin_profile_photo_#{admin.id}" do %>
+  <% if admin.admin_picture.present? %>
+    <a href="<%= admin.admin_picture.picture.url %>" class="simple_image">
+      <%= image_tag admin.admin_picture.picture.medium_thumb.url,
+                    width: "100%",
+                    height: "100%",
+                    id: "profile_photo" %>
+    </a>
+  <% else %>
+    <%= image_tag '/images/bg_photo_none.gif',
+                  width: "100%",
+                  height: "100%",
+                  id: "profile_photo" %>
+  <% end %>
+<% end %>

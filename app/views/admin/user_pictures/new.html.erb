@@ -1,13 +1,64 @@
-<input type="hidden" id="v_type" value="users">
-<input type="hidden" id="v_id" value="<%=params[:user_id] %>">
-<div style="text-align:center">
-  <div style="display:none"><video id="video" autoplay></video></div>
-  <canvas id="canvas" width="372" height="372" style="border:2px solid blue;margin: 30px auto"></canvas>
-  <div style="display:none"><img id="photo" style="width:168px;height:168px;border:1px solid green"></div>
-  <div style="margin:20px;text-align:center">
-    <button id="snap" class="btn btn-secondary"><%=t(:photo_shoot) %></button>&nbsp
-    <button id="save" class="btn btn-secondary" disabled><%=t(:save) %></button>&nbsp
-    <button id="resume" class="btn btn-secondary" disabled><%=t(:reset) %></button>
+<% if params[:popup].present? %>
+  <div class="modal-header">
+    <h3 class="modal-title"><%= t(:webcarm) %></h3>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
+  <div class="modal-body">
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+<% end %>
+<div data-controller="camera" style="text-align:center">
+  <div style="display:none">
+    <video data-camera-target="video" autoplay></video>
+  </div>
+
+  <canvas
+    data-camera-target="canvas"
+    width="372"
+    height="372"
+    style="border:2px solid blue;margin:30px auto 0">
+  </canvas>
+
+  <div style="display:none">
+    <img data-camera-target="photo"
+         style="width:168px;height:168px;border:1px solid green">
+  </div>
+
+  <div style="margin:20px;text-align:center">
+    <button data-action="camera#snap"
+            data-camera-target="snapButton"
+            class="btn btn-secondary">
+      사진 찍기
+    </button>
+
+    <button data-action="camera#save"
+            data-camera-target="saveButton"
+            class="btn btn-secondary"
+            disabled>
+      저장
+    </button>
+
+    <button data-action="camera#resume"
+            data-camera-target="resumeButton"
+            class="btn btn-secondary"
+            disabled>
+      다시
+    </button>
+  </div>
+
+  <!-- 필요하면 hidden input -->
+  <input type="hidden" id="v_id" value="">
 </div>
+
 <div id="result"></div>
+<% if params[:popup].present? %>
+  </div>
+  <div class="modal-footer">
+  </div>
+<% else %>
+  </div>
+  </div>
+  </div>
+<% end %>

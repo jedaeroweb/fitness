@@ -12,7 +12,7 @@ class AdminPictureUploader < CarrierWave::Uploader::Base
   end
 
   def size_range
-    1.byte..3.megabytes
+    1.byte..10.megabytes
   end
 
   # Override the directory where uploaded files will be stored.
