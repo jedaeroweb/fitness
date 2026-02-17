@@ -2,7 +2,7 @@ class User < ApplicationRecord
   after_initialize :default_values
 
   include OmniauthAttributesConcern
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,  :validatable, :omniauthable, omniauth_providers: [:kakao, :naver, :twitter, :facebook, :apple, :google_oauth2, :github]
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,  :validatable, :omniauthable, omniauth_providers: [:kakao, :twitter, :facebook, :apple, :google_oauth2, :github]
   validates_length_of :name, within: 1..60
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates_uniqueness_of :email, allow_blank: true

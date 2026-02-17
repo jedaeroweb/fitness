@@ -13,13 +13,13 @@ class Admin::AdminPicturesController < Admin::AdminController
   # POST /user_contents
   # POST /user_contents.json
   def create
-    @admin = User.find(admin_picture_params[:admin_id])
+    @admin = Admin.find(admin_picture_params[:admin_id])
 
     @admin.build_admin_picture unless @admin.admin_picture
     @admin.admin_picture.assign_attributes(admin_picture_params)
 
     respond_to do |format|
-      if @admin..admin_picture.save
+      if @admin.admin_picture.save
         format.turbo_stream
         format.html { redirect_to admin_admin_path(@admin), notice: "사진이 업로드되었습니다." }
       else

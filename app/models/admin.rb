@@ -5,7 +5,7 @@ class Admin < ApplicationRecord
   devise :database_authenticatable
 
   belongs_to :branch, counter_cache: true
-  has_one :admin_picture, dependent: :destroy
+  has_one :admin_picture, -> { order id: :desc }, dependent: :destroy
   has_one :role_admin
   has_one :role, through: :role_admin
   has_many :admin_login_log, dependent: :destroy
