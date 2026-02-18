@@ -3,12 +3,12 @@
     <%= render "admin/users/profile_photo", user: @user %>
   </div>
   <div class="col-12 col-sm-6 p-3">
-    <ul style="list-style:none;">
+    <ul style="list-style:none;margin:0;padding:0">
       <% unless @user.present? %>
-      <li><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
-      <li><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
+      <li class="mb-2"><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
+      <li class="mb-2"><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
       <% else %>
-      <li>
+      <li class="mb-2">
         <span class="btn btn-sm btn-light btn-block btn-outline-info d-block">
           <% if @user.name.present? %>
           <%= @user.name %>
@@ -17,7 +17,7 @@
           <% end  %>
         </span>
       </li>
-      <li>
+      <li class="mb-2">
         <% if true %>
         <span class="btn btn-sm btn-light btn-block btn-outline-info d-block">
           <% if @user.phone.present? %>
@@ -32,10 +32,10 @@
 				</span>
         <% end %>
       </li>
-      <li data-controller="modal">
+      <li  class="mb-2" data-controller="modal">
         <%=link_to t(:photo_shoot),new_admin_user_picture_path(user_id: @user),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup d-block', 'data-action'=>"click->modal#open"} %>
       </li>
-        <li data-controller="photo-upload">
+        <li class="mb-2" data-controller="photo-upload">
           <button
             type="button"
             class="btn btn-sm btn-outline-secondary btn-block d-block w-100"

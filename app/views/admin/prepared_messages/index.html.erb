@@ -27,12 +27,12 @@
           <th class="text-center"><%= t(:manage) %></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody data-controller="modal">
         <% unless @prepared_messages.empty? %>
           <% @prepared_messages.each_with_index do |prepared_message, index| %>
             <tr>
               <td><%= link_to prepared_message.title, admin_prepared_message_path(prepared_message) %></td>
-              <td class="text-center"><%= link_to t(:show_content), admin_prepared_message_content_path(prepared_message), { class: 'btn btn-secondary btn-modal' } %></td>
+              <td class="text-center"><%= link_to t(:show_content), admin_prepared_message_content_path(prepared_message), { class: 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open"} %></td>
               <td class="text-center"><%= get_dt_format(prepared_message.created_at) %> </td>
               <% if can?(:update, prepared_message) or can?(:delete, prepared_message) %>
                 <td class="text-center">

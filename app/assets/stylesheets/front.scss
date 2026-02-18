@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: 'Nanum Gothic';
-  src: local('☺'),url('../fonts/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),url('../fonts/NanumGothic-Regular.woff') format('woff');
+  src: local('☺'),url('/fonts/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),url('/fonts/NanumGothic-Regular.woff') format('woff');
   font-display: swap;
 }
 
@@ -26,7 +26,7 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src:  url('material-icon.woff2') format('woff2');
+  src:  url('/fonts/material-icon.woff2') format('woff2');
 }
 
 .material-icons {

@@ -15,6 +15,9 @@ class Admin::ProductContentsController < Admin::AdminController
   def show
   end
 
+  def edit
+  end
+
   # POST /order_contents
   # POST /order_contents.json
   def create
@@ -30,6 +33,20 @@ class Admin::ProductContentsController < Admin::AdminController
         end
 
         format.html { render action: 'new' }
+        format.json { render json: @product_content.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /product_contens/1
+  # PATCH/PUT /product_contens/1.json
+  def update
+    respond_to do |format|
+      if @product_content.update(product_content_params)
+        format.html { redirect_to admin_product_conten_path(@product_content), notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @product_content }
+      else
+        format.html { render :edit }
         format.json { render json: @product_content.errors, status: :unprocessable_entity }
       end
     end

@@ -46,6 +46,9 @@ Rails.application.routes.draw do
     get 'users', to: 'home#index', as: 'users'
     get 'webcam', to: 'webcam#index', as: 'webcam'
 
+    get 'employees/users/:id', :to=>'employees#users', as: 'employee_users'
+    get 'employees/memos/:id', :to=>'employees#memos', as: 'employee_memos'
+
     resources :admin_pictures
     resources :counsels
     resources :groups

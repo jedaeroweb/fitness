@@ -31,11 +31,10 @@ export default class extends Controller {
 
                 this.videoTarget.onloadedmetadata = () => {
                     this.videoTarget.play()
+                    this.videoRun()   // 여기로 이동
                 }
             })
             .catch(err => alert(err))
-
-        this.videoRun()
     }
 
     drawVideo = () => {

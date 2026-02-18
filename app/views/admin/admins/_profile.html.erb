@@ -3,12 +3,12 @@
     <%= render "admin/admins/profile_photo", admin: @admin %>
   </div>
   <div class="col-12 col-sm-6 p-3">
-    <ul style="list-style:none;">
+    <ul style="list-style:none;margin:0;padding:0">
       <% unless @admin.present? %>
-        <li><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
-        <li><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
+        <li class="mb-2"><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
+        <li class="mb-2"><span class="btn btn-sm btn-light btn-block btn-outline-info d-block">-</span>
       <% else %>
-        <li>
+        <li class="mb-2">
         <span class="btn btn-sm btn-light btn-block btn-outline-info d-block">
           <% if @admin.name.present? %>
           <%= @admin.name %>
@@ -17,7 +17,7 @@
           <% end  %>
         </span>
         </li>
-        <li>
+        <li class="mb-2">
           <% if true %>
         <span class="btn btn-sm btn-light btn-block btn-outline-info d-block">
           <% if @admin.phone.present? %>
@@ -32,10 +32,10 @@
 				</span>
           <% end %>
         </li>
-        <li data-controller="modal">
-          <%=link_to t(:photo_shoot),new_admin_admin_picture_path(admin_id: @admin, type: 'admin'),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup d-block', 'data-action'=>"click->modal#open"} %>
+        <li class="mb-2" data-controller="modal">
+          <%=link_to t(:photo_shoot),new_admin_admin_picture_path(admin_id: @admin, type: 'employees'),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup d-block', 'data-action'=>"click->modal#open"} %>
         </li>
-        <li data-controller="photo-upload">
+        <li class="mb-2" data-controller="photo-upload">
           <button
             type="button"
             class="btn btn-sm btn-outline-secondary btn-block d-block w-100"

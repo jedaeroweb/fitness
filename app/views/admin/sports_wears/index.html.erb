@@ -39,8 +39,7 @@
           <th class="text-center"><%= t(:manage) %></th>
         </tr>
         </thead>
-
-        <tbody>
+        <tbody data-controller="modal">
         <% unless @sports_wears.empty? %>
           <% @sports_wears.each_with_index do |sports_wear, index| %>
             <tr>
@@ -54,9 +53,9 @@
               <td class="text-end"><%= number_to_currency sports_wear.product.price %></td>
               <td class="text-center">
                 <% if sports_wear.product.product_content.present? %>
-                  <%= link_to t(:show_content), admin_product_content_path(sports_wear.product.product_content), { class: 'btn btn-secondary btn-modal' } %>
+                  <%= link_to t(:show_content), admin_product_content_path(sports_wear.product.product_content), { class: 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open"} %>
                 <% else %>
-                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: sports_wear.product), { class: 'btn btn-secondary btn-modal' } %>
+                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: sports_wear.product), { class: 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open"} %>
                 <% end %>
               </td>
 
