@@ -1,8 +1,8 @@
 <section id="lockers">
   <div class="row">
     <div class="col-12">
-      <h2 class="float-left"><%= t(:locker_list) %></h2>
-      <div class="float-right">
+      <h2 class="float-start"><%= t(:locker_list) %></h2>
+      <div class="float-end">
         <p class="summary">
           <span id="list_count" style="display:none"><%= @locker_count %></span>
           <%= raw t(:there_are_n_lockers, count: @locker_count) %>
@@ -37,7 +37,7 @@
           <th class="text-center"><%= t(:manage) %></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody data-controller="modal">
         <% unless @lockers.empty? %>
           <% @lockers.each_with_index do |locker, index| %>
             <tr>
@@ -51,9 +51,9 @@
               <td class="text-end"><%= number_to_currency locker.product.price %></td>
               <td class="text-center">
                 <% if locker.product.product_content.present? %>
-                  <%= link_to t(:show_content), admin_product_content_path(locker.product.product_content), { class: 'btn btn-secondary btn-modal' } %>
+                  <%= link_to t(:show_content), admin_product_content_path(locker.product.product_content), { class: 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open"} %>
                 <% else %>
-                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: locker.product), { class: 'btn btn-secondary btn-modal' } %>
+                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: locker.product), { class: 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open"} %>
                 <% end %>
               </td>
               <% if can?(:update, locker) or can?(:delete, locker) %>

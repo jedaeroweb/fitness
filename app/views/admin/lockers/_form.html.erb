@@ -1,7 +1,7 @@
 <%= form_with(model: [:admin, locker], local: true) do |form| %>
   <% if locker.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       <h2><%= pluralize(locker.errors.count, "개의 문제") %>로 진행할 수 없습니다.</h2>
       <ul>
         <% locker.errors.full_messages.each do |msg| %>

@@ -1,9 +1,7 @@
 <% if params[:popup].present? %>
   <div class="modal-header">
     <h5 class="modal-title"><%= t(:order_content, scope: [:activerecord, :models]) %></h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body">
 <% else %>
@@ -21,7 +19,7 @@
   <div class="modal-footer">
     <%= link_to t(:delete), admin_order_content_path(@order_content), :method => :delete, data: {:confirm => "You sure?" } , :title => "Delete #{@order_content}",:class=>"btn btn-danger" %>
     <button type="button" class="btn btn-secondary content-edit"><%= t(:edit) %></button>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t(:close) %></button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t(:close) %></button>
   </div>
 <% else %>
   </div>

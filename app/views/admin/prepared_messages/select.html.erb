@@ -1,9 +1,7 @@
 <% if params[:popup].present? %>
   <div class="modal-header">
     <h3 class="modal-title"><%= t(:prepared_message) %></h3>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body">
 <% else %>
@@ -51,7 +49,7 @@
 <% if params[:popup].present? %>
   </div>
   <div class="modal-footer">
-    <button type="button" id="select_prepare_message" class="btn btn-primary btn-block btn-lg" data-dismiss="modal"><%= t(:select) %></button>
+    <button type="button" id="select_prepare_message" class="btn btn-primary btn-block btn-lg" data-bs-dismiss="modal"><%= t(:select) %></button>
   </div>
   <%= javascript_include_tag 'prepared-messages/select' %>
 <% else %>

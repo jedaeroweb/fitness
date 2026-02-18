@@ -129,6 +129,7 @@ ko:
   no_data: '해당 데이터가 없습니다.'
   not_insert: '미입력'
   there_are_n_accounts: "정산이 <strong class=\"mark\">%{count}개</strong> 있습니다"
+  there_are_n_counsels: "상담이 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_orders: "주문이 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_products: "상품이 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_product_categories: "상품분류가 <strong class=\"mark\">%{count}개</strong> 있습니다"
@@ -151,6 +152,7 @@ ko:
   account_list: '정산 목록'
   group_list: '그룹 목록'
   user_list: '사용자 목록'
+  counsel_list: '상담 목록'
   course_category_list: '과목 분류 목록'
   facility_category_list: '락커 분류 목록'
   facility_list: '락커 목록'

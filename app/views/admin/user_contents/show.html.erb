@@ -24,7 +24,7 @@
     <div class="modal-footer">
       <%= link_to t(:delete), admin_user_content_path(@user_content), :method => :delete, data: {:confirm => "You sure?" } , :title => "Delete #{@user_content}",:class=>"btn btn-danger" %>
       <button type="button" class="btn btn-secondary content-edit"><%= t(:edit) %></button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t(:close) %></button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t(:close) %></button>
     </div>
   <% else %>
     </div>

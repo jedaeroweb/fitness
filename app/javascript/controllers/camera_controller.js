@@ -17,6 +17,7 @@ export default class extends Controller {
             return
         }
 
+
         this.context = this.canvasTarget.getContext("2d")
         this.videoInterval = null
         this.imageData = null
@@ -48,7 +49,7 @@ export default class extends Controller {
         this.disable(this.resumeButtonTarget)
 
         clearInterval(this.videoInterval)
-        this.videoInterval = setInterval(this.drawVideo, 1000 / 30)
+        this.videoInterval = setInterval(this.drawVideo.bind(this), 1000 / 30)
     }
 
     snap() {
@@ -116,5 +117,9 @@ export default class extends Controller {
         el.disabled = true
         el.classList.remove("btn-primary")
         el.classList.add("btn-secondary")
+    }
+
+    disconnect() {
+        clearInterval(this.videoInterval)
     }
 }
