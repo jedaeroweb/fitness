@@ -19,7 +19,15 @@ class Admin::CounselsController < Admin::AdminController
 
   # GET /counsels/new
   def new
-    @counsel = Counsel.new
+      @users = []
+      @temp_users = []
+
+      if params[:user_id]
+
+      end
+
+      @counsel = Counsel.new
+      @counsel.build_counsel_content
   end
 
   # GET /counsels/1/edit

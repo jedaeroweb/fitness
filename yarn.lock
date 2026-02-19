@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@fancyapps/ui@^6.1.11":
+  version "6.1.11"
+  resolved "https://registry.yarnpkg.com/@fancyapps/ui/-/ui-6.1.11.tgz#659388f33e12cc3833bcaee5f833eb0e2a116348"
+  integrity sha512-6MrKw47k5vATlMewFj36TK3vZvpLyjcJ9wb0R+X8CH1QzG60rhqCC+llclnp85JhHIlw4pC7ILfh1hy7xDqNtA==
+
 "@parcel/watcher-android-arm64@2.5.6":
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/@parcel/watcher-android-arm64/-/watcher-android-arm64-2.5.6.tgz#5f32e0dba356f4ac9a11068d2a5c134ca3ba6564"
