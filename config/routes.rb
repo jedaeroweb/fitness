@@ -49,12 +49,22 @@ Rails.application.routes.draw do
     get 'employees/users/:id', :to=>'employees#users', as: 'employee_users'
     get 'employees/memos/:id', :to=>'employees#memos', as: 'employee_memos'
 
-    resources :admin_pictures
+    resources :user_pictures do
+      collection do
+        post :create_b64
+      end
+    end
+
+    resources :admin_pictures do
+      collection do
+        post :create_b64
+      end
+    end
+
     resources :counsels
     resources :groups
     resources :users
     resources :user_contents
-    resources :user_pictures
     resources :temp_users
     resources :check_ins
     resources :analysis

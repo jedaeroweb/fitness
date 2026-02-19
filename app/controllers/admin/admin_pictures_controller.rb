@@ -28,6 +28,23 @@ class Admin::AdminPicturesController < Admin::AdminController
     end
   end
 
+  def create_b64
+    admin = Admin.find(params[:admin_id])
+
+    admin_picture = admin.admin_picture || admin.build_admin_picture
+    admin_picture.picture = params[:data_image]
+
+    if admin_picture.save
+      render turbo_stream: turbo_stream.replace(
+        "admin_profile_photo_#{admin.id}",
+        partial: "admin/admins/profile_photo",
+        locals: { admin: admin }
+      )
+    else
+      render json: { result: "error", message: "저장 실패" }
+    end
+  end
+
   def destroy
     @user_picture.destroy
     respond_to do |format|

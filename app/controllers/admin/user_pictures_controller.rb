@@ -24,6 +24,22 @@ class Admin::UserPicturesController < Admin::AdminController
     end
   end
 
+  def create_b64
+    user = User.find(params[:user_id])
+
+    user_picture = user.user_picture || user.build_user_picture
+    user_picture.picture = params[:data_image]
+
+    if user_picture.save
+      render turbo_stream: turbo_stream.replace(
+        "user_profile_photo_#{user.id}",
+        partial: "admin/users/profile_photo",
+        locals: { user: user }
+      )
+    else
+      render json: { result: "error", message: "저장 실패" }
+    end
+  end
 
 
   # GET /user_content s/1

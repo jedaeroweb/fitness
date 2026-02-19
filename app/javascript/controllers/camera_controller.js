@@ -11,36 +11,67 @@ export default class extends Controller {
     ]
 
     connect() {
-        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-            alert("카메라장치에 접근할 수 없습니다.")
-            window.close()
-            return
-        }
+        if (!this.hasVideoTarget || !this.hasCanvasTarget) return
 
-
-        this.context = this.canvasTarget.getContext("2d")
+        this.canvasContext = this.canvasTarget.getContext("2d")
         this.videoInterval = null
         this.imageData = null
 
+        const modal = this.element.closest(".modal")
+
+        if (modal) {
+            modal.addEventListener("hidden.bs.modal", () => {
+                this.stopCamera()
+            })
+        }
+
+        this.startCamera()
+    }
+
+    disconnect() {
+        this.stopCamera()
+    }
+
+    startCamera() {
+        if (!navigator.mediaDevices?.getUserMedia) {
+            alert("카메라장치에 접근할 수 없습니다.")
+            return
+        }
+
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => {
-                try {
-                    this.videoTarget.srcObject = stream
-                } catch (error) {
-                    this.videoTarget.src = URL.createObjectURL(stream)
-                }
+                this.videoTarget.srcObject = stream
 
                 this.videoTarget.onloadedmetadata = () => {
                     this.videoTarget.play()
-                    this.videoRun()   // 여기로 이동
+
+                    // video 크기에 맞게 canvas 조정
+                    this.canvasTarget.width = this.videoTarget.videoWidth
+                    this.canvasTarget.height = this.videoTarget.videoHeight
+
+                    this.videoRun()
                 }
             })
             .catch(err => alert(err))
     }
 
+    stopCamera = () => {
+        if (this.videoTarget?.srcObject) {
+            this.videoTarget.srcObject.getTracks().forEach(track => track.stop())
+            this.videoTarget.srcObject = null
+        }
+        clearInterval(this.videoInterval)
+    }
+
     drawVideo = () => {
-        if (!this.context) return
-        this.context.drawImage(this.videoTarget, 0, 0, 372, 372)
+        if (!this.canvasContext) return
+        this.canvasContext.drawImage(
+            this.videoTarget,
+            0,
+            0,
+            this.canvasTarget.width,
+            this.canvasTarget.height
+        )
     }
 
     videoRun() {
@@ -49,11 +80,12 @@ export default class extends Controller {
         this.disable(this.resumeButtonTarget)
 
         clearInterval(this.videoInterval)
-        this.videoInterval = setInterval(this.drawVideo.bind(this), 1000 / 30)
+        this.videoInterval = setInterval(this.drawVideo, 1000 / 30)
     }
 
     snap() {
         clearInterval(this.videoInterval)
+
         this.imageData = this.canvasTarget.toDataURL()
 
         this.disable(this.snapButtonTarget)
@@ -69,38 +101,50 @@ export default class extends Controller {
         const r_id = document.getElementById("v_id")?.value
         const v_type = document.getElementById("v_type")?.value
 
-        let r_url, delete_url
+        let r_url
+        let delete_url
+        let body
 
         switch (v_type) {
-            case "employees":
-                r_url = `/employee-pictures/update-photo/${r_id}`
-                delete_url = "/employee-pictures/delete"
+            case "employee":
+                r_url = `/admin/admin_pictures/create_b64`
+                delete_url = "/admin/admin_pictures/delete"
+                body= {
+                    admin_id: r_id,
+                    data_image: this.imageData,
+                    format: "json"
+                }
                 break
             default:
-                r_url = `/user-pictures/update-photo/${r_id}`
-                delete_url = "/user-pictures/delete"
+                r_url = `/admin/user_pictures/create_b64`
+                delete_url = "/admin/user_pictures/delete"
+                body= {
+                    user_id: r_id,
+                    data_image: this.imageData,
+                    format: "json"
+                }
         }
 
         fetch(r_url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Accept": "text/vnd.turbo-stream.html",
                 "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
             },
-            body: JSON.stringify({
-                data_image: this.imageData,
-                format: "json"
-            })
+            body: JSON.stringify(body)
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.result === "success") {
-                    if (window.opener) {
-                        window.opener.showPhoto(decodeURIComponent(data.photo))
-                        window.close()
-                    }
-                } else {
-                    alert(data.message)
+            .then(response => response.text())
+            .then(html => {
+                Turbo.renderStreamMessage(html)
+
+                this.stopCamera()
+
+                const modalEl = this.element.closest(".modal")
+                const closeBtn = modalEl.querySelector('[data-bs-dismiss="modal"]')
+
+                if (closeBtn) {
+                    closeBtn.click()
                 }
             })
     }
@@ -117,9 +161,5 @@ export default class extends Controller {
         el.disabled = true
         el.classList.remove("btn-primary")
         el.classList.add("btn-secondary")
-    }
-
-    disconnect() {
-        clearInterval(this.videoInterval)
     }
 }

@@ -33,7 +33,7 @@
           <% end %>
         </li>
         <li class="mb-2" data-controller="modal">
-          <%=link_to t(:photo_shoot),new_admin_admin_picture_path(admin_id: @admin, type: 'employees'),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup d-block', 'data-action'=>"click->modal#open"} %>
+          <%=link_to t(:photo_shoot),new_admin_admin_picture_path(employee_id: @admin, type: 'employee'),{:target => '_blank', :class => 'btn btn-sm btn-outline-secondary btn-block btn-popup d-block', 'data-action'=>"click->modal#open"} %>
         </li>
         <li class="mb-2" data-controller="photo-upload">
           <button

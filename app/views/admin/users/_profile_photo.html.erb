@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "user_profile_photo_#{user.id}" do %>
   <% if user.user_picture.present? %>
     <a href="<%= user.user_picture.picture.url %>" class="simple_image">
-      <%= image_tag user.user_picture.picture.medium_thumb.url,
+      <%= image_tag user.user_picture.picture.medium_thumb.url + "?v=#{user.user_picture.updated_at.to_i}",
                     width: "100%",
                     height: "100%",
                     id: "profile_photo" %>
