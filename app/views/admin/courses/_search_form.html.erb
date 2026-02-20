@@ -3,7 +3,6 @@
   <input type="hidden" name="search" value="1">
     <%
       search_params={search_detail:true}
-      @course_categories=CourseCategory.where(branch_id: current_user.branch_id).all
 
       aa_class='nav-link'
       if @course_category.present?

@@ -1,8 +1,11 @@
-<main id="home-setting">
+<main id="home">
   <nav>
     <ul class="row">
-      <li class="col-12 col-md-6 col-lg-4 col-xxl-3"><%=link_to '사용헬스클럽 설정하기',new_user_branch_path %></li>
-      <li class="col-12 col-md-6 col-lg-4 col-xxl-3"><%=link_to '미설정 사용하기',root_path %></li>
+      <li class="col-12 col-md-6 col-lg-4"><%=link_to trainers_path,{class: 'media p-3 rounded-3 h-100'}  do %>
+          <span class="material-icons"> accessibility_new</span>
+          <%=t(:trainer) %>
+        <% end %>
+
+      </li>
     </ul>
   </nav>
-</main>

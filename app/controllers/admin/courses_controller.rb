@@ -20,7 +20,7 @@ class Admin::CoursesController < Admin::AdminController
       end
     end
 
-    condition = { branch_id: session[:branch_id], enable: true  }
+    condition = { branch_id: session[:branch_id], enable: true }
 
     @course_category_count=CourseCategory.where(condition).count
     @course_categories=CourseCategory.where(condition)

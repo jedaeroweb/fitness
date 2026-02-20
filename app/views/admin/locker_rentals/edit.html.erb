@@ -3,9 +3,6 @@
     <h2 class="col-12"><%= t(:edit_locker_rental) %></h2>
   </div>
   <div class="row">
-    <%= render :partial => 'layouts/notice', :locals => { :errors => @locker_rental.errors, :notice => notice, :alert => alert } %>
-  </div>
-  <div class="row">
     <div class="col-12">
       <%= render 'form', locker_rental: @locker_rental %>
     </div>

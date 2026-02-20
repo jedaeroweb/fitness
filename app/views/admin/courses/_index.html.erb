@@ -10,9 +10,6 @@
 %>
 <div id="courses">
   <div class="row">
-    <%= render :partial => 'layouts/notice', :locals=>{:errors=>nil, :notice=>notice,:alert=>alert} %>
-  </div>
-  <div class="row">
     <% if session[:search_detail].present? %>
       <%=render '/admin/courses/search_form_detail' %>
     <%  else %>

@@ -1,36 +1,34 @@
 <main id="home">
-  <nav>
-    <ul class="row">
-      <li class="col-12 col-md-6 col-lg-4"><%=link_to trainers_path,{class: 'media p-3 rounded-3 h-100'}  do %>
-          <span class="material-icons"> accessibility_new</span>
-          <%=t(:trainer) %>
-        <% end %>
-
-          </li>
-      <li class="col-12 col-md-6 col-lg-4"><%=link_to attendances_path,{class: 'media p-3 rounded-3 h-100'} do %>
-          <span class="material-icons">today</span>
-          <%=t(:attendance) %>
-          <% end %>
-          </li>
-      <li class="col-12 col-md-6 col-lg-4"><%=link_to exercises_path,{class: 'media p-3 rounded-3 h-100'}  do %>
-          <span class="material-icons">fitness_center</span><%=t(:exercise) %>
-        <% end %>
-      </li>
-      <li class="col-12 col-md-6 col-lg-4"><%=link_to new_user_weight_path,{class: 'media p-3 rounded-3 h-100'}  do %>
-        <span class="material-icons">monitor_weight</span>
-          <%=t(:weight) %>
-        <% end %>
-      </li>
-      <li class="col-12 col-md-6 col-lg-4"><%=link_to messages_path,{class: 'media p-3 rounded-3 h-100'}  do %>
-          <span class="material-icons">chat</span>
-          <%=t(:message) %>
-        <% end %>
-      </li>
-      <li class="col-12 col-md-6 col-lg-4"><%=link_to pts_path,{class: 'media p-3 rounded-3 h-100'}  do %>
-        <span class="material-icons">supervisor_account</span>
-        <%=t(:pt) %>
-        <% end %>
-      </li>
-    </ul>
-  </nav>
+  <section class="row">
+    <div class="col-12 col-xl-4">
+    <article class="card">
+      <h3 class="card-header">무료 사용</h3>
+      <ul class="card-body">
+        <li>기본기능</li>
+        <li>무료</li>
+        <li>회원 1000명까지 지원</li>
+      </ul>
+    </article>
+    </div>
+    <div class="col-12 col-xl-4">
+      <article class="card">
+      <h3 class="card-header">Special</h3>
+        <ul class="card-body">
+        <li>기본기능+지점기능+그룹기능+검색</li>
+        <li>월 3만원</li>
+        <li>회원 3000명까지 지원</li>
+      </ul>
+    </article>
+    </div>
+    <div class="col-12 col-xl-4">
+      <article class="card">
+      <h3 class="card-header">Premium</h3>
+      <ul class="card-body">
+        <li>기본기능+지점기능+그룹기능+검색</li>
+        <li>월 5만원</li>
+        <li>회원 무제한</li>
+      </ul>
+    </article>
+    </div>
+  </section>
 </main>

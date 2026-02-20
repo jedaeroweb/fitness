@@ -1,12 +1,14 @@
 <article class="card">
   <div class="card-header">
-    <h3><%=t(:admin_info) %></h3>
+    <h3 class="float-start"><%=t(:admin_info) %></h3>
+    <div class="float-end">
     <%= link_to edit_admin_admin_path(@admin), class: 'more2' do %>
       <i class="material-icons">edit</i>
     <% end %>
     <%= link_to admin_admin_path(@admin), class: 'more' do %>
       <i class="material-icons">delete</i>
     <% end %>
+    </div>
   </div>
   <div class="card-body">
       <div class="row">

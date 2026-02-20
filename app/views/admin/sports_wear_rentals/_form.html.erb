@@ -1,19 +1,45 @@
-<%= form_with(model: [:admin, sports_wear_rental], local: true) do |form| %>
-  <div class="card">
-    <div class="card-body">
-      <div class="form-group">
-        <%= form.label :title %>
-        <%= form.text_field :title, :class => 'form-control', :required => 'required' %>
-      </div>
-      <%= form.fields_for :order_content do |c| %>
-        <div class="form-group">
-          <%= c.label :content %>
-          <%= c.text_area :content, :id => "sl_content", :class => 'form-control' %>
+<div class="col-12 col-xl-9">
+  <%= form_with(model: [:admin, sports_wear_rental], local: true) do |form| %>
+    <article class="row">
+      <h3 class="col-12"><%= t(:sports_weear_rental) %></h3>
+      <div class="col-12">
+        <div class="card course_info">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="col-12 form-group">
+                <%= form.fields_for :orders_products do |op| %>
+                  <%= op.label :product_id %>
+                  <%= op.select :product_id, options_from_collection_for_select(SportsWear.joins(:product).select('products.*,sports_wears.*').where(:enable => true).all, 'product_id', 'title'),{:include_blank => t('select_facility')}, { :class => "form-control" } %>
+                <% end  %>
+              </div>
+            </div>
+          </div>
         </div>
-      <% end %>
+      </div>
+    </article>
+    <div class="row mt-3">
+      <article class="col-12 col-xl-6 col-xxl-5">
+        <h3><%= t(:sports_weear_rental) %></h3>
+        <div class="card">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="col-12 form-group">
+                <%= form.label :start_date %>
+                <%= form.date_field :start_date, :class => "form-control" %>
+              </div>
+              <div class="col-12 form-group">
+                <%= form.label :end_date %>
+                <%= form.date_field :end_date, :class => "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <%= render :partial => 'layouts/form_account',locals: {f: form}  %>
     </div>
-  </div>
-  <div class="form-submit mt-3">
-    <%= form.submit :class => "btn btn-primary btn-block btn-lg" %>
-  </div>
-<% end %>
+    <%= render :partial => 'admin/order_contents/form_content', locals: {f: form} %>
+    <div class="form-submit mt-3">
+      <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+    </div>
+  <% end %>
+</div>
