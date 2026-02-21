@@ -26,6 +26,8 @@ ko:
 
   search_order: "주문 내역"
   search_user: "사용자 검색"
+  search_field: '검색항목'
+  search_word: '검색어'
   select_user: "사용자 선택"
   select_group: '그룹 선택'
   select_course: '과목 선택'
@@ -60,6 +62,7 @@ ko:
   payment_method: '결제방법'
   total: '합계'
   amount: '합계액'
+  new_content: '내용작성'
   show_content: '내용보기'
   close: '닫기'
 
@@ -137,9 +140,11 @@ ko:
   there_are_n_groups: "그룹이 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_users: "사용자가 <strong class=\"mark\">%{count}명</strong> 있습니다"
   there_are_n_admins: "관리자가 <strong class=\"mark\">%{count}명</strong> 있습니다"
-  there_are_n_facilities: "락커가 <strong class=\"mark\">%{count}개</strong> 있습니다"
+  there_are_n_lockers: "락커가 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_enrolls: "수강이 <strong class=\"mark\">%{count}개</strong> 있습니다"
-  there_are_n_rents: "대여가 <strong class=\"mark\">%{count}개</strong> 있습니다"
+  there_are_n_sports_wears: "운동복이 <strong class=\"mark\">%{count}개</strong> 있습니다"
+  there_are_n_locker_rentals: "락커대여가 <strong class=\"mark\">%{count}개</strong> 있습니다"
+  there_are_n_sports_wear_rentals: "운동복대여가 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_messages: "메세지가 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_prepared_messages: "준비된 메세지가 <strong class=\"mark\">%{count}개</strong> 있습니다"
   there_are_n_course_categories: "과목분류가 <strong class=\"mark\">%{count}개</strong> 있습니다"
@@ -158,7 +163,9 @@ ko:
   facility_list: '락커 목록'
   course_list: '과목 목록'
   enroll_list: '수강 목록'
-  rent_list: '대여 목록'
+  sports_wear_list: '운동복 목록'
+  locker_rental_list: '락커 대여 목록'
+  sports_wear_rental_list: '운동복 대여 목록'
   message_list: '메세지 목록'
   prepared_message_list: '준비된 메세지 목록'
   notice_list: '공지사항 목록'

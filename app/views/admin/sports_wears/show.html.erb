@@ -12,7 +12,7 @@
     </div>
     <div class="col-12 col-xl-6 text-end">
       <%= link_to t(:edit), edit_admin_sports_wear_path(@sports_wear), class: 'btn btn-secondary' %>
-      <%= link_to t(:delete), admin_sports_wear_path(@sports_wear), class: 'btn btn-danger' %>
+      <%= link_to t(:delete), admin_sports_wear_path(@sports_wear), data: { turbo_method: :delete, turbo_confirm: t(:delete_cascade_confirm) }, class: 'btn btn-danger' %>
     </div>
   </div>
 </section>

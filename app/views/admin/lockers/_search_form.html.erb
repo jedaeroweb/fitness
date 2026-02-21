@@ -1,0 +1,62 @@
+<div class="col-12">
+<%=form_tag admin_courses_path,{method:'get'} do %>
+  <input type="hidden" name="search" value="1">
+    <%
+      search_params={search_detail:true}
+
+      aa_class='nav-link'
+      if @locker_category.present?
+        search_params[:category]=@locker_category
+      else
+        aa_class+=' active'
+      end
+      %>
+    <select name="category" class="form-control mobile-sub-menu d-block d-lg-none"<% if params[:search_form_show].present? %> style="display:block !important;"<% end %>>
+      <option><%=t(:all) %></option>
+      <% unless @locker_categories.empty? %>
+        <% @locker_categories.each do |locker_category|
+          a_class=''
+
+          if @locker_category.present?
+            if @locker_category.id==locker_category.id
+              a_class=' selected'
+            end
+          end
+
+          if @locker_categories.length.zero?
+            a_class=' disabled'
+          end
+        %>
+          <option value="<%=url_for(:category=>locker_category) %>"<%=a_class %>><%= locker_category.title %></option>
+        <% end %>
+      <% end %>
+    </select>
+    <nav class="sub_nav d-none d-lg-block">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><%=link_to t(:all),admin_lockers_path,class: aa_class %></li>
+        <% @locker_categories.each do |locker_category|
+          a_class='nav-link'
+
+          if @locker_category.present?
+            if @locker_category.id==locker_category.id
+              a_class+=' active'
+            end
+          end
+
+          if @locker_categories.length.zero?
+            a_class+=' disabled'
+          end
+
+        %>
+          <li class="nav-item">
+            <%=link_to url_for(category: locker_category),{:class=>a_class} do %>
+              <%=locker_category.title %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  <%=link_to admin_lockers_path(search_params),id: "search-detail" do %><span class="material-icons">search</span><%=t(:search) %><% end  %>
+  <!-- <%=submit_tag t(:search),class: 'btn btn-primary btn-block btn-search' %> -->
+  <% end %>
+</div>

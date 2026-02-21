@@ -13463,7 +13463,7 @@ mark, rp, rt, ruby, summary, time {
 
 .kakao-b-icon {
   text-indent: -9999px;
-  background-image: url("btn_kakao.png");
+  background-image: url("../images/btn_kakao.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-color: #fee500;
@@ -13472,14 +13472,14 @@ mark, rp, rt, ruby, summary, time {
 .naver-b-icon {
   margin-left: 15px;
   text-indent: -9999px;
-  background-image: url("btn_naver.png");
+  background-image: url("../images/btn_naver.png");
   background-position: center center;
 }
 
 .apple-b-icon {
   text-indent: -9999px;
   margin-left: 15px;
-  background-image: url("btn_apple.png");
+  background-image: url("../images/btn_apple.png");
   background-position: center center;
   background-color: #000;
   background-repeat: no-repeat;
@@ -13490,7 +13490,7 @@ mark, rp, rt, ruby, summary, time {
   text-indent: -9999px;
   margin-left: 15px;
   background-color: #fff;
-  background-image: url("btn_google.png");
+  background-image: url("../images/btn_google.png");
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -13500,7 +13500,7 @@ mark, rp, rt, ruby, summary, time {
   text-indent: -9999px;
   margin-left: 15px;
   background-color: #fff;
-  background-image: url("btn_facebook.png");
+  background-image: url("../images/btn_facebook.png");
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -13510,7 +13510,7 @@ mark, rp, rt, ruby, summary, time {
   text-indent: -9999px;
   margin-left: 15px;
   background-color: #fff;
-  background-image: url("btn_twitter.png");
+  background-image: url("../images/btn_twitter.png");
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -13518,7 +13518,7 @@ mark, rp, rt, ruby, summary, time {
 .github-b-icon {
   margin-left: 15px;
   text-indent: -9999px;
-  background-image: url("btn_github.png");
+  background-image: url("../images/btn_github.png");
   background-position: center center;
   background-color: #fff;
 }

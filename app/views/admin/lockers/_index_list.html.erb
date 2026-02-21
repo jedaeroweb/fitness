@@ -7,8 +7,8 @@
           <col>
           <col>
           <col style="width:150px">
-          <% if can?(:update, Course) or can?(:delete, Course) %>
-            <col<%= manage_width(Course) %>>
+          <% if can?(:update, Locker) or can?(:delete, Locker) %>
+            <col<%= manage_width(Locker) %>>
           <% end %>
         </colgroup>
         <thead class="thead-default">
@@ -21,28 +21,28 @@
         </tr>
         </thead>
         <tbody data-controller="modal">
-        <% unless @courses.empty? %>
-          <% @courses.each_with_index do |course, index| %>
+        <% unless @lockers.empty? %>
+          <% @lockers.each_with_index do |locker, index| %>
             <tr>
-              <td><%= course.order_no %></td>
-              <td><%= link_to course.product.title, admin_course_path(course, category: params[:category]) %></td>
-              <td class="text-end"><%=number_to_currency course.product.price %></td>
+              <td><%= locker.order_no %></td>
+              <td><%= link_to locker.product.title, admin_locker_path(locker, category: params[:category]) %></td>
+              <td class="text-end"><%=number_to_currency locker.product.price %></td>
               <td class="text-center">
-                <% if course.product.product_content.present? %>
-                  <%= link_to t(:show_content), admin_product_content_path(course.product.product_content), { class: 'btn btn-secondary', 'data-action'=>"click->modal#open" } %>
+                <% if locker.product.product_content.present? %>
+                  <%= link_to t(:show_content), admin_product_content_path(locker.product.product_content), { class: 'btn btn-secondary', 'data-action'=>"click->modal#open"  } %>
                 <% else %>
-                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: course.product), { class: 'btn btn-secondary', 'data-action'=>"click->modal#open" } %>
+                  <%= link_to t(:new_content), new_admin_product_content_path(product_id: locker.product), { class: 'btn btn-secondary', 'data-action'=>"click->modal#open"  } %>
                 <% end %>
               </td>
-              <% if can?(:update, course) or can?(:delete, course) %>
+              <% if can?(:update, locker) or can?(:delete, locker) %>
                 <td class="text-center">
-                  <% if can? :update, course %>
-                    <%= link_to edit_admin_course_path(course), :class => "btn btn-secondary" do %>
+                  <% if can? :update, locker %>
+                    <%= link_to edit_admin_locker_path(locker), :class => "btn btn-secondary" do %>
                       <%= t(:edit) %>
                     <% end %>
                   <% end %>
-                  <% if can? :delete, course %>
-                    <%= link_to admin_course_path(course), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
+                  <% if can? :delete, locker %>
+                    <%= link_to admin_locker_path(locker), :method => :delete, :data => { :confirm => t(:delete_cascade_confirm) }, :class => "btn btn-danger" do %>
                       <%= t(:delete) %>
                     <% end %>
                   <% end %>
@@ -58,11 +58,11 @@
         </tbody>
       </table>
       <div id="sl_bottom_menu">
-        <%= paginate @courses %>
+        <%= paginate @lockers %>
       </div>
     </div>
   </div>
   <div class="col-12">
-    <%=link_to t(:new_course),new_admin_course_path(category: params[:category]),class: 'btn btn-primary btn-large' %>
+    <%=link_to t(:new_locker),new_admin_locker_path(category: params[:category]),class: 'btn btn-primary btn-large' %>
   </div>
 </div>

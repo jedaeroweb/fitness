@@ -1,7 +1,7 @@
-<%= form_with(model: [:admin, locker], local: true) do |form| %>
+<%= form_with(model: [:admin, locker]) do |form| %>
   <% if locker.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
       <h2><%= pluralize(locker.errors.count, "개의 문제") %>로 진행할 수 없습니다.</h2>
       <ul>
         <% locker.errors.full_messages.each do |msg| %>
@@ -12,65 +12,45 @@
       </ul>
     </div>
   <% end %>
-  <%
-    product_category_id = nil
-    if locker.product.present?
-      product_category_id = locker.product.product_category_id
-    end
-  %>
-
-  <% unless ProductCategory.where(:branch_id => current_user.branch_id, :enable => true).count.zero? %>
+  <% unless LockerCategory.where(:branch_id => current_user.branch_id, :enable => true).count.zero? %>
     <div class="card">
       <div class="card-body">
         <div class="row">
           <div class="col-12">
             <%= form.fields_for :product do |p| %>
               <%= p.label :product_category_id %>
-              <%= p.select :product_category_id, options_from_collection_for_select(LockerType.where(:branch_id => current_user.branch_id, :enable => true), 'id', 'title', nil), { :include_blank => t(:select_facility_category) }, { :class => "form-control" } %>
+              <%  selected_category =
+                    p.object.product_category_id.presence ||
+                    params[:category].presence %>
+              <%= p.select :product_category_id, options_from_collection_for_select(LockerCategory.where(:branch_id => session[:branch_id], :enable => true), 'id', 'title', selected_category), { :include_blank => t(:select_course_category) }, { :class => "form-control" } %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
-  <div class="card">
+  <div class="card mt-3">
     <div class="card-body">
-      <div class="form-row">
+      <div class="row">
         <%= form.fields_for :product do |p| %>
           <div class="col-12 col-lg-6 form-group">
-            <%= p.label :title %>
-            <%= p.text_field :title, :class => "form-control", :required => "required" %>
+            <div class="form-group">
+              <%= p.label :title %>
+              <%= p.text_field :title, :class => "form-control", :required => "required" %>
+            </div>
           </div>
           <div class="col-12 col-lg-6 form-group">
             <%= p.label :price %>
             <%= p.number_field :price, :class => "form-control" %>
           </div>
         <% end %>
-        <div class="col-12 col-lg-6 form-group">
-          <%= form.label :use_not_set %>
-          <%= form.text_field :use_not_set, :class => "form-control" %>
-        </div>
-        <div class="col-12 col-lg-6 form-group">
-          <%= form.label :gender %>
-          <%= form.text_field :gender, :class => "form-control" %>
-        </div>
-        <div class="col-12 col-lg-6 form-group">
-          <%= form.label :order_no %>
-          <%= form.number_field :order_no, :class => "form-control" %>
-        </div>
-        <div class="col-12 col-lg-6 form-group">
-          <%= form.label :start_no %>
-          <%= form.number_field :start_no, :class => "form-control" %>
-        </div>
-        <div class="col-12 col-lg-6 form-group">
-          <%= form.label :quantity %>
-          <%= form.number_field :quantity, :class => "form-control" %>
-        </div>
       </div>
     </div>
   </div>
   <%= form.fields_for :product do |p| %>
     <%= render :partial => 'admin/product_contents/form_content', locals: { f: p } %>
   <% end %>
+  <div class="form-submit mt-3">
   <%= form.submit :class => 'btn btn-primary btn-block btn-lg' %>
+  </div>
 <% end %>

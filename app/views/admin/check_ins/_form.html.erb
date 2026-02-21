@@ -1,7 +1,7 @@
-<%= form_with(model: [:admin, check_in], local: true) do |form| %>
+<%= form_with(model: [:admin, check_in]) do |form| %>
   <div class="card">
     <div class="card-body">
-      <div class="form-row">
+      <div class="row">
         <div class="col-12 col-lg-6 form-group">
           <%= form.label :use_not_set %>
           <%= form.text_field :use_not_set, :class => "form-control" %>

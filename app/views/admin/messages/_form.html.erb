@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, message], local: true) do |form| %>
+<%= form_with(model: [:admin, message]) do |form| %>
   <div class="card">
     <div class="card-body">
       <div class="row">
@@ -20,12 +20,12 @@
   </div>
   <div class="card mt-3">
     <div class="card-body">
-      <div class="form-row">
+      <div class="row">
         <div class="col-12 form-group">
           <label for="m_users"><%= t(:user_id, scope: [:activerecord, :attributes, :message_receiver]) %>
             <%= link_to admin_user_select_path, t(:select_user), style: 'display:none' %>
           </label>
-          <div class="form-row">
+          <div class="row">
             <div class="col-12">
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
@@ -95,9 +95,9 @@
               <% end %>
             <% end %>
           </div>
-          <div style="margin-top:10px"  data-controller="modal">
-            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type,'popup': true), { 'id' => 'user_select', :class => 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open" } %>&nbsp;&nbsp;
-            <%= link_to t(:select_temp_user), admin_temp_user_select_path(:type => @message_type), { 'id' => 'temp_user_select', :class => 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open" } %>
+          <div style="margin-top:10px" data-controller="modal">
+            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type,'popup': true), { 'id' => 'user_select', :class => 'btn btn-secondary', 'data-action'=>"click->modal#open" } %>&nbsp;&nbsp;
+            <%= link_to t(:select_temp_user), admin_temp_user_select_path(:type => @message_type), { 'id' => 'temp_user_select', :class => 'btn btn-secondary', 'data-action'=>"click->modal#open" } %>
           </div>
         </div>
 

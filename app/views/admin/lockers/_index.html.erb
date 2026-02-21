@@ -1,19 +1,19 @@
 <%
   render_templete='index_default'
 
-  if session[:course_list_type].present?
-    if session[:course_list_type]=='list'
+  if session[:locker_list_type].present?
+    if session[:locker_list_type]=='list'
       render_templete='index_list'
     end
   end
 
 %>
-<div id="courses">
+<div id="lockers">
   <div class="row">
     <% if session[:search_detail].present? %>
-      <%=render '/admin/courses/search_form_detail' %>
+      <%=render '/admin/lockers/search_form_detail' %>
     <%  else %>
-      <%=render '/admin/courses/search_form' %>
+      <%=render '/admin/lockers/search_form' %>
     <% end %>
     <div class="col-12">
       <ul class="type-selector float-end">
@@ -25,8 +25,8 @@
       <h2 class="float-start hidden-title"><%= t(:course,scope: [:activerecord,:models]) %></h2>
       <div class="float-end">
         <p class="summary text-end">
-          <span id="list_count" style="display:none"><%= @course_count %></span>
-          <%= raw t(:there_are_n_courses, count: @course_count) %>
+          <span id="list_count" style="display:none"><%= @locker_count %></span>
+          <%= raw t(:there_are_n_lockers, count: @locker_count) %>
         </p>
       </div>
     </div>

@@ -1,18 +1,15 @@
 class Users::SessionsController < Devise::SessionsController
-    def create
-        super
+  def create
+    self.resource = warden.authenticate(auth_options)
 
-        #require 'ipaddr'
-        #UserLoginLog.create!(admin_id: current_user.id, client_ip: IPAddr.new(request.remote_ip).to_i)
-
-        branch_id=current_user.branch_id
-        session[:branch_id]=branch_id
-
-        unless current_user.user_admins_count.zero?
-            user=User.find(current_user.id)
-            session[:admin_id] = user.admin.id
-        end
+    if resource && resource.admin.present?
+      sign_in(resource_name, resource)
+      session[:admin_id] = resource.admin.id
+    else
+      sign_out(resource)
+      redirect_to new_user_session_path, alert: "관리자 권한이 없습니다"
     end
+  end
 
     def after_sign_out_path_for(_resource_or_scope)
         if Rails.application.config.i18n.default_locale == I18n.locale

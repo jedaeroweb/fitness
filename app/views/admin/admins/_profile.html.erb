@@ -43,7 +43,7 @@
             <%= t(:select_photo) %>
           </button>
 
-          <%= form_with(model: [:admin,AdminPicture.new], local: true,
+          <%= form_with(model: [:admin,AdminPicture.new],
                         html: {style: 'display:none', multipart: true}) do |form| %>
 
             <%= form.hidden_field :admin_id, value: @admin.id %>

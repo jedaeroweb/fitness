@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, course], local: true) do |form| %>
+<%= form_with(model: [:admin, course]) do |form| %>
   <% if course.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -19,7 +19,10 @@
           <div class="col-12">
             <%= form.fields_for :product do |p| %>
               <%= p.label :product_category_id %>
-              <%= p.select :product_category_id, options_from_collection_for_select(CourseCategory.where(:branch_id => session[:branch_id], :enable => true), 'id', 'title', nil), { :include_blank => t(:select_course_category) }, { :class => "form-control" } %>
+              <%  selected_category =
+                    p.object.product_category_id.presence ||
+                    params[:category].presence %>
+              <%= p.select :product_category_id, options_from_collection_for_select(CourseCategory.where(:branch_id => session[:branch_id], :enable => true), 'id', 'title', selected_category), { :include_blank => t(:select_course_category) }, { :class => "form-control" } %>
             <% end %>
           </div>
         </div>
@@ -28,7 +31,7 @@
   <% end %>
   <div class="card mt-3">
     <div class="card-body">
-      <div class="form-row">
+      <div class="row">
         <%= form.fields_for :product do |p| %>
           <div class="col-12 col-lg-6 form-group">
             <div class="form-group">

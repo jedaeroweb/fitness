@@ -1,0 +1,17 @@
+<section class="row">
+  <% unless @locker_count.zero? %>
+    <% @lockers.each do |locker| %>
+      <%=render 'index_media',locker: locker %>
+    <% end %>
+    <div class="col-12">
+      <%= paginate @lockers %>
+    </div>
+  <% else %>
+    <div class="locker col-12">
+      <%= t(:no_data) %>
+    </div>
+  <% end %>
+  <div class="col-12">
+    <%=link_to t(:new_locker),new_admin_locker_path(category: params[:category]),class: 'btn btn-primary btn-large' %>
+  </div>
+</section>

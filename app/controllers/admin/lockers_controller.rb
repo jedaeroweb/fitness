@@ -4,12 +4,47 @@ class Admin::LockersController < Admin::ProductsController
   # GET /lockers
   # GET /lockers.json
   def index
-    params[:per_page] = 10 unless params[:per_page].present?
+    if params[:search_detail].present?
+      session[:search_detail]=1
+    else
+      if params[:search_summary].present?
+        session.delete(:search_detail)
+      end
+    end
 
-    condition = { products: { branch_id: session[:branch_id], enable: true } }
+    if params[:list_type].present?
+      if params[:list_type]=='list'
+        session[:locker_list_type]='list'
+      else
+        session[:locker_list_type]='module'
+      end
+    end
+
+    condition = { branch_id: session[:branch_id], enable: true }
+
+    @locker_category_count=LockerCategory.where(condition).count
+    @locker_categories=LockerCategory.where(condition)
+
+    params[:per_page] = 12 unless params[:per_page].present?
+
+    if params[:category]
+      @locker_category = LockerCategory.find(params[:category])
+    end
+
+    condition = { :products => { branch_id: session[:branch_id], enable: true } }
+
+    if @locker_category.present?
+      condition['products.product_category_id'] = @locker_category.id
+    end
 
     @locker_count = Locker.joins(:product).where(condition).count
     @lockers = Locker.joins(:product).where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
+
+
+    respond_to do |format|
+      format.html # _slide.html.erb
+      format.json { render json: @lockers }
+    end
   end
 
   # GET /lockers/1
@@ -80,11 +115,11 @@ class Admin::LockersController < Admin::ProductsController
 
   # Only allow a list of trusted parameters through.
   def locker_params
-    params.require(:locker).permit(
+    params.require(:locker).permit(:id,
       :type, :order_no, :quantity, :start_no, :gender, :use_not_set,
-      product_attributes: [
+      product_attributes: [:id,
         :product_category_id, :title, :price,
-        { product_content_attributes: [:content] }
+        { product_content_attributes: [:id,:content] }
       ]
     )
   end

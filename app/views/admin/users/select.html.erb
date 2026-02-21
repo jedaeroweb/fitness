@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-12">
   <% end %>
-<%= form_with(url: 'admin/users/select', local: true, html: { id: 'user-select-search' }) do |form| %>
+<%= form_with(url: 'admin/users/select', html: { id: 'user-select-search' }) do |form| %>
   <%= hidden_field_tag :message_type, params[:message_type] %>
   <div class="card">
     <div class="card-header">
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="card-body">
-      <div class="form-row">
+      <div class="row">
         <div class="form-group col-4">
           <label for="s_search_field"><%= t(:search_field) %></label>
           <%= select_tag :search_field, options_for_select([[t(:name), 'name'], [t(:phone), 'phone']], params[:search_field]), { :class => 'form-control', 'id' => 'su-search-field', :required => 'required' } %>

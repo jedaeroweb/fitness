@@ -69,7 +69,7 @@ class Admin::CoursesController < Admin::AdminController
     cc = course_params
     cc[:product_attributes].merge!({ branch_id: session[:branch_id] })
 
-    @course = Course.create!(cc)
+    @course = Course.new(cc)
 
     respond_to do |format|
       if @course.save
@@ -101,7 +101,7 @@ class Admin::CoursesController < Admin::AdminController
   def destroy
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'course was successfully destroyed.' }
+      format.html { redirect_to admin_courses_url, notice: 'course was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -115,6 +115,6 @@ class Admin::CoursesController < Admin::AdminController
 
   # Only allow a list of trusted parameters through.
   def course_params
-    params.require(:course).permit(:order_no, :default_quantity, product_attributes: [:product_category_id, :title, :price, product_content_attributes: [:content]])
+    params.require(:course).permit(:id, :order_no, :default_quantity, product_attributes: [:id, :product_category_id, :title, :price, product_content_attributes: [:id, :content]])
   end
 end

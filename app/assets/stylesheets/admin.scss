@@ -166,6 +166,13 @@ header nav ul li ul {position:absolute;display:none}
 header nav ul li ul li a {float:none; display:block;}
 
 
+
+.type-selector {text-align: right;list-style: none}
+.type-selector li {display:inline-block}
+.type-selector li a span {font-size:30px}
+
+
+
 /* footer */
 footer {clear:both;margin:0;text-align:left;background-color: #f1f1f1}
 footer ul {margin-bottom:0; padding:1rem;list-style: none}

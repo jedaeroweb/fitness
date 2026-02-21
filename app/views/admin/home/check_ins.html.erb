@@ -62,7 +62,7 @@
                     <%=t(:new_entrance) %>
                   </div>
                   <div class="card-body">
-                    <%= form_with(model: [:admin, @check_in], local: true) do |form| %>
+                    <%= form_with(model: [:admin, @check_in]) do |form| %>
                       <%= hidden_field_tag :redirect_to, request.fullpath %>
                     <div class="form-group">
                       <div class="input-group">

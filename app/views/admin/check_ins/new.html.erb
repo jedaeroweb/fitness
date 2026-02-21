@@ -3,9 +3,6 @@
     <h2 class="col-12"><%= t(:new_entrance) %></h2>
   </div>
   <div class="row">
-    <%= render :partial => 'layouts/notice', :locals => { :errors => @check_in.errors, :notice => notice, :alert => alert } %>
-  </div>
-  <div class="row">
     <div class="col-12">
       <%= render 'form', check_in: @check_in %>
     </div>

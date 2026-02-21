@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, @user_content], local: true) do |form| %>
+<%= form_with(model: [:admin, @user_content]) do |form| %>
   <% if params[:popup].present? %>
     <div class="modal-header">
       <h2 class="modal-title"><%= t(:show_user_content) %></h2>

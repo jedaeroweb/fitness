@@ -1,11 +1,11 @@
 <div class="col-12 col-xl-9">
-  <%= form_with(model: [:admin, sports_wear_rental], local: true) do |form| %>
+  <%= form_with(model: [:admin, sports_wear_rental]) do |form| %>
     <article class="row">
       <h3 class="col-12"><%= t(:sports_weear_rental) %></h3>
       <div class="col-12">
         <div class="card course_info">
           <div class="card-body">
-            <div class="form-row">
+            <div class="row">
               <div class="col-12 form-group">
                 <%= form.fields_for :orders_products do |op| %>
                   <%= op.label :product_id %>
@@ -22,7 +22,7 @@
         <h3><%= t(:sports_weear_rental) %></h3>
         <div class="card">
           <div class="card-body">
-            <div class="form-row">
+            <div class="row">
               <div class="col-12 form-group">
                 <%= form.label :start_date %>
                 <%= form.date_field :start_date, :class => "form-control" %>

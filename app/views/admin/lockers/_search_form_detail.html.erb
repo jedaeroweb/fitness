@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12" style="margin-bottom:20px">
       <h3 class="float-start">상세검색</h3>
-      <%=form_tag admin_courses_path,:method => 'get', :class=>"float-right" do %>
+      <%=form_tag admin_lockers_path,:method => 'get', :class=>"float-right" do %>
         <input type="hidden" name="search_summary" value="1">
         <% if @course.present? %>
           <input type="hidden" name="product" value="<%=@course.id %>">
@@ -17,7 +17,7 @@
       <% end %>
         </div>
       </div>
-      <%=form_tag admin_courses_path,{method:'get', class: 'search_form_show'} do %>
+      <%=form_tag admin_lockers_path,{method:'get', class: 'search_form_show'} do %>
         <input type="hidden" name="search" value="1">
         <div class="row">
         </div>

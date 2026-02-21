@@ -1,8 +1,8 @@
 class Admin::LockerTypesController < Admin::AdminController
   before_action :set_locker_type, only: [:show, :edit, :update, :destroy]
 
-  # GET /locker_types
-  # GET /locker_types.json
+  # GET /locker_categories
+  # GET /locker_categories.json
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
@@ -12,22 +12,22 @@ class Admin::LockerTypesController < Admin::AdminController
     @locker_types = LockerType.where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
   end
 
-  # GET /locker_types/1
-  # GET /locker_types/1.json
+  # GET /locker_categories/1
+  # GET /locker_categories/1.json
   def show
   end
 
-  # GET /locker_types/new
+  # GET /locker_categories/new
   def new
     @locker_type = LockerType.new
   end
 
-  # GET /locker_types/1/edit
+  # GET /locker_categories/1/edit
   def edit
   end
 
-  # POST /locker_types
-  # POST /locker_types.json
+  # POST /locker_categories
+  # POST /locker_categories.json
   def create
     @locker_type = LockerType.new(locker_type_params)
 
@@ -42,8 +42,8 @@ class Admin::LockerTypesController < Admin::AdminController
     end
   end
 
-  # PATCH/PUT /locker_types/1
-  # PATCH/PUT /locker_types/1.json
+  # PATCH/PUT /locker_categories/1
+  # PATCH/PUT /locker_categories/1.json
   def update
     respond_to do |format|
       if @locker_type.update(locker_type_params)
@@ -56,8 +56,8 @@ class Admin::LockerTypesController < Admin::AdminController
     end
   end
 
-  # DELETE /locker_types/1
-  # DELETE /locker_types/1.json
+  # DELETE /locker_categories/1
+  # DELETE /locker_categories/1.json
   def destroy
     @locker_type.destroy
     respond_to do |format|
