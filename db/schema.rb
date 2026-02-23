@@ -98,11 +98,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_30_084307) do
     t.float "commission_rate", default: 0.0, null: false
     t.date "registration_date", null: false
     t.boolean "enable", default: true, null: false
-    t.integer "sign_in_count", default: 0
-    t.datetime "current_sign_in_at", precision: nil
-    t.datetime "last_sign_in_at", precision: nil
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["branch_id"], name: "index_admins_on_branch_id"
@@ -149,6 +144,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_30_084307) do
     t.integer "company_id", null: false
     t.string "title", limit: 60, null: false
     t.integer "sample", default: 0, null: false
+    t.integer "point", default: 0, null: false
     t.integer "admins_count", default: 0, null: false
     t.integer "users_count", default: 0, null: false
     t.integer "product_categories_count", default: 0, null: false
@@ -483,23 +479,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_30_084307) do
   end
 
   create_table "point_logs", force: :cascade do |t|
-    t.integer "point_id", null: false
+    t.integer "branch_id", null: false
     t.integer "charge", default: 0, null: false
     t.string "refund", default: "0", null: false
     t.boolean "enable", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["point_id"], name: "index_point_logs_on_point_id"
-  end
-
-  create_table "points", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "point", default: 0, null: false
-    t.integer "point_logs_count", default: 0, null: false
-    t.boolean "enable", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_points_on_user_id"
+    t.index ["branch_id"], name: "index_point_logs_on_branch_id"
   end
 
   create_table "prepared_message_contents", force: :cascade do |t|
@@ -688,7 +674,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_30_084307) do
   create_table "users", force: :cascade do |t|
     t.integer "branch_id", null: false
     t.string "name", limit: 60, null: false
-    t.string "encrypted_password", limit: 60, null: false
+    t.string "encrypted_password", limit: 60
     t.string "email", limit: 60
     t.string "phone", limit: 20
     t.date "birthday"

@@ -3,7 +3,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       t.references :branch, null: false
       t.string :name, null: false, limit: 60
-      t.string :encrypted_password, null: false, limit: 60
+      t.string :encrypted_password, limit: 60
       t.string :email, limit: 60
       t.string :phone, limit: 20
       t.date :birthday

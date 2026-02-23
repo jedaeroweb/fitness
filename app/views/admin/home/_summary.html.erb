@@ -4,7 +4,7 @@
     <article class="card">
       <div class="card-header" data-controller="modal">
         <h3 class="float-start"><%= t(:memo) %></h3>
-        <%= link_to new_admin_user_content_path(:user_id => @user), { id: 'add-user-memo', class: 'btn-modal float-end', 'data-action'=>"click->modal#open" } do %>
+        <%= link_to new_admin_user_content_path(:user_id => @user), { id: 'add-user-memo', class: 'float-end', 'data-action'=>"click->modal#open" } do %>
           <i class="material-icons">add</i>
         <% end %>
         <%= link_to admin_home_memos_path(@user), { id: 'add-user-memo', class: 'more float-end' } do %>
@@ -20,7 +20,7 @@
               <% unless @memos.empty? %>
                 <% @memos.each do |memo| %>
                   <div style="margin-bottom:20px">
-                    <%= link_to memo.content, admin_user_content_path(memo), :class => 'btn-modal more' %>
+                    <%= link_to memo.content, admin_user_content_path(memo), {'data-action'=>"click->modal#open"} %>
                     (<%= get_dt_format(memo.updated_at) %>)
                   </div>
                 <% end %>

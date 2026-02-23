@@ -1,0 +1,17 @@
+<section class="row">
+  <% unless @sports_wear_count.zero? %>
+    <% @sports_wears.each do |sports_wear| %>
+      <%=render 'index_media',sports_wear: sports_wear %>
+    <% end %>
+    <div class="col-12">
+      <%= paginate @sports_wears %>
+    </div>
+  <% else %>
+    <div class="course col-12">
+      <%= t(:no_data) %>
+    </div>
+  <% end %>
+  <div class="col-12">
+    <%=link_to t(:new_course),new_admin_sports_wear_path(category: params[:category]),class: 'btn btn-primary btn-large' %>
+  </div>
+</section>

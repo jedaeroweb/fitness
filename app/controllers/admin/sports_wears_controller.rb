@@ -4,16 +4,47 @@ class Admin::SportsWearsController < Admin::ProductsController
   # GET /sport_wears
   # GET /sport_wears.json
   def index
-    params[:per_page] = 10 unless params[:per_page].present?
+    if params[:search_detail].present?
+      session[:search_detail]=1
+    else
+      if params[:search_summary].present?
+        session.delete(:search_detail)
+      end
+    end
 
-    condition = { products: { branch_id: session[:branch_id], enable: true } }
+    if params[:list_type].present?
+      if params[:list_type]=='list'
+        session[:sports_wear_list_type]='list'
+      else
+        session[:sports_wear_list_type]='module'
+      end
+    end
+
+    condition = { branch_id: session[:branch_id], enable: true }
+
+    @sports_wear_category_count=SportsWearCategory.where(condition).count
+    @sports_wear_categories=SportsWearCategory.where(condition)
+
+    params[:per_page] = 12 unless params[:per_page].present?
+
+    if params[:category]
+      @sports_wear_category = SportsWearCategory.find(params[:category])
+    end
+
+    condition = { :products => { branch_id: session[:branch_id], enable: true } }
+
+    if @sports_wear_category.present?
+      condition['products.product_category_id'] = @sports_wear_category.id
+    end
 
     @sports_wear_count = SportsWear.joins(:product).where(condition).count
-    @sports_wears = SportsWear.joins(:product)
-                            .where(condition)
-                            .page(params[:page])
-                            .per(params[:per_page])
-                            .order('id desc')
+    @sports_wears = SportsWear.joins(:product).where(condition).page(params[:page]).per(params[:per_page]).order('id desc')
+
+
+    respond_to do |format|
+      format.html # _slide.html.erb
+      format.json { render json: @sports_wears }
+    end
   end
 
   # GET /sport_wears/1

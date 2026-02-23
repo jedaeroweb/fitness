@@ -19,37 +19,7 @@
         <div id="select_user_layer" class="col-12 form-group">
           <label><%= t(:select_user) %></label>
           <div class="users_input">
-            <% unless @users.count.zero? %>
-              <% @users.each do |user| %>
-                <% if message_send_type_id == 1 %>
-            <span class="select_user
-              <% if user.token.empty? %>text-danger
-              <% else %>text-success
-              <% end %>">
-              <%= user.name %>
-              <% if user.token.empty? %>
-                (token empty)
-              <% else %>
-                <input type="hidden" name="user[]" value="<%= user.id %>"/>
-              <% end %>
-              <span class="text-danger">X</span>
-            </span>
-                <% else %>
-            <span class="select_user
-              <% if user.phone.empty? %>text-danger
-              <% else %>text-success
-              <% end %>">
-              <%= user.name %>
-              <% if user.phone.empty? %>
-                (phone empty)
-              <% else %>
-                <input type="hidden" name="user[]" value="<%= user.id %>">
-              <% end %>
-              <span class="text-danger">X</span>
-            </span>
-                <% end %>
-              <% end %>
-            <% end %>
+            <input type="hidden" name="user[]" value="">
           </div>
           <div style="margin-top:10px"  data-controller="modal">
             <%= link_to t(:select_user), admin_user_select_path(:type => @message_type,'popup': true), { 'id' => 'user_select', :class => 'btn btn-secondary btn-modal', 'data-action'=>"click->modal#open" } %>&nbsp;&nbsp;

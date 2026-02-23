@@ -1,31 +1,22 @@
 <%= form_with(model: [:admin, @user_content]) do |form| %>
-  <% if params[:popup].present? %>
-    <div class="modal-header">
-      <h2 class="modal-title"><%=t(:new_user_content) %></h2>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="card mt-3">
+    <div class="card-header" style="cursor: pointer;">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item"><a class="nav-link" href="#"><%= t(:content, scope: [:activerecord, :attributes, :product_content]) %></a></li>
+      </ul>
+      <div class="float-right buttons">
+        <i class="material-icons">keyboard_arrow_down</i>
+      </div>
     </div>
-    <div class="modal-body">
-  <% else %>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-  <% end %>
-
-  <div class="form-group">
-    <%= form.label :content %>
-    <%= form.text_area :content, :class => 'form-control' %>
+    <div class="card-body" style="display:none">
+      <div class="card-block">
+        <div class="row">
+          <div class="col-12 form-group">
+            <%= form.label :content %>
+            <%= form.text_area :content, :class => 'form-control' %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-  <% if params[:popup].present? %>
-    </div>
-    <div class="modal-footer">
-      <%= form.submit :class => "btn btn-primary btn-block" %>
-    </div>
-  <% else %>
-    <%= form.submit :class => "btn btn-primary btn-block" %>
-    </div>
-    </div>
-    </div>
-  <% end %>
 <% end %>

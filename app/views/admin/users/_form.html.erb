@@ -35,16 +35,17 @@
           <%= form.label :name, class: "form-label" %>
           <%= form.text_field :name, :class => 'form-control', :required => 'required' %>
         </div>
-        <%= form.fields_for :user_unique_number do |uun| %>
-          <div class="col-12 col-md-6 col-xl-4 form-group">
-            <%= uun.label :unique_number, class: "form-label" %>
-            <%= uun.text_field :unique_number, :class => 'form-control', :required => 'required' %>
-          </div>
-        <% end %>
+
         <div class="col-12 col-md-6 col-xl-4 form-group">
           <%= form.label :phone, class: "form-label" %>
           <%= form.text_field :phone, :class => 'form-control' %>
         </div>
+        <%= form.fields_for :user_unique_number do |uun| %>
+          <div class="col-12 col-md-6 col-xl-4 form-group">
+            <%= uun.label :unique_number, class: "form-label" %>
+            <%= uun.text_field :unique_number, :class => 'form-control' %>
+          </div>
+        <% end %>
       </div>
       <div class="row">
         <div class="col-12 col-lg-6 col-xl-4 form-group">

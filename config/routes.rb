@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     get 'logout', :to=> 'admins::Sessions#destroy'
   end
 
+  get '/login', :to =>  'users/sessions#new'
+
   # 관리자
   namespace :admin do
     root to: 'home#index'

@@ -1,0 +1,34 @@
+<div class="col-12">
+  <div class="card">
+    <div class="card-body" style="margin-bottom:10px">
+      <div class="row">
+        <div class="col-12" style="margin-bottom:20px">
+      <h3 class="float-start">상세검색</h3>
+      <%=form_tag admin_courses_path,:method => 'get', :class=>"float-right" do %>
+        <input type="hidden" name="search_summary" value="1">
+        <% if @sports_wear.present? %>
+          <input type="hidden" name="product" value="<%=@sports_wear.id %>">
+        <% else %>
+          <%  if @@sports_wear_category.present? %>
+            <input type="hidden" name="category" value="<%=@@sports_wear_category.id %>">
+          <% end %>
+        <% end %>
+        <button type="submit" value="close" style="background-color: Transparent;background-repeat:no-repeat;border: none; "><i class="material-icons">close</i></button>
+      <% end %>
+        </div>
+      </div>
+      <%=form_tag admin_courses_path,{method:'get', class: 'search_form_show'} do %>
+        <input type="hidden" name="search" value="1">
+        <div class="row">
+        </div>
+        <div class="row">
+        </div>
+
+
+        <%=submit_tag t(:search),class: 'btn btn-primary btn-lg btn-block btn-search' %>
+      <% end %>
+    </div>
+  </div>
+
+
+</div>

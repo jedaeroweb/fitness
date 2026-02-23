@@ -13,7 +13,7 @@
         </div>
         <div class="col-12 col-lg-6 form-group">
           <%= label_tag :sms_point %>
-          <p>sdagasdgasdg</p>
+          <p><%=current_admin.branch.point %></p>
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
             <% end %>
           </div>
           <div style="margin-top:10px" data-controller="modal">
-            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type,'popup': true), { 'id' => 'user_select', :class => 'btn btn-secondary', 'data-action'=>"click->modal#open" } %>&nbsp;&nbsp;
+            <%= link_to t(:select_user), admin_user_select_path(:type => @message_type,'multiple': true), { 'id' => 'user_select', :class => 'btn btn-secondary', 'data-action'=>"click->modal#open" } %>&nbsp;&nbsp;
             <%= link_to t(:select_temp_user), admin_temp_user_select_path(:type => @message_type), { 'id' => 'temp_user_select', :class => 'btn btn-secondary', 'data-action'=>"click->modal#open" } %>
           </div>
         </div>

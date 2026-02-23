@@ -1,0 +1,35 @@
+<%
+  render_templete='index_default'
+
+  if session[:sports_wear_list_type].present?
+    if session[:sports_wear_list_type]=='list'
+      render_templete='index_list'
+    end
+  end
+
+%>
+<div id="sports_wears">
+  <div class="row">
+    <% if session[:search_detail].present? %>
+      <%=render '/admin/sports_wears/search_form_detail' %>
+    <%  else %>
+      <%=render '/admin/sports_wears/search_form' %>
+    <% end %>
+    <div class="col-12">
+      <ul class="type-selector float-end">
+        <li><%=link_to url_for(list_type: 'list') do %><span class="material-icons">view_list</span><% end %></li>
+        <li><%=link_to url_for(list_type: 'module') do %><span class="material-icons">view_module</span><% end %></li>
+      </ul>
+    </div>
+    <div class="col-12">
+      <h2 class="float-start hidden-title"><%= t(:course,scope: [:activerecord,:models]) %></h2>
+      <div class="float-end">
+        <p class="summary text-end">
+          <span id="list_count" style="display:none"><%= @sports_wear_count %></span>
+          <%= raw t(:there_are_n_sports_wears, count: @sports_wear_count) %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <%=render render_templete %>
+</div>

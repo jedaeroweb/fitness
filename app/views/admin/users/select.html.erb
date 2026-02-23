@@ -1,4 +1,5 @@
 <% if params[:popup].present? %>
+  <div class="sl-modal" data-controller="user-select">
     <div class="modal-header">
       <h3 class="modal-title"><%= t(:select_user) %></h3>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -9,7 +10,7 @@
       <div class="row">
         <div class="col-12">
   <% end %>
-<%= form_with(url: 'admin/users/select', html: { id: 'user-select-search' }) do |form| %>
+<%= form_with(url: 'admin/users/select', html: { id: 'user-select-search'}) do |form| %>
   <%= hidden_field_tag :message_type, params[:message_type] %>
   <div class="card">
     <div class="card-header">
@@ -44,10 +45,11 @@
   <% if params[:popup].present? %>
     </div>
     <div class="modal-footer">
-      <%= button_tag t(:select), id: 'su-select', class: 'btn btn-primary btn-block' %>
+      <%= button_tag t(:select), class: 'btn btn-primary btn-block', data: { action: "click->user-select#selectUsers" } %>
     </div>
+  </div>
   <% else %>
-    <%= button_tag t(:select), id: 'su-select', class: 'btn btn-primary btn-block btn-lg' %>
+    <%= button_tag t(:select), class: 'btn btn-primary btn-block btn-lg', data: { action: "click->user-select#selectUsers" } %>
     </div>
     </div>
     </div>

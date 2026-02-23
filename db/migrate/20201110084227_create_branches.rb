@@ -4,6 +4,7 @@ class CreateBranches < ActiveRecord::Migration[6.0]
       t.references :company, null: false
       t.string :title, null: false, limit: 60
       t.integer :sample, null: false, default: 0
+      t.integer :point, null: false, default: 0
       t.integer :admins_count, null: false, default: 0
       t.integer :users_count, null: false, default: 0
       t.integer :product_categories_count, null: false, default: 0

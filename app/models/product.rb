@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   has_one :product_content, dependent: :destroy
   has_one :course, dependent: :destroy
   has_one :locker, dependent: :destroy
+  has_one :sports_wear, dependent: :destroy
   accepts_nested_attributes_for :product_picture, allow_destroy: true
   accepts_nested_attributes_for :product_content, allow_destroy: true, :reject_if => lambda { |c| c[:content].blank? }
 end

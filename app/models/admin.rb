@@ -2,8 +2,6 @@ class Admin < ApplicationRecord
   after_initialize :default_values
   validates_length_of :name, within: 1..60
 
-  devise :database_authenticatable
-
   belongs_to :branch, counter_cache: true
   has_one :admin_picture, -> { order id: :desc }, dependent: :destroy
   has_one :role_admin

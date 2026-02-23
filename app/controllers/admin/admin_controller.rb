@@ -2,21 +2,10 @@ class Admin::AdminController < ApplicationController
   #load_and_authorize_resource except: [:create]
   load_and_authorize_resource
   before_action :set_branch_setting
-
-  def initialize(*params)
-    super(*params)
-    before_init
-  end
-
   helper_method :current_admin
 
   def current_admin
     current_user&.admin
-  end
-
-  def before_init
-    #  @script='admin/application'
-    # @contact_count=Contact.where(:confirm=>false).count
   end
 
   def set_branch_setting
